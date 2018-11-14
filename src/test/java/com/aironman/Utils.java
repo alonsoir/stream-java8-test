@@ -39,4 +39,38 @@ public class Utils {
 		return item;
 
 	};
+	
+	static List<AnotherEMPojo> processHistoricInputFile(String inputFilePath) throws FileNotFoundException {
+		List<AnotherEMPojo> inputList = new ArrayList<AnotherEMPojo>();
+		try {
+			File inputF = new File(inputFilePath);
+			InputStream inputFS = new FileInputStream(inputF);
+			BufferedReader br = new BufferedReader(new InputStreamReader(inputFS));
+			// skip the header of the csv
+			inputList = br.lines().skip(1).map(mapToHistoricItem).collect(Collectors.toList());
+			br.close();
+		} catch (IOException e) {
+			System.out.println("FileNotFoundException or IOException ");
+			e.printStackTrace();
+		}
+		return inputList;
+	}
+	
+	static Function<String, AnotherEMPojo> mapToHistoricItem = (line) -> {
+		String[] p = line.split(COMMA);// a CSV has comma separated lines
+		AnotherEMPojo item = new AnotherEMPojo();
+		item .setDateContest(p[0]);
+		item.setWiner1(Integer.parseInt(p[1]));
+		item.setWiner2(Integer.parseInt(p[2]));
+		item.setWiner3(Integer.parseInt(p[3]));
+		item.setWiner4(Integer.parseInt(p[4]));
+		item.setWiner5(Integer.parseInt(p[5]));
+		// 6 and 7 are null values...
+		item.setStar1(Integer.parseInt(p[7]));
+		item.setStar2(Integer.parseInt(p[8]));
+		return item;
+
+	};
+	
+	
 }

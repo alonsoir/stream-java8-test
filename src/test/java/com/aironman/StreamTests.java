@@ -3,8 +3,6 @@
  */
 package com.aironman;
 
-import static org.junit.Assert.*;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -367,5 +365,27 @@ public class StreamTests {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+	}
+	
+	@Test
+	public void testPlay_With_Historico_EM() {
+		
+		System.out.println("reading Lotoideas.com - Histórico de Resultados - Euromillones - 2004 a 2018-2.csv...");
+		String inputFilePath = "src/test/resources/Euromillones2004_2018.csv";
+		
+		
+		try {
+			List<AnotherEMPojo> myListEMPojo = Utils.processHistoricInputFile(inputFilePath);
+			System.out.println("There are " + myListEMPojo.size() + " results...");
+			myListEMPojo.forEach(System.out::println);
+			
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+
 	}
 }
