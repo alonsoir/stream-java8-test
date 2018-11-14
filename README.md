@@ -1,5 +1,9 @@
 # java8-streaming
-playing with functional java8 style streaming api.
+Playing with functional java8 style streaming api. <br />
+
+# How to use <br />
+
+import to eclipse the maven project and run tests inside eclipse to see outputs. <br />
 
 actual output <br />
 <br />
