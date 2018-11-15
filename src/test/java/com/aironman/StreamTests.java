@@ -9,6 +9,7 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -20,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
@@ -226,7 +228,7 @@ public class StreamTests {
 
 		System.out.println("productPriceList is " + productPriceList_P);
 		expected = 1;
-		Assert.assertEquals("Should be one...",expected, productPriceList_P.size());
+		Assert.assertEquals("Should be one...", expected, productPriceList_P.size());
 	}
 
 	@Test
@@ -244,7 +246,7 @@ public class StreamTests {
 		Stream<String> stream4 = set.stream();
 		// stream4.forEach(System.out::println);
 		stream4.forEach(Assert::assertNotNull);
-		
+
 		// Array can also be a source of a Stream
 		System.out.println("Array can also be a source of a Stream...");
 		Stream<String> streamOfArray = Stream.of("a", "b", "c");
@@ -330,7 +332,7 @@ public class StreamTests {
 		System.out.println(sortedMap);
 		Assert.assertNotNull(sortedMap);
 		int expected = 4;
-		Assert.assertEquals("Should be four...",expected, sortedMap.size());
+		Assert.assertEquals("Should be four...", expected, sortedMap.size());
 	}
 
 	@Test
@@ -366,26 +368,83 @@ public class StreamTests {
 			e1.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void testPlay_With_Historico_EM() {
-		
+
+		System.out.println();
 		System.out.println("reading Lotoideas.com - Histórico de Resultados - Euromillones - 2004 a 2018-2.csv...");
 		String inputFilePath = "src/test/resources/Euromillones2004_2018.csv";
-		
-		
+
 		try {
 			List<AnotherEMPojo> myListEMPojo = Utils.processHistoricInputFile(inputFilePath);
-			System.out.println("There are " + myListEMPojo.size() + " results...");
-			myListEMPojo.forEach(System.out::println);
+			System.out.println("There are " + myListEMPojo.size() + " results. Lets try to find something useful. ");
+			System.out.println("Data comes from 2004 to 2018");
+			System.out.println();
+			System.out.println("Winer1 list and number of times");
+			myListEMPojo.stream()
+						.map(o -> o.getWiner1())
+						.sorted()
+						.collect(Collectors.groupingBy(obj -> obj))
+						.entrySet()
+						
+						.forEach(e -> System.out.println(e.getKey() + " >> " +e.getValue().size()));
+			System.out.println();
+			System.out.println("Winer2 list and number of times");
+			myListEMPojo.stream()
+						.map(o -> o.getWiner2())
+						.sorted()
+						.collect(Collectors.groupingBy(obj -> obj))
+						.entrySet()
+						.forEach(e -> System.out.println(e.getKey() + " >> " +e.getValue().size()));
+			System.out.println();
+			System.out.println("Winer3 list and number of times");
+			myListEMPojo.stream()
+						.map(o -> o.getWiner3())
+						.sorted()
+						.collect(Collectors.groupingBy(obj -> obj))
+						.entrySet()
+						.forEach(e -> System.out.println(e.getKey() + " >> " +e.getValue().size()));
+			System.out.println();
+			System.out.println("Winer4 list and number of times");
+			myListEMPojo.stream()
+						.map(o -> o.getWiner4())
+						.sorted()
+						.collect(Collectors.groupingBy(obj -> obj))
+						.entrySet()
+						.forEach(e -> System.out.println(e.getKey() + " >> " +e.getValue().size()));
+			System.out.println();
+			System.out.println("Winer5 list and number of times");
+			myListEMPojo.stream()
+						.map(o -> o.getWiner1())
+						.sorted()
+						.collect(Collectors.groupingBy(obj -> obj))
+						.entrySet()
+						.forEach(e -> System.out.println(e.getKey() + " >> " +e.getValue().size()));
+			System.out.println();
+			System.out.println("Star1 list and number of times");
+			myListEMPojo.stream()
+						.map(o -> o.getStar1())
+						.sorted()
+						.collect(Collectors.groupingBy(obj -> obj))
+						.entrySet()
+						.forEach(e -> System.out.println(e.getKey() + " >> " +e.getValue().size()));
+			System.out.println();
 			
-			
+			System.out.println("Star2 list and number of times");
+			myListEMPojo.stream()
+						.map(o -> o.getStar2())
+						.sorted()
+						.collect(Collectors.groupingBy(obj -> obj))
+						.entrySet()
+						.forEach(e -> System.out.println(e.getKey() + " >> " +e.getValue().size()));
+			System.out.println();
+
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 
 	}
+
 }
