@@ -71,7 +71,7 @@ public class StreamTests {
 
 	@Test
 	public void testCompactFilteringByPrice() {
-		// This is more compact approach for filtering data
+		// This more compact approach for filtering data
 		productsList.stream().filter(product -> product.getPrice() == 30000)
 				.forEach(product -> System.out.println(product.getPrice()));
 
@@ -84,7 +84,7 @@ public class StreamTests {
 	public void testUsingCollector_to_sum_prices() {
 		// Using Collectors's method to sum the prices.
 		double totalPrice3 = productsList.stream().collect(Collectors.summingDouble(product -> product.getPrice()));
-		System.out.println("total sum is " + totalPrice3);
+		System.out.println("total sum " + totalPrice3);
 		Assert.assertNotNull(Double.toString(totalPrice3));
 	}
 
@@ -94,7 +94,7 @@ public class StreamTests {
 		Product productA = productsList.stream()
 				.max((product1, product2) -> product1.getPrice() > product2.getPrice() ? 1 : -1).get();
 
-		System.out.println("max product price is " + productA.getPrice());
+		System.out.println("max product price " + productA.getPrice());
 		Assert.assertNotNull(productA);
 	}
 
@@ -103,7 +103,7 @@ public class StreamTests {
 		// min() method to get min Product price
 		Product productB = productsList.stream()
 				.max((product1, product2) -> product1.getPrice() < product2.getPrice() ? 1 : -1).get();
-		System.out.println("min product price is " + productB.getPrice());
+		System.out.println("min product price " + productB.getPrice());
 		Assert.assertNotNull(productB);
 	}
 
@@ -112,7 +112,7 @@ public class StreamTests {
 		// Converting product List into Set
 		Set<Float> productPriceSet = productsList.stream().filter(product -> product.getPrice() < 30000)
 				.map(product -> product.getPrice()).collect(Collectors.toSet());
-		System.out.println("productPriceSet is " + productPriceSet);
+		System.out.println("productPriceSet " + productPriceSet);
 		Assert.assertNotNull(productPriceSet);
 		int expected = 2;
 		Assert.assertEquals(expected, productPriceSet.size());
@@ -123,14 +123,14 @@ public class StreamTests {
 		// Converting Product List into a Map
 		Map<Integer, String> productPriceMap = productsList.stream()
 				.collect(Collectors.toMap(p -> p.getId(), p -> p.getName()));
-		System.out.println("productPriceMap is " + productPriceMap);
+		System.out.println("productPriceMap " + productPriceMap);
 		int expected = 5;
 		Assert.assertEquals("Should be five...", expected, productPriceMap.size());
 
 		List<Float> productPriceList = productsList.stream().filter(p -> p.getPrice() > 30000)// filtering data
 				.map(Product::getPrice) // fetching price by referring getPrice method
 				.collect(Collectors.toList()); // collecting as list
-		System.out.println("productPriceList is " + productPriceList);
+		System.out.println("productPriceList " + productPriceList);
 		expected = 1;
 		Assert.assertEquals("Should be only one...", expected, productPriceList.size());
 	}
@@ -155,7 +155,7 @@ public class StreamTests {
 
 	@Test
 	public void testParallelCompactApproachFilteringData() {
-		// This is more compact approach for filtering data
+		// This more compact approach for filtering data
 		productsList.parallelStream().filter(product -> product.getPrice() == 30000)
 				.forEach(product -> System.out.println(product.getPrice()));
 
@@ -169,7 +169,7 @@ public class StreamTests {
 		// Using Collectors's method to sum the prices.
 		double totalPrice3P = productsList.parallelStream()
 				.collect(Collectors.summingDouble(product -> product.getPrice()));
-		System.out.println("total sum is " + totalPrice3P);
+		System.out.println("total sum " + totalPrice3P);
 
 		Assert.assertNotNull("Should be not nulll... ", Double.toString(totalPrice3P));
 
@@ -182,7 +182,7 @@ public class StreamTests {
 		Product productA_P = productsList.parallelStream()
 				.max((product1, product2) -> product1.getPrice() > product2.getPrice() ? 1 : -1).get();
 
-		System.out.println("max product price is " + productA_P.getPrice());
+		System.out.println("max product price " + productA_P.getPrice());
 
 		Assert.assertNotNull(productA_P);
 		float expected = 90000.0f;
@@ -194,7 +194,7 @@ public class StreamTests {
 		// min() method to get min Product price
 		Product productB_P = productsList.parallelStream()
 				.max((product1, product2) -> product1.getPrice() < product2.getPrice() ? 1 : -1).get();
-		System.out.println("min product price is " + productB_P.getPrice());
+		System.out.println("min product price " + productB_P.getPrice());
 
 		Assert.assertNotNull(productB_P);
 		float expected = 25000.0f;
@@ -206,7 +206,7 @@ public class StreamTests {
 		// Converting product List into Set
 		Set<Float> productPriceSet_P = productsList.parallelStream().filter(product -> product.getPrice() < 30000)
 				.map(product -> product.getPrice()).collect(Collectors.toSet());
-		System.out.println("productPriceSet is " + productPriceSet_P);
+		System.out.println("productPriceSet " + productPriceSet_P);
 
 		Assert.assertNotNull(productPriceSet_P);
 		int expected = 2;
@@ -218,7 +218,7 @@ public class StreamTests {
 		// Converting Product List into a Map
 		Map<Integer, String> productPriceMap_P = productsList.parallelStream()
 				.collect(Collectors.toMap(p -> p.getId(), p -> p.getName()));
-		System.out.println("productPriceMap is " + productPriceMap_P);
+		System.out.println("productPriceMap " + productPriceMap_P);
 		int expected = 5;
 		Assert.assertEquals(expected, productPriceMap_P.size());
 		List<Float> productPriceList_P = productsList.parallelStream().filter(p -> p.getPrice() > 30000) // filtering
@@ -226,7 +226,7 @@ public class StreamTests {
 				.map(Product::getPrice) // fetching price by referring getPrice method
 				.collect(Collectors.toList()); // collecting as list
 
-		System.out.println("productPriceList is " + productPriceList_P);
+		System.out.println("productPriceList " + productPriceList_P);
 		expected = 1;
 		Assert.assertEquals("Should be one...", expected, productPriceList_P.size());
 	}
@@ -378,8 +378,8 @@ public class StreamTests {
 
 		try {
 			List<AnotherEMPojo> myListEMPojo = Utils.processHistoricInputFile(inputFilePath);
-			System.out.println("There are " + myListEMPojo.size() + " results. Lets try to find something useful. ");
-			System.out.println("Data comes from 2004 to 2018");
+			System.out.println("There are " + myListEMPojo.size() + " lines in the file. Lets try to find something useful. ");
+			System.out.println("Data comes from 2004 to 2018.");
 			System.out.println();
 			System.out.println("Winer1 list and number of times");
 			myListEMPojo.stream()
@@ -387,8 +387,7 @@ public class StreamTests {
 						.sorted()
 						.collect(Collectors.groupingBy(obj -> obj))
 						.entrySet()
-						
-						.forEach(e -> System.out.println(e.getKey() + " >> " +e.getValue().size()));
+						.forEach(e -> System.out.println("winer1 " + e.getKey() + " appeared " +e.getValue().size() + " times."));
 			System.out.println();
 			System.out.println("Winer2 list and number of times");
 			myListEMPojo.stream()
@@ -396,7 +395,7 @@ public class StreamTests {
 						.sorted()
 						.collect(Collectors.groupingBy(obj -> obj))
 						.entrySet()
-						.forEach(e -> System.out.println(e.getKey() + " >> " +e.getValue().size()));
+						.forEach(e -> System.out.println("winer2 " + e.getKey() + " appeared " +e.getValue().size()+ " times."));
 			System.out.println();
 			System.out.println("Winer3 list and number of times");
 			myListEMPojo.stream()
@@ -404,7 +403,7 @@ public class StreamTests {
 						.sorted()
 						.collect(Collectors.groupingBy(obj -> obj))
 						.entrySet()
-						.forEach(e -> System.out.println(e.getKey() + " >> " +e.getValue().size()));
+						.forEach(e -> System.out.println("winer3 " + e.getKey() + " appeared " +e.getValue().size()+ " times."));
 			System.out.println();
 			System.out.println("Winer4 list and number of times");
 			myListEMPojo.stream()
@@ -412,7 +411,7 @@ public class StreamTests {
 						.sorted()
 						.collect(Collectors.groupingBy(obj -> obj))
 						.entrySet()
-						.forEach(e -> System.out.println(e.getKey() + " >> " +e.getValue().size()));
+						.forEach(e -> System.out.println("winer4 " + e.getKey() + " appeared " +e.getValue().size()+ " times."));
 			System.out.println();
 			System.out.println("Winer5 list and number of times");
 			myListEMPojo.stream()
@@ -420,7 +419,7 @@ public class StreamTests {
 						.sorted()
 						.collect(Collectors.groupingBy(obj -> obj))
 						.entrySet()
-						.forEach(e -> System.out.println(e.getKey() + " >> " +e.getValue().size()));
+						.forEach(e -> System.out.println("winer5 " + e.getKey() + " appeared " +e.getValue().size()+ " times."));
 			System.out.println();
 			System.out.println("Star1 list and number of times");
 			myListEMPojo.stream()
@@ -428,7 +427,7 @@ public class StreamTests {
 						.sorted()
 						.collect(Collectors.groupingBy(obj -> obj))
 						.entrySet()
-						.forEach(e -> System.out.println(e.getKey() + " >> " +e.getValue().size()));
+						.forEach(e -> System.out.println("star1 " + e.getKey() + " appeared " +e.getValue().size()+ " times."));
 			System.out.println();
 			
 			System.out.println("Star2 list and number of times");
@@ -437,7 +436,7 @@ public class StreamTests {
 						.sorted()
 						.collect(Collectors.groupingBy(obj -> obj))
 						.entrySet()
-						.forEach(e -> System.out.println(e.getKey() + " >> " +e.getValue().size()));
+						.forEach(e -> System.out.println("star2 " + e.getKey() + " appeared " +e.getValue().size()+ " times."));
 			System.out.println();
 
 		} catch (FileNotFoundException e) {
