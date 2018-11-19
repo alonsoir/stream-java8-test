@@ -1,5 +1,8 @@
 package com.aironman;
 
+import static java.util.Map.Entry.comparingByValue;
+import static java.util.stream.Collectors.toMap;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,13 +11,21 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.Map.Entry;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Utils {
 
-	private static final String COMMA = ",";
+	static final String COMMA = ",";
 
 	static List<EMPojo> processInputFile(String inputFilePath) throws FileNotFoundException {
 		List<EMPojo> inputList = new ArrayList<EMPojo>();
@@ -71,6 +82,188 @@ public class Utils {
 		return item;
 
 	};
+	
+	static void showStar1ReversedOrder(List<AnotherEMPojo> myListEMPojo) {
+		System.out.println("Star1 list and number of times sortered reversed by number of times: ");
+		Set<Entry<Integer, List<Integer>>> mySetwinner = myListEMPojo.stream().map(o -> o.getStar1())
+				.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+
+		Iterator<Entry<Integer, List<Integer>>> iteratorSetWinner1 = mySetwinner.iterator();
+		HashMap<Integer, Integer> aMap = new HashMap<Integer, Integer>();
+		while (iteratorSetWinner1.hasNext()) {
+			Entry<Integer, List<Integer>> it = iteratorSetWinner1.next();
+			List<Integer> listValues = it.getValue();
+			final Comparator<Integer> c = (p1, p2) -> Integer.compare(p1, p2);
+			listValues.sort(c);
+			aMap.put(it.getKey(), it.getValue().size());
+		}
+		// creating sorted map by value reversed order
+		LinkedHashMap<Integer, Integer> aLinkedHM = aMap.entrySet().stream()
+				.sorted(Collections.reverseOrder(comparingByValue()))
+				.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
+		Iterator<Entry<Integer, Integer>> itLK = aLinkedHM.entrySet().iterator();
+		while (itLK.hasNext()) {
+			Entry<Integer, Integer> it = itLK.next();
+			System.out.println("star1: " + it.getKey() + " numTimes: " + it.getValue());
+		}
+		System.out.println("Done star1 list and number of times sortered reversed by number of times!");
+	}
+	
+	static void showStar2ReversedOrder(List<AnotherEMPojo> myListEMPojo) {
+		System.out.println("Star2 list and number of times sortered reversed by number of times: ");
+		Set<Entry<Integer, List<Integer>>> mySetwinner = myListEMPojo.stream().map(o -> o.getStar2())
+				.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+
+		Iterator<Entry<Integer, List<Integer>>> iteratorSetWinner1 = mySetwinner.iterator();
+		HashMap<Integer, Integer> aMap = new HashMap<Integer, Integer>();
+		while (iteratorSetWinner1.hasNext()) {
+			Entry<Integer, List<Integer>> it = iteratorSetWinner1.next();
+			List<Integer> listValues = it.getValue();
+			final Comparator<Integer> c = (p1, p2) -> Integer.compare(p1, p2);
+			listValues.sort(c);
+			aMap.put(it.getKey(), it.getValue().size());
+		}
+		// creating sorted map by value reversed order
+		LinkedHashMap<Integer, Integer> aLinkedHM = aMap.entrySet().stream()
+				.sorted(Collections.reverseOrder(comparingByValue()))
+				.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
+		Iterator<Entry<Integer, Integer>> itLK = aLinkedHM.entrySet().iterator();
+		while (itLK.hasNext()) {
+			Entry<Integer, Integer> it = itLK.next();
+			System.out.println("star2: " + it.getKey() + " numTimes: " + it.getValue());
+		}
+		System.out.println("Done star2 list and number of times sortered reversed by number of times!");
+	}
+	
+	static void showWinner1ReversedOrder(List<AnotherEMPojo> myListEMPojo) {
+		System.out.println("Winer1 list and number of times sortered reversed by number of times: ");
+		Set<Entry<Integer, List<Integer>>> mySetwinner = myListEMPojo.stream().map(o -> o.getWiner1())
+				.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+
+		Iterator<Entry<Integer, List<Integer>>> iteratorSetWinner1 = mySetwinner.iterator();
+		HashMap<Integer, Integer> aMap = new HashMap<Integer, Integer>();
+		while (iteratorSetWinner1.hasNext()) {
+			Entry<Integer, List<Integer>> it = iteratorSetWinner1.next();
+			List<Integer> listValues = it.getValue();
+			final Comparator<Integer> c = (p1, p2) -> Integer.compare(p1, p2);
+			listValues.sort(c);
+			aMap.put(it.getKey(), it.getValue().size());
+		}
+		// creating sorted map by value reversed order
+		LinkedHashMap<Integer, Integer> aLinkedHM = aMap.entrySet().stream()
+				.sorted(Collections.reverseOrder(comparingByValue()))
+				.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
+		Iterator<Entry<Integer, Integer>> itLK = aLinkedHM.entrySet().iterator();
+		while (itLK.hasNext()) {
+			Entry<Integer, Integer> it = itLK.next();
+			System.out.println("winner2: " + it.getKey() + " numTimes: " + it.getValue());
+		}
+		System.out.println("Done Winer2 list and number of times sortered reversed by number of times!");
+	}
+
+	static void showWinner2ReversedOrder(List<AnotherEMPojo> myListEMPojo) {
+		System.out.println("Winer2 list and number of times sortered reversed by number of times: ");
+		Set<Entry<Integer, List<Integer>>> mySetwinner = myListEMPojo.stream().map(o -> o.getWiner2())
+				.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+
+		Iterator<Entry<Integer, List<Integer>>> iteratorSetWinner1 = mySetwinner.iterator();
+		HashMap<Integer, Integer> aMap = new HashMap<Integer, Integer>();
+		while (iteratorSetWinner1.hasNext()) {
+			Entry<Integer, List<Integer>> it = iteratorSetWinner1.next();
+			List<Integer> listValues = it.getValue();
+			final Comparator<Integer> c = (p1, p2) -> Integer.compare(p1, p2);
+			listValues.sort(c);
+			aMap.put(it.getKey(), it.getValue().size());
+		}
+		// creating sorted map by value reversed order
+		LinkedHashMap<Integer, Integer> aLinkedHM = aMap.entrySet().stream()
+				.sorted(Collections.reverseOrder(comparingByValue()))
+				.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
+		Iterator<Entry<Integer, Integer>> itLK = aLinkedHM.entrySet().iterator();
+		while (itLK.hasNext()) {
+			Entry<Integer, Integer> it = itLK.next();
+			System.out.println("winner2: " + it.getKey() + " numTimes: " + it.getValue());
+		}
+		System.out.println("Done Winer2 list and number of times sortered reversed by number of times!");
+	}
+
+	static void showWinner3ReversedOrder(List<AnotherEMPojo> myListEMPojo) {
+		System.out.println("Winer3 list and number of times sortered reversed by number of times: ");
+		Set<Entry<Integer, List<Integer>>> mySetwinner = myListEMPojo.stream().map(o -> o.getWiner3())
+				.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+
+		Iterator<Entry<Integer, List<Integer>>> iteratorSetWinner1 = mySetwinner.iterator();
+		HashMap<Integer, Integer> aMap = new HashMap<Integer, Integer>();
+		while (iteratorSetWinner1.hasNext()) {
+			Entry<Integer, List<Integer>> it = iteratorSetWinner1.next();
+			List<Integer> listValues = it.getValue();
+			final Comparator<Integer> c = (p1, p2) -> Integer.compare(p1, p2);
+			listValues.sort(c);
+			aMap.put(it.getKey(), it.getValue().size());
+		}
+		// creating sorted map by value reversed order
+		LinkedHashMap<Integer, Integer> aLinkedHM = aMap.entrySet().stream()
+				.sorted(Collections.reverseOrder(comparingByValue()))
+				.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
+		Iterator<Entry<Integer, Integer>> itLK = aLinkedHM.entrySet().iterator();
+		while (itLK.hasNext()) {
+			Entry<Integer, Integer> it = itLK.next();
+			System.out.println("winner3: " + it.getKey() + " numTimes: " + it.getValue());
+		}
+		System.out.println("Done Winer3 list and number of times sortered reversed by number of times!");
+	}
+
+	static void showWinner4ReversedOrder(List<AnotherEMPojo> myListEMPojo) {
+		System.out.println("Winer4 list and number of times sortered reversed by number of times: ");
+		Set<Entry<Integer, List<Integer>>> mySetwinner = myListEMPojo.stream().map(o -> o.getWiner4())
+				.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+
+		Iterator<Entry<Integer, List<Integer>>> iteratorSetWinner1 = mySetwinner.iterator();
+		HashMap<Integer, Integer> aMap = new HashMap<Integer, Integer>();
+		while (iteratorSetWinner1.hasNext()) {
+			Entry<Integer, List<Integer>> it = iteratorSetWinner1.next();
+			List<Integer> listValues = it.getValue();
+			final Comparator<Integer> c = (p1, p2) -> Integer.compare(p1, p2);
+			listValues.sort(c);
+			aMap.put(it.getKey(), it.getValue().size());
+		}
+		// creating sorted map by value reversed order
+		LinkedHashMap<Integer, Integer> aLinkedHM = aMap.entrySet().stream()
+				.sorted(Collections.reverseOrder(comparingByValue()))
+				.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
+		Iterator<Entry<Integer, Integer>> itLK = aLinkedHM.entrySet().iterator();
+		while (itLK.hasNext()) {
+			Entry<Integer, Integer> it = itLK.next();
+			System.out.println("winner4: " + it.getKey() + " numTimes: " + it.getValue());
+		}
+		System.out.println("Done Winer4 list and number of times sortered reversed by number of times!");
+	}
+
+	static void showWinner5ReversedOrder(List<AnotherEMPojo> myListEMPojo) {
+		System.out.println("Winer5 list and number of times sortered reversed by number of times: ");
+		Set<Entry<Integer, List<Integer>>> mySetwinner = myListEMPojo.stream().map(o -> o.getWiner5())
+				.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+
+		Iterator<Entry<Integer, List<Integer>>> iteratorSetWinner1 = mySetwinner.iterator();
+		HashMap<Integer, Integer> aMap = new HashMap<Integer, Integer>();
+		while (iteratorSetWinner1.hasNext()) {
+			Entry<Integer, List<Integer>> it = iteratorSetWinner1.next();
+			List<Integer> listValues = it.getValue();
+			final Comparator<Integer> c = (p1, p2) -> Integer.compare(p1, p2);
+			listValues.sort(c);
+			aMap.put(it.getKey(), it.getValue().size());
+		}
+		// creating sorted map by value reversed order
+		LinkedHashMap<Integer, Integer> aLinkedHM = aMap.entrySet().stream()
+				.sorted(Collections.reverseOrder(comparingByValue()))
+				.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
+		Iterator<Entry<Integer, Integer>> itLK = aLinkedHM.entrySet().iterator();
+		while (itLK.hasNext()) {
+			Entry<Integer, Integer> it = itLK.next();
+			System.out.println("winner5: " + it.getKey() + " numTimes: " + it.getValue());
+		}
+		System.out.println("Done Winer5 list and number of times sortered reversed by number of times!");
+	}
 	
 	
 }
