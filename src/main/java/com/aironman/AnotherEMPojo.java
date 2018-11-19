@@ -97,6 +97,52 @@ public class AnotherEMPojo {
 		return "AnotherEMPojo [dateContest=" + dateContest + ", winer1=" + winer1 + ", winer2=" + winer2 + ", winer3="
 				+ winer3 + ", winer4=" + winer4 + ", winer5=" + winer5 + ", star1=" + star1 + ", star2=" + star2 + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((dateContest == null) ? 0 : dateContest.hashCode());
+		result = prime * result + star1;
+		result = prime * result + star2;
+		result = prime * result + winer1;
+		result = prime * result + winer2;
+		result = prime * result + winer3;
+		result = prime * result + winer4;
+		result = prime * result + winer5;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AnotherEMPojo other = (AnotherEMPojo) obj;
+		if (dateContest == null) {
+			if (other.dateContest != null)
+				return false;
+		} else if (!dateContest.equals(other.dateContest))
+			return false;
+		if (star1 != other.star1)
+			return false;
+		if (star2 != other.star2)
+			return false;
+		if (winer1 != other.winer1)
+			return false;
+		if (winer2 != other.winer2)
+			return false;
+		if (winer3 != other.winer3)
+			return false;
+		if (winer4 != other.winer4)
+			return false;
+		if (winer5 != other.winer5)
+			return false;
+		return true;
+	}
 	
 	
 }

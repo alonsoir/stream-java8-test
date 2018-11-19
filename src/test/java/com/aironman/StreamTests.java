@@ -16,9 +16,11 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Set;
 import java.util.function.Consumer;
@@ -381,65 +383,45 @@ public class StreamTests {
 
 		try {
 			List<AnotherEMPojo> myListEMPojo = Utils.processHistoricInputFile(inputFilePath);
-			System.out.println("There are " + myListEMPojo.size() + " lines in the file. Lets try to find something useful. ");
+			System.out.println(
+					"There are " + myListEMPojo.size() + " lines in the file. Lets try to find something useful. ");
 			System.out.println("Data comes from 2004 to 2018.");
 			System.out.println();
 			System.out.println("Winer1 list and number of times");
-			myListEMPojo.stream()
-						.map(o -> o.getWiner1())
-						.sorted()
-						.collect(Collectors.groupingBy(obj -> obj))
-						.entrySet()
-						.forEach(e -> System.out.println("winer1 " + e.getKey() + " appeared " +e.getValue().size() + " times."));
+			myListEMPojo.stream().map(o -> o.getWiner1()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet()
+					.forEach(e -> System.out
+							.println("winer1 " + e.getKey() + " appeared " + e.getValue().size() + " times."));
 			System.out.println();
 			System.out.println("Winer2 list and number of times");
-			myListEMPojo.stream()
-						.map(o -> o.getWiner2())
-						.sorted()
-						.collect(Collectors.groupingBy(obj -> obj))
-						.entrySet()
-						.forEach(e -> System.out.println("winer2 " + e.getKey() + " appeared " +e.getValue().size()+ " times."));
+			myListEMPojo.stream().map(o -> o.getWiner2()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet()
+					.forEach(e -> System.out
+							.println("winer2 " + e.getKey() + " appeared " + e.getValue().size() + " times."));
 			System.out.println();
 			System.out.println("Winer3 list and number of times");
-			myListEMPojo.stream()
-						.map(o -> o.getWiner3())
-						.sorted()
-						.collect(Collectors.groupingBy(obj -> obj))
-						.entrySet()
-						.forEach(e -> System.out.println("winer3 " + e.getKey() + " appeared " +e.getValue().size()+ " times."));
+			myListEMPojo.stream().map(o -> o.getWiner3()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet()
+					.forEach(e -> System.out
+							.println("winer3 " + e.getKey() + " appeared " + e.getValue().size() + " times."));
 			System.out.println();
 			System.out.println("Winer4 list and number of times");
-			myListEMPojo.stream()
-						.map(o -> o.getWiner4())
-						.sorted()
-						.collect(Collectors.groupingBy(obj -> obj))
-						.entrySet()
-						.forEach(e -> System.out.println("winer4 " + e.getKey() + " appeared " +e.getValue().size()+ " times."));
+			myListEMPojo.stream().map(o -> o.getWiner4()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet()
+					.forEach(e -> System.out
+							.println("winer4 " + e.getKey() + " appeared " + e.getValue().size() + " times."));
 			System.out.println();
 			System.out.println("Winer5 list and number of times");
-			myListEMPojo.stream()
-						.map(o -> o.getWiner1())
-						.sorted()
-						.collect(Collectors.groupingBy(obj -> obj))
-						.entrySet()
-						.forEach(e -> System.out.println("winer5 " + e.getKey() + " appeared " +e.getValue().size()+ " times."));
+			myListEMPojo.stream().map(o -> o.getWiner1()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet()
+					.forEach(e -> System.out
+							.println("winer5 " + e.getKey() + " appeared " + e.getValue().size() + " times."));
 			System.out.println();
 			System.out.println("Star1 list and number of times");
-			myListEMPojo.stream()
-						.map(o -> o.getStar1())
-						.sorted()
-						.collect(Collectors.groupingBy(obj -> obj))
-						.entrySet()
-						.forEach(e -> System.out.println("star1 " + e.getKey() + " appeared " +e.getValue().size()+ " times."));
+			myListEMPojo.stream().map(o -> o.getStar1()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet()
+					.forEach(e -> System.out
+							.println("star1 " + e.getKey() + " appeared " + e.getValue().size() + " times."));
 			System.out.println();
-			
+
 			System.out.println("Star2 list and number of times");
-			myListEMPojo.stream()
-						.map(o -> o.getStar2())
-						.sorted()
-						.collect(Collectors.groupingBy(obj -> obj))
-						.entrySet()
-						.forEach(e -> System.out.println("star2 " + e.getKey() + " appeared " +e.getValue().size()+ " times."));
+			myListEMPojo.stream().map(o -> o.getStar2()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet()
+					.forEach(e -> System.out
+							.println("star2 " + e.getKey() + " appeared " + e.getValue().size() + " times."));
 			System.out.println();
 
 		} catch (FileNotFoundException e) {
@@ -447,5 +429,62 @@ public class StreamTests {
 			e.printStackTrace();
 		}
 
+	}
+
+	@Test
+	public void testFeatureEM1() {
+		String inputFilePath = "src/test/resources/Euromillones2004_2018.csv";
+
+		try {
+			List<AnotherEMPojo> myListEMPojo = Utils.processHistoricInputFile(inputFilePath);
+			System.out.println(
+					"There are " + myListEMPojo.size() + " lines in the file. Lets try to find something useful. ");
+			System.out.println("Data comes from 2004 to 2018.");
+			System.out.println();
+			System.out.println("Winer1 list and number of times");
+			//Set<Integer> mySet1 = 
+					myListEMPojo.stream()
+						.map(o -> o.getWiner1())
+						.sorted()
+						.collect(Collectors.toSet())
+						.forEach(e-> System.out.println(" " + e.intValue()));
+			
+			Set<Entry<Integer,List<Integer>>> mySetwinner1 = myListEMPojo.stream()
+																		 .map(o -> o.getWiner1()).collect(Collectors.groupingBy(obj -> obj))
+																		 .entrySet();
+			Iterator<Entry<Integer, List<Integer>>> iteratorSetWinner1 = mySetwinner1.iterator();
+			while(iteratorSetWinner1.hasNext())
+			{
+				Entry<Integer, List<Integer>> it = iteratorSetWinner1.next();
+				List<Integer> listValues = it.getValue();
+				final Comparator<Integer> c = (p1,p2) -> Integer.compare(p1, p2); 
+				listValues .sort(c);
+				
+				System.out.println("winner1: " + it .getKey() + " " + listValues.size() + " numTimes: " + it.getValue().size());
+			}
+			System.out.println();
+			System.out.println("Winer2 list and number of times");
+			myListEMPojo.stream().map(o -> o.getWiner2()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet();
+			System.out.println();
+			System.out.println("Winer3 list and number of times");
+			myListEMPojo.stream().map(o -> o.getWiner3()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet();
+			System.out.println();
+			System.out.println("Winer4 list and number of times");
+			myListEMPojo.stream().map(o -> o.getWiner4()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet();
+			System.out.println();
+			System.out.println("Winer5 list and number of times");
+			myListEMPojo.stream().map(o -> o.getWiner1()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet();
+			System.out.println();
+			System.out.println("Star1 list and number of times");
+			myListEMPojo.stream().map(o -> o.getStar1()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet();
+			System.out.println();
+			System.out.println("Star2 list and number of times");
+			myListEMPojo.stream().map(o -> o.getStar2()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet();
+			System.out.println();
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
