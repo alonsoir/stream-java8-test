@@ -35,6 +35,15 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import static java.util.stream.Collectors.*;
+import static java.util.Map.Entry.*;
+
 import junit.framework.Assert;
 
 /**
@@ -45,6 +54,7 @@ public class StreamTests {
 
 	private static List<Product> productsList = new ArrayList<Product>();
 	private static Logger logger = LoggerFactory.getLogger(StreamTests.class);
+
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -387,43 +397,43 @@ public class StreamTests {
 					"There are " + myListEMPojo.size() + " lines in the file. Lets try to find something useful. ");
 			System.out.println("Data comes from 2004 to 2018.");
 			System.out.println();
-			System.out.println("Winer1 list and number of times");
+			System.out.println("Winer1 list and number of times. Unsortered");
 			myListEMPojo.stream().map(o -> o.getWiner1()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet()
 					.forEach(e -> System.out
 							.println("winer1 " + e.getKey() + " appeared " + e.getValue().size() + " times."));
 			System.out.println();
-			System.out.println("Winer2 list and number of times");
+			System.out.println("Winer2 list and number of times. Unsortered");
 			myListEMPojo.stream().map(o -> o.getWiner2()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet()
 					.forEach(e -> System.out
 							.println("winer2 " + e.getKey() + " appeared " + e.getValue().size() + " times."));
 			System.out.println();
-			System.out.println("Winer3 list and number of times");
+			System.out.println("Winer3 list and number of times. Unsortered");
 			myListEMPojo.stream().map(o -> o.getWiner3()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet()
 					.forEach(e -> System.out
 							.println("winer3 " + e.getKey() + " appeared " + e.getValue().size() + " times."));
 			System.out.println();
-			System.out.println("Winer4 list and number of times");
+			System.out.println("Winer4 list and number of times. Unsortered");
 			myListEMPojo.stream().map(o -> o.getWiner4()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet()
 					.forEach(e -> System.out
 							.println("winer4 " + e.getKey() + " appeared " + e.getValue().size() + " times."));
 			System.out.println();
-			System.out.println("Winer5 list and number of times");
+			System.out.println("Winer5 list and number of times. Unsortered");
 			myListEMPojo.stream().map(o -> o.getWiner1()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet()
 					.forEach(e -> System.out
 							.println("winer5 " + e.getKey() + " appeared " + e.getValue().size() + " times."));
 			System.out.println();
-			System.out.println("Star1 list and number of times");
+			System.out.println("Star1 list and number of times. Unsortered");
 			myListEMPojo.stream().map(o -> o.getStar1()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet()
 					.forEach(e -> System.out
 							.println("star1 " + e.getKey() + " appeared " + e.getValue().size() + " times."));
 			System.out.println();
 
-			System.out.println("Star2 list and number of times");
+			System.out.println("Star2 list and number of times. Unsortered");
 			myListEMPojo.stream().map(o -> o.getStar2()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet()
 					.forEach(e -> System.out
 							.println("star2 " + e.getKey() + " appeared " + e.getValue().size() + " times."));
 			System.out.println();
-
+			System.out.println("Done unsortered!");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -441,50 +451,200 @@ public class StreamTests {
 					"There are " + myListEMPojo.size() + " lines in the file. Lets try to find something useful. ");
 			System.out.println("Data comes from 2004 to 2018.");
 			System.out.println();
-			System.out.println("Winer1 list and number of times");
-			//Set<Integer> mySet1 = 
-					myListEMPojo.stream()
-						.map(o -> o.getWiner1())
-						.sorted()
-						.collect(Collectors.toSet())
-						.forEach(e-> System.out.println(" " + e.intValue()));
-			
-			Set<Entry<Integer,List<Integer>>> mySetwinner1 = myListEMPojo.stream()
-																		 .map(o -> o.getWiner1()).collect(Collectors.groupingBy(obj -> obj))
-																		 .entrySet();
-			Iterator<Entry<Integer, List<Integer>>> iteratorSetWinner1 = mySetwinner1.iterator();
-			while(iteratorSetWinner1.hasNext())
-			{
-				Entry<Integer, List<Integer>> it = iteratorSetWinner1.next();
-				List<Integer> listValues = it.getValue();
-				final Comparator<Integer> c = (p1,p2) -> Integer.compare(p1, p2); 
-				listValues .sort(c);
-				
-				System.out.println("winner1: " + it .getKey() + " " + listValues.size() + " numTimes: " + it.getValue().size());
-			}
-			System.out.println();
-			System.out.println("Winer2 list and number of times");
-			myListEMPojo.stream().map(o -> o.getWiner2()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			System.out.println();
-			System.out.println("Winer3 list and number of times");
-			myListEMPojo.stream().map(o -> o.getWiner3()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			System.out.println();
-			System.out.println("Winer4 list and number of times");
-			myListEMPojo.stream().map(o -> o.getWiner4()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			System.out.println();
-			System.out.println("Winer5 list and number of times");
-			myListEMPojo.stream().map(o -> o.getWiner1()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			System.out.println();
-			System.out.println("Star1 list and number of times");
-			myListEMPojo.stream().map(o -> o.getStar1()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			System.out.println();
-			System.out.println("Star2 list and number of times");
-			myListEMPojo.stream().map(o -> o.getStar2()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			System.out.println();
+			System.out.println("Winer1 list and number of times sortered reversed by number of times: ");
 
+			showWinner1ReversedOrder(myListEMPojo);
+			System.out.println();
+			showWinner2ReversedOrder(myListEMPojo);
+			System.out.println();
+			showWinner3ReversedOrder(myListEMPojo);
+			System.out.println();
+			showWinner4ReversedOrder(myListEMPojo);
+			System.out.println();
+			showWinner5ReversedOrder(myListEMPojo);
+			System.out.println();
+			showStar1ReversedOrder(myListEMPojo);
+			System.out.println();
+			showStar2ReversedOrder(myListEMPojo);
+			System.out.println();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	private void showStar1ReversedOrder(List<AnotherEMPojo> myListEMPojo) {
+		Set<Entry<Integer, List<Integer>>> mySetwinner = myListEMPojo.stream().map(o -> o.getStar1())
+				.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+
+		Iterator<Entry<Integer, List<Integer>>> iteratorSetWinner1 = mySetwinner.iterator();
+		HashMap<Integer, Integer> aMap = new HashMap<Integer, Integer>();
+		while (iteratorSetWinner1.hasNext()) {
+			Entry<Integer, List<Integer>> it = iteratorSetWinner1.next();
+			List<Integer> listValues = it.getValue();
+			final Comparator<Integer> c = (p1, p2) -> Integer.compare(p1, p2);
+			listValues.sort(c);
+			aMap.put(it.getKey(), it.getValue().size());
+		}
+		// creating sorted map by value reversed order
+		LinkedHashMap<Integer, Integer> aLinkedHM = aMap.entrySet().stream()
+				.sorted(Collections.reverseOrder(comparingByValue()))
+				.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
+		Iterator<Entry<Integer, Integer>> itLK = aLinkedHM.entrySet().iterator();
+		while (itLK.hasNext()) {
+			Entry<Integer, Integer> it = itLK.next();
+			System.out.println("star1: " + it.getKey() + " numTimes: " + it.getValue());
+		}
+		System.out.println("Done star1 list and number of times sortered reversed by number of times!");
+	}
+	
+	private void showStar2ReversedOrder(List<AnotherEMPojo> myListEMPojo) {
+		Set<Entry<Integer, List<Integer>>> mySetwinner = myListEMPojo.stream().map(o -> o.getStar2())
+				.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+
+		Iterator<Entry<Integer, List<Integer>>> iteratorSetWinner1 = mySetwinner.iterator();
+		HashMap<Integer, Integer> aMap = new HashMap<Integer, Integer>();
+		while (iteratorSetWinner1.hasNext()) {
+			Entry<Integer, List<Integer>> it = iteratorSetWinner1.next();
+			List<Integer> listValues = it.getValue();
+			final Comparator<Integer> c = (p1, p2) -> Integer.compare(p1, p2);
+			listValues.sort(c);
+			aMap.put(it.getKey(), it.getValue().size());
+		}
+		// creating sorted map by value reversed order
+		LinkedHashMap<Integer, Integer> aLinkedHM = aMap.entrySet().stream()
+				.sorted(Collections.reverseOrder(comparingByValue()))
+				.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
+		Iterator<Entry<Integer, Integer>> itLK = aLinkedHM.entrySet().iterator();
+		while (itLK.hasNext()) {
+			Entry<Integer, Integer> it = itLK.next();
+			System.out.println("star2: " + it.getKey() + " numTimes: " + it.getValue());
+		}
+		System.out.println("Done star2 list and number of times sortered reversed by number of times!");
+	}
+	
+	private void showWinner1ReversedOrder(List<AnotherEMPojo> myListEMPojo) {
+		Set<Entry<Integer, List<Integer>>> mySetwinner = myListEMPojo.stream().map(o -> o.getWiner1())
+				.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+
+		Iterator<Entry<Integer, List<Integer>>> iteratorSetWinner1 = mySetwinner.iterator();
+		HashMap<Integer, Integer> aMap = new HashMap<Integer, Integer>();
+		while (iteratorSetWinner1.hasNext()) {
+			Entry<Integer, List<Integer>> it = iteratorSetWinner1.next();
+			List<Integer> listValues = it.getValue();
+			final Comparator<Integer> c = (p1, p2) -> Integer.compare(p1, p2);
+			listValues.sort(c);
+			aMap.put(it.getKey(), it.getValue().size());
+		}
+		// creating sorted map by value reversed order
+		LinkedHashMap<Integer, Integer> aLinkedHM = aMap.entrySet().stream()
+				.sorted(Collections.reverseOrder(comparingByValue()))
+				.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
+		Iterator<Entry<Integer, Integer>> itLK = aLinkedHM.entrySet().iterator();
+		while (itLK.hasNext()) {
+			Entry<Integer, Integer> it = itLK.next();
+			System.out.println("winner2: " + it.getKey() + " numTimes: " + it.getValue());
+		}
+		System.out.println("Done Winer2 list and number of times sortered reversed by number of times!");
+	}
+
+	private void showWinner2ReversedOrder(List<AnotherEMPojo> myListEMPojo) {
+		Set<Entry<Integer, List<Integer>>> mySetwinner = myListEMPojo.stream().map(o -> o.getWiner2())
+				.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+
+		Iterator<Entry<Integer, List<Integer>>> iteratorSetWinner1 = mySetwinner.iterator();
+		HashMap<Integer, Integer> aMap = new HashMap<Integer, Integer>();
+		while (iteratorSetWinner1.hasNext()) {
+			Entry<Integer, List<Integer>> it = iteratorSetWinner1.next();
+			List<Integer> listValues = it.getValue();
+			final Comparator<Integer> c = (p1, p2) -> Integer.compare(p1, p2);
+			listValues.sort(c);
+			aMap.put(it.getKey(), it.getValue().size());
+		}
+		// creating sorted map by value reversed order
+		LinkedHashMap<Integer, Integer> aLinkedHM = aMap.entrySet().stream()
+				.sorted(Collections.reverseOrder(comparingByValue()))
+				.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
+		Iterator<Entry<Integer, Integer>> itLK = aLinkedHM.entrySet().iterator();
+		while (itLK.hasNext()) {
+			Entry<Integer, Integer> it = itLK.next();
+			System.out.println("winner2: " + it.getKey() + " numTimes: " + it.getValue());
+		}
+		System.out.println("Done Winer2 list and number of times sortered reversed by number of times!");
+	}
+
+	private void showWinner3ReversedOrder(List<AnotherEMPojo> myListEMPojo) {
+		Set<Entry<Integer, List<Integer>>> mySetwinner = myListEMPojo.stream().map(o -> o.getWiner3())
+				.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+
+		Iterator<Entry<Integer, List<Integer>>> iteratorSetWinner1 = mySetwinner.iterator();
+		HashMap<Integer, Integer> aMap = new HashMap<Integer, Integer>();
+		while (iteratorSetWinner1.hasNext()) {
+			Entry<Integer, List<Integer>> it = iteratorSetWinner1.next();
+			List<Integer> listValues = it.getValue();
+			final Comparator<Integer> c = (p1, p2) -> Integer.compare(p1, p2);
+			listValues.sort(c);
+			aMap.put(it.getKey(), it.getValue().size());
+		}
+		// creating sorted map by value reversed order
+		LinkedHashMap<Integer, Integer> aLinkedHM = aMap.entrySet().stream()
+				.sorted(Collections.reverseOrder(comparingByValue()))
+				.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
+		Iterator<Entry<Integer, Integer>> itLK = aLinkedHM.entrySet().iterator();
+		while (itLK.hasNext()) {
+			Entry<Integer, Integer> it = itLK.next();
+			System.out.println("winner3: " + it.getKey() + " numTimes: " + it.getValue());
+		}
+		System.out.println("Done Winer3 list and number of times sortered reversed by number of times!");
+	}
+
+	private void showWinner4ReversedOrder(List<AnotherEMPojo> myListEMPojo) {
+		Set<Entry<Integer, List<Integer>>> mySetwinner = myListEMPojo.stream().map(o -> o.getWiner4())
+				.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+
+		Iterator<Entry<Integer, List<Integer>>> iteratorSetWinner1 = mySetwinner.iterator();
+		HashMap<Integer, Integer> aMap = new HashMap<Integer, Integer>();
+		while (iteratorSetWinner1.hasNext()) {
+			Entry<Integer, List<Integer>> it = iteratorSetWinner1.next();
+			List<Integer> listValues = it.getValue();
+			final Comparator<Integer> c = (p1, p2) -> Integer.compare(p1, p2);
+			listValues.sort(c);
+			aMap.put(it.getKey(), it.getValue().size());
+		}
+		// creating sorted map by value reversed order
+		LinkedHashMap<Integer, Integer> aLinkedHM = aMap.entrySet().stream()
+				.sorted(Collections.reverseOrder(comparingByValue()))
+				.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
+		Iterator<Entry<Integer, Integer>> itLK = aLinkedHM.entrySet().iterator();
+		while (itLK.hasNext()) {
+			Entry<Integer, Integer> it = itLK.next();
+			System.out.println("winner4: " + it.getKey() + " numTimes: " + it.getValue());
+		}
+		System.out.println("Done Winer4 list and number of times sortered reversed by number of times!");
+	}
+
+	private void showWinner5ReversedOrder(List<AnotherEMPojo> myListEMPojo) {
+		Set<Entry<Integer, List<Integer>>> mySetwinner = myListEMPojo.stream().map(o -> o.getWiner5())
+				.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+
+		Iterator<Entry<Integer, List<Integer>>> iteratorSetWinner1 = mySetwinner.iterator();
+		HashMap<Integer, Integer> aMap = new HashMap<Integer, Integer>();
+		while (iteratorSetWinner1.hasNext()) {
+			Entry<Integer, List<Integer>> it = iteratorSetWinner1.next();
+			List<Integer> listValues = it.getValue();
+			final Comparator<Integer> c = (p1, p2) -> Integer.compare(p1, p2);
+			listValues.sort(c);
+			aMap.put(it.getKey(), it.getValue().size());
+		}
+		// creating sorted map by value reversed order
+		LinkedHashMap<Integer, Integer> aLinkedHM = aMap.entrySet().stream()
+				.sorted(Collections.reverseOrder(comparingByValue()))
+				.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
+		Iterator<Entry<Integer, Integer>> itLK = aLinkedHM.entrySet().iterator();
+		while (itLK.hasNext()) {
+			Entry<Integer, Integer> it = itLK.next();
+			System.out.println("winner5: " + it.getKey() + " numTimes: " + it.getValue());
+		}
+		System.out.println("Done Winer5 list and number of times sortered reversed by number of times!");
 	}
 }
