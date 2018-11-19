@@ -9,21 +9,18 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Set;
-import java.util.function.Consumer;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
@@ -34,15 +31,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
-import static java.util.stream.Collectors.*;
-import static java.util.Map.Entry.*;
 
 import junit.framework.Assert;
 
@@ -70,6 +58,7 @@ public class StreamTests {
 		productsList.add(new Product(4, "Sony Laptop", 28000f));
 		productsList.add(new Product(5, "Apple Laptop", 90000f));
 		logger.info("setUp. productsList.size: " + productsList.size());
+		System.out.println("Done setUp.");
 	}
 
 	@Test
@@ -451,7 +440,7 @@ public class StreamTests {
 					"There are " + myListEMPojo.size() + " lines in the file. Lets try to find something useful. ");
 			System.out.println("Data comes from 2004 to 2018.");
 			System.out.println();
-			
+
 			Utils.showWinner1ReversedOrder(myListEMPojo);
 			System.out.println();
 			Utils.showWinner2ReversedOrder(myListEMPojo);
@@ -472,5 +461,57 @@ public class StreamTests {
 		}
 	}
 
-	
+	@Test
+	public void testRefactoredFeatureEM1() {
+		System.out.println("testRefactoredFeatureEM1");
+		String inputFilePath = "src/test/resources/Euromillones2004_2018.csv";
+
+		try {
+			List<AnotherEMPojo> myListEMPojo = Utils.processHistoricInputFile(inputFilePath);
+			System.out.println(
+					"There are " + myListEMPojo.size() + " lines in the file. Lets try to find something useful. ");
+			System.out.println("Data comes from 2004 to 2018.");
+			System.out.println();
+			Set<Entry<Integer, List<Integer>>> mySetStar1 = myListEMPojo.stream().map(o -> o.getStar1())
+					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+			Utils.showValueReversedOrder(mySetStar1,"Star1 ");
+			System.out.println();
+
+			Set<Entry<Integer, List<Integer>>> mySetStar2 = myListEMPojo.stream().map(o -> o.getStar2())
+					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+			Utils.showValueReversedOrder(mySetStar2,"Star2 ");
+			System.out.println();
+
+			Set<Entry<Integer, List<Integer>>> mySetWinner1 = myListEMPojo.stream().map(o -> o.getWiner1())
+					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+			Utils.showValueReversedOrder(mySetWinner1,"Winner1 ");
+			System.out.println();
+
+			Set<Entry<Integer, List<Integer>>> mySetWinner2 = myListEMPojo.stream().map(o -> o.getWiner2())
+					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+			Utils.showValueReversedOrder(mySetWinner2,"Winner2 ");
+			System.out.println();
+
+			Set<Entry<Integer, List<Integer>>> mySetWinner3 = myListEMPojo.stream().map(o -> o.getWiner3())
+					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+			Utils.showValueReversedOrder(mySetWinner3,"Winner3 ");
+			System.out.println();
+
+			Set<Entry<Integer, List<Integer>>> mySetWinner4 = myListEMPojo.stream().map(o -> o.getWiner4())
+					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+			Utils.showValueReversedOrder(mySetWinner4,"Winner4 ");
+			System.out.println();
+
+			Set<Entry<Integer, List<Integer>>> mySetWinner5 = myListEMPojo.stream().map(o -> o.getWiner5())
+					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+			Utils.showValueReversedOrder(mySetWinner5,"Winner5 ");
+			System.out.println();
+			System.out.println("Done testRefactoredFeatureEM1");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
 }

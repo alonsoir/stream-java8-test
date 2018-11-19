@@ -83,6 +83,32 @@ public class Utils {
 
 	};
 	
+	static void showValueReversedOrder(Set<Entry<Integer, List<Integer>>> mySetwinner,String type) {
+		System.out.println(type + "list and number of times sortered reversed by number of times: ");
+		
+
+		Iterator<Entry<Integer, List<Integer>>> iteratorSetWinner1 = mySetwinner.iterator();
+		HashMap<Integer, Integer> aMap = new HashMap<Integer, Integer>();
+		while (iteratorSetWinner1.hasNext()) {
+			Entry<Integer, List<Integer>> it = iteratorSetWinner1.next();
+			List<Integer> listValues = it.getValue();
+			final Comparator<Integer> c = (p1, p2) -> Integer.compare(p1, p2);
+			listValues.sort(c);
+			aMap.put(it.getKey(), it.getValue().size());
+		}
+		// creating sorted map by value reversed order
+		LinkedHashMap<Integer, Integer> aLinkedHM = aMap.entrySet().stream()
+				.sorted(Collections.reverseOrder(comparingByValue()))
+				.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
+		Iterator<Entry<Integer, Integer>> itLK = aLinkedHM.entrySet().iterator();
+		while (itLK.hasNext()) {
+			Entry<Integer, Integer> it = itLK.next();
+			System.out.println(type + it.getKey() + " numTimes: " + it.getValue());
+		}
+		System.out.println("Done " + type + "list and number of times sortered reversed by number of times!");
+	}
+	
+	
 	static void showStar1ReversedOrder(List<AnotherEMPojo> myListEMPojo) {
 		System.out.println("Star1 list and number of times sortered reversed by number of times: ");
 		Set<Entry<Integer, List<Integer>>> mySetwinner = myListEMPojo.stream().map(o -> o.getStar1())
@@ -134,6 +160,7 @@ public class Utils {
 		}
 		System.out.println("Done star2 list and number of times sortered reversed by number of times!");
 	}
+	
 	
 	static void showWinner1ReversedOrder(List<AnotherEMPojo> myListEMPojo) {
 		System.out.println("Winer1 list and number of times sortered reversed by number of times: ");
