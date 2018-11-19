@@ -30,6 +30,8 @@ import java.util.stream.Stream;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import junit.framework.Assert;
 
@@ -40,7 +42,7 @@ import junit.framework.Assert;
 public class StreamTests {
 
 	private static List<Product> productsList = new ArrayList<Product>();
-
+	private static Logger logger = LoggerFactory.getLogger(StreamTests.class);
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -55,6 +57,7 @@ public class StreamTests {
 		productsList.add(new Product(3, "Lenevo Laptop", 28000f));
 		productsList.add(new Product(4, "Sony Laptop", 28000f));
 		productsList.add(new Product(5, "Apple Laptop", 90000f));
+		logger.info("setUp. productsList.size: " + productsList.size());
 	}
 
 	@Test
@@ -445,5 +448,4 @@ public class StreamTests {
 		}
 
 	}
-
 }
