@@ -56,8 +56,8 @@ public class StreamTests {
 		productsList.add(new Product(3, "Lenevo Laptop", 28000f));
 		productsList.add(new Product(4, "Sony Laptop", 28000f));
 		productsList.add(new Product(5, "Apple Laptop", 90000f));
-		//// logger.debug("setUp. productsList.size: " + productsList.size());
-		//// logger.debug("Done setUp.");
+		//logger.debug("setUp. productsList.size: " + productsList.size());
+		//logger.debug("Done setUp.");
 	}
 
 	@Test
@@ -67,7 +67,7 @@ public class StreamTests {
 				.map(aProduct -> aProduct.getPrice()).collect(Collectors.toList());
 
 		// iterating over list
-		//listPrices.forEach(e->// logger.debug(String.valueOf(e)));
+		//listPrices.forEach(e->logger.debug(String.valueOf(e)));
 		listPrices.forEach(Assert::assertNotNull);
 
 	}
@@ -75,7 +75,7 @@ public class StreamTests {
 	@Test
 	public void testCompactFilteringByPrice() {
 		// This more compact approach for filtering data
-		// productsList.stream().filter(product -> product.getPrice() == 30000).forEach(product -> // logger.debug(String.valueOf(product.getPrice())));
+		// productsList.stream().filter(product -> product.getPrice() == 30000).forEach(product -> logger.debug(String.valueOf(product.getPrice())));
 
 		productsList.stream().filter(product -> product.getPrice() == 30000)
 				.forEach(product -> Assert.assertNotNull(product.getPrice()));
@@ -86,7 +86,7 @@ public class StreamTests {
 	public void testUsingCollector_to_sum_prices() {
 		// Using Collectors's method to sum the prices.
 		double totalPrice3 = productsList.stream().collect(Collectors.summingDouble(product -> product.getPrice()));
-		//// logger.debug("total sum " + totalPrice3);
+		//logger.debug("total sum " + totalPrice3);
 		Assert.assertNotNull(Double.toString(totalPrice3));
 	}
 
@@ -96,7 +96,7 @@ public class StreamTests {
 		Product productA = productsList.stream()
 				.max((product1, product2) -> product1.getPrice() > product2.getPrice() ? 1 : -1).get();
 
-		// // logger.debug("max product price " + productA.getPrice());
+		// logger.debug("max product price " + productA.getPrice());
 		Assert.assertNotNull(productA);
 	}
 
@@ -105,7 +105,7 @@ public class StreamTests {
 		// min() method to get min Product price
 		Product productB = productsList.stream()
 				.max((product1, product2) -> product1.getPrice() < product2.getPrice() ? 1 : -1).get();
-		// // logger.debug("min product price " + productB.getPrice());
+		// logger.debug("min product price " + productB.getPrice());
 		Assert.assertNotNull(productB);
 	}
 
@@ -114,7 +114,7 @@ public class StreamTests {
 		// Converting product List into Set
 		Set<Float> productPriceSet = productsList.stream().filter(product -> product.getPrice() < 30000)
 				.map(product -> product.getPrice()).collect(Collectors.toSet());
-		// // logger.debug("productPriceSet " + productPriceSet);
+		// logger.debug("productPriceSet " + productPriceSet);
 		Assert.assertNotNull(productPriceSet);
 		int expected = 2;
 		Assert.assertEquals(expected, productPriceSet.size());
@@ -125,14 +125,14 @@ public class StreamTests {
 		// Converting Product List into a Map
 		Map<Integer, String> productPriceMap = productsList.stream()
 				.collect(Collectors.toMap(p -> p.getId(), p -> p.getName()));
-		// // logger.debug("productPriceMap " + productPriceMap);
+		// logger.debug("productPriceMap " + productPriceMap);
 		int expected = 5;
 		Assert.assertEquals("Should be five...", expected, productPriceMap.size());
 
 		List<Float> productPriceList = productsList.stream().filter(p -> p.getPrice() > 30000)// filtering data
 				.map(Product::getPrice) // fetching price by referring getPrice method
 				.collect(Collectors.toList()); // collecting as list
-		// // logger.debug("productPriceList " + productPriceList);
+		// logger.debug("productPriceList " + productPriceList);
 		expected = 1;
 		Assert.assertEquals("Should be only one...", expected, productPriceList.size());
 	}
@@ -140,14 +140,14 @@ public class StreamTests {
 	@Test
 	public void testParallelFilteringByPriceCreatingMap() {
 		// parallel
-		// // logger.debug("Now parallelizing...");
+		// logger.debug("Now parallelizing...");
 
 		// filtering by price, creating a map with filtered prices.
 		List<Float> listPricesP = productsList.parallelStream().filter(aProduct -> aProduct.getPrice() <= 28000f)
 				.map(aProduct -> aProduct.getPrice()).collect(Collectors.toList());
 
 		// iterating over list
-		// listPricesP.forEach(e->// logger.debug(String.valueOf(e)));
+		// listPricesP.forEach(e->logger.debug(String.valueOf(e)));
 
 		listPricesP.forEach(Assert::assertNotNull);
 		int expected = 3;
@@ -158,7 +158,7 @@ public class StreamTests {
 	@Test
 	public void testParallelCompactApproachFilteringData() {
 		// This more compact approach for filtering data
-		// productsList.parallelStream().filter(product -> product.getPrice() == 30000).forEach(product -> // logger.debug(String.valueOf(product.getPrice())));
+		// productsList.parallelStream().filter(product -> product.getPrice() == 30000).forEach(product -> logger.debug(String.valueOf(product.getPrice())));
 
 		productsList.parallelStream().filter(product -> product.getPrice() == 30000)
 				.forEach(product -> Assert.assertNotNull(product.getPrice()));
@@ -170,7 +170,7 @@ public class StreamTests {
 		// Using Collectors's method to sum the prices.
 		double totalPrice3P = productsList.parallelStream()
 				.collect(Collectors.summingDouble(product -> product.getPrice()));
-		// // logger.debug("total sum " + totalPrice3P);
+		// logger.debug("total sum " + totalPrice3P);
 
 		Assert.assertNotNull("Should be not nulll... ", Double.toString(totalPrice3P));
 
@@ -183,7 +183,7 @@ public class StreamTests {
 		Product productA_P = productsList.parallelStream()
 				.max((product1, product2) -> product1.getPrice() > product2.getPrice() ? 1 : -1).get();
 
-		// // logger.debug("max product price " + productA_P.getPrice());
+		// logger.debug("max product price " + productA_P.getPrice());
 
 		Assert.assertNotNull(productA_P);
 		float expected = 90000.0f;
@@ -195,7 +195,7 @@ public class StreamTests {
 		// min() method to get min Product price
 		Product productB_P = productsList.parallelStream()
 				.max((product1, product2) -> product1.getPrice() < product2.getPrice() ? 1 : -1).get();
-		// // logger.debug("min product price " + productB_P.getPrice());
+		// logger.debug("min product price " + productB_P.getPrice());
 
 		Assert.assertNotNull(productB_P);
 		float expected = 25000.0f;
@@ -207,7 +207,7 @@ public class StreamTests {
 		// Converting product List into Set
 		Set<Float> productPriceSet_P = productsList.parallelStream().filter(product -> product.getPrice() < 30000)
 				.map(product -> product.getPrice()).collect(Collectors.toSet());
-		// // logger.debug("productPriceSet " + productPriceSet_P);
+		// logger.debug("productPriceSet " + productPriceSet_P);
 
 		Assert.assertNotNull(productPriceSet_P);
 		int expected = 2;
@@ -219,7 +219,7 @@ public class StreamTests {
 		// Converting Product List into a Map
 		Map<Integer, String> productPriceMap_P = productsList.parallelStream()
 				.collect(Collectors.toMap(p -> p.getId(), p -> p.getName()));
-		// // logger.debug("productPriceMap " + productPriceMap_P);
+		// logger.debug("productPriceMap " + productPriceMap_P);
 		int expected = 5;
 		Assert.assertEquals(expected, productPriceMap_P.size());
 		List<Float> productPriceList_P = productsList.parallelStream().filter(p -> p.getPrice() > 30000) // filtering
@@ -227,7 +227,7 @@ public class StreamTests {
 				.map(Product::getPrice) // fetching price by referring getPrice method
 				.collect(Collectors.toList()); // collecting as list
 
-		// logger.debug("productPriceList " + productPriceList_P);
+		logger.debug("productPriceList " + productPriceList_P);
 		expected = 1;
 		Assert.assertEquals("Should be one...", expected, productPriceList_P.size());
 	}
@@ -236,7 +236,7 @@ public class StreamTests {
 	public void testCreatingStreamFromCollections() {
 		// Creating stream from collection, set or array
 
-		// logger.debug("Creating stream from collection, set or array...");
+		logger.debug("Creating stream from collection, set or array...");
 		Collection<String> collection = Arrays.asList("JAVA", "J2EE", "Spring", "Hibernate");
 		Stream<String> stream2 = collection.stream();
 		// stream2.forEach(e->logger.debug(e));
@@ -248,7 +248,7 @@ public class StreamTests {
 		stream4.forEach(Assert::assertNotNull);
 
 		// Array can also be a source of a Stream
-		// logger.debug("Array can also be a source of a Stream...");
+		logger.debug("Array can also be a source of a Stream...");
 		Stream<String> streamOfArray = Stream.of("a", "b", "c");
 		// streamOfArray.forEach(e->logger.debug(e));
 		// creating from existing array or of a part of an array:
@@ -262,7 +262,7 @@ public class StreamTests {
 	@Test
 	public void testCreatingStreamFromStreamBuilder() {
 		// from streamBuilder
-		// logger.debug("from streamBuilder...");
+		logger.debug("from streamBuilder...");
 		Stream<String> streamBuilder = Stream.<String>builder().add("a").add("b").add("c").build();
 		streamBuilder.forEach(Assert::assertNotNull);
 	}
@@ -270,7 +270,7 @@ public class StreamTests {
 	@Test
 	public void testCreatingStreamFromStreamGenerate() {
 		// From Stream.generate()...
-		// logger.debug("From Stream.generate()...");
+		logger.debug("From Stream.generate()...");
 		Stream<String> streamGenerated = Stream.generate(() -> "element").limit(10);
 		streamGenerated.forEach(Assert::assertNotNull);
 	}
@@ -279,7 +279,7 @@ public class StreamTests {
 	public void testCreatingStreamFromStreamIterate() {
 
 		// From Stream.iterate()
-		// logger.debug("From Stream.iterate()...");
+		logger.debug("From Stream.iterate()...");
 		Stream<Integer> streamIterated = Stream.iterate(1, n -> n + 2).limit(5);
 		streamIterated.forEach(Assert::assertNotNull);
 	}
@@ -287,7 +287,7 @@ public class StreamTests {
 	@Test
 	public void testCreatingStreamFromStreamFile() {
 		// Stream of File
-		// logger.debug("Stream of File...");
+		logger.debug("Stream of File...");
 		// absolut path...
 		Path path = Paths.get("src/test/resources/pmd-eclipse.log");
 		Stream<String> streamOfStrings;
@@ -307,7 +307,7 @@ public class StreamTests {
 	@Test
 	public void testCreatingStreamFromStreamOfPrimitives() {
 		// Stream of Primitives
-		// logger.debug("Stream of Primitives...");
+		logger.debug("Stream of Primitives...");
 		IntStream intStream = IntStream.range(1, 3);
 		intStream.forEach(Assert::assertNotNull);
 		LongStream longStream = LongStream.rangeClosed(1, 3);
@@ -328,7 +328,7 @@ public class StreamTests {
 		map.put("d", 20);
 		map.entrySet().stream().sorted((o1, o2) -> o1.getValue().compareTo(o2.getValue())).map(e -> e.getKey())
 				.collect(Collectors.toList()).forEach(k -> sortedMap.put(k, map.get(k)));
-		// logger.debug(sortedMap.toString());
+		logger.debug(sortedMap.toString());
 		Assert.assertNotNull(sortedMap);
 		int expected = 4;
 		Assert.assertEquals("Should be four...", expected, sortedMap.size());
@@ -337,7 +337,7 @@ public class StreamTests {
 	@Test
 	public void testCalculateEuroMillions() {
 		// reading historico_euromillones.csv
-		// logger.debug("reading historico_euromillones.csv...");
+		logger.debug("reading historico_euromillones.csv...");
 		// FILE not provided, go to
 		// https://www.loteriasyapuestas.es/es/euromillones/estadisticas
 		String inputFilePath = "src/test/resources/historico_euromillones.csv";
@@ -351,12 +351,12 @@ public class StreamTests {
 					p2.getTotal_2018());
 			long maxSize = 7l;
 			
-			// logger.debug("reading historico_euromillones.csv sorted by total_2017, 7 values...");
+			logger.debug("reading historico_euromillones.csv sorted by total_2017, 7 values...");
 			// sort from max to min
 			myListEMPojo.stream().sorted(compTotal2017.reversed()).limit(maxSize).forEach(e->logger.debug(e.toString()));
 
 			
-			// logger.debug("reading historico_euromillones.csv sorted by total_2018, 7 values...");
+			logger.debug("reading historico_euromillones.csv sorted by total_2018, 7 values...");
 			// sort from max to min
 			myListEMPojo.stream().sorted(compTotal2018.reversed()) .limit(maxSize).forEach(e->logger.debug(e.toString()));
 
@@ -402,44 +402,44 @@ public class StreamTests {
 	public void testPlay_With_Historico_EM() {
 
 		
-		// logger.debug("reading Lotoideas.com - Histórico de Resultados - Euromillones - 2004 a 2018-2.csv...");
+		logger.debug("reading Lotoideas.com - Histórico de Resultados - Euromillones - 2004 a 2018-2.csv...");
 		String inputFilePath = "src/test/resources/Euromillones2004_2018.csv";
 
 		try {
 			List<AnotherEMPojo> myListEMPojo = Utils.processHistoricInputFile(inputFilePath);
-			// logger.debug("There are " + myListEMPojo.size() + " lines in the file. Lets try to find something useful. ");
-			// logger.debug("Data comes from 2004 to 2018.");
+			logger.debug("There are " + myListEMPojo.size() + " lines in the file. Lets try to find something useful. ");
+			logger.debug("Data comes from 2004 to 2018.");
 			
-			// logger.debug("Winer1 list and number of times. Unsortered");
+			logger.debug("Winer1 list and number of times. Unsortered");
 			myListEMPojo.stream().map(o -> o.getWiner1()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet()
 					.forEach(e -> logger.debug("winer1 " + e.getKey() + " appeared " + e.getValue().size() + " times."));
 			
-			// logger.debug("Winer2 list and number of times. Unsortered");
+			logger.debug("Winer2 list and number of times. Unsortered");
 			myListEMPojo.stream().map(o -> o.getWiner2()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet()
 					.forEach(e -> logger.debug("winer2 " + e.getKey() + " appeared " + e.getValue().size() + " times."));
 			
-			// logger.debug("Winer3 list and number of times. Unsortered");
+			logger.debug("Winer3 list and number of times. Unsortered");
 			myListEMPojo.stream().map(o -> o.getWiner3()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet()
 					.forEach(e -> logger.debug("winer3 " + e.getKey() + " appeared " + e.getValue().size() + " times."));
 			
-			// logger.debug("Winer4 list and number of times. Unsortered");
+			logger.debug("Winer4 list and number of times. Unsortered");
 			myListEMPojo.stream().map(o -> o.getWiner4()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet()
 					.forEach(e -> logger.debug("winer4 " + e.getKey() + " appeared " + e.getValue().size() + " times."));
 			
-			// logger.debug("Winer5 list and number of times. Unsortered");
+			logger.debug("Winer5 list and number of times. Unsortered");
 			myListEMPojo.stream().map(o -> o.getWiner1()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet()
 					.forEach(e -> logger.debug("winer5 " + e.getKey() + " appeared " + e.getValue().size() + " times."));
 			
-			// logger.debug("Star1 list and number of times. Unsortered");
+			logger.debug("Star1 list and number of times. Unsortered");
 			myListEMPojo.stream().map(o -> o.getStar1()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet()
 					.forEach(e -> logger.debug("star1 " + e.getKey() + " appeared " + e.getValue().size() + " times."));
 			
 
-			// logger.debug("Star2 list and number of times. Unsortered");
+			logger.debug("Star2 list and number of times. Unsortered");
 			myListEMPojo.stream().map(o -> o.getStar2()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet()
 					.forEach(e -> logger.debug("star2 " + e.getKey() + " appeared " + e.getValue().size() + " times."));
 			
-			// logger.debug("Done unsortered!");
+			logger.debug("Done unsortered!");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -453,8 +453,8 @@ public class StreamTests {
 
 		try {
 			List<AnotherEMPojo> myListEMPojo = Utils.processHistoricInputFile(inputFilePath);
-			// logger.debug("There are " + myListEMPojo.size() + " lines in the file. Lets try to find something useful. ");
-			// logger.debug("Data comes from 2004 to 2018.");
+			logger.debug("There are " + myListEMPojo.size() + " lines in the file. Lets try to find something useful. ");
+			logger.debug("Data comes from 2004 to 2018.");
 			
 
 			Utils.showWinner1ReversedOrder(myListEMPojo);
@@ -479,7 +479,7 @@ public class StreamTests {
 
 	@Test
 	public void testRefactoredFeatureEM1() {
-		// logger.debug("testRefactoredFeatureEM1");
+		logger.debug("testRefactoredFeatureEM1");
 		String inputFilePath = "src/test/resources/Euromillones2004_2018.csv";
 
 		try {
@@ -521,7 +521,7 @@ public class StreamTests {
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
 			Utils.showValueReversedOrder(mySetWinner5,"Winner5 ");
 			
-			// logger.debug("Done testRefactoredFeatureEM1");
+			logger.debug("Done testRefactoredFeatureEM1");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
