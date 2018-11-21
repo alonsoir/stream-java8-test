@@ -367,6 +367,38 @@ public class StreamTests {
 	}
 
 	@Test
+	public void testCalculatePrimitiva() {
+		// reading historico_euromillones.csv
+		logger.debug("reading primitiva.csv...");
+		String inputFilePath = "src/test/resources/primitiva.csv";
+
+		try {
+			List<EMPojo> myListEMPojo = Utils.processInputFile(inputFilePath);
+			myListEMPojo.forEach(System.out::println);
+			final Comparator<EMPojo> compTotal2017 = (p1, p2) -> Integer.compare(p1.getTotal_2017(),
+					p2.getTotal_2017());
+			final Comparator<EMPojo> compTotal2018 = (p1, p2) -> Integer.compare(p1.getTotal_2018(),
+					p2.getTotal_2018());
+			long maxSize = 7l;
+			
+			logger.info("reading primitiva.csv sorted by total_2017, 7 values...");
+			
+			myListEMPojo.stream().sorted(compTotal2017.reversed()) // sort from max to min
+					.limit(maxSize).forEach(e->logger.info(e.toString()));
+
+			
+			logger.info("reading primitiva.csv sorted by total_2018, 7 values...");
+			
+			myListEMPojo.stream().sorted(compTotal2018.reversed()) // sort from max to min
+					.limit(maxSize).forEach(e->logger.info(e.toString()));
+
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+	
+	@Test
 	public void testPlay_With_Historico_EM() {
 
 		
