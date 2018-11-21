@@ -3,6 +3,8 @@
  */
 package com.aironman;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -31,7 +33,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import junit.framework.Assert;
+import org.junit.Assert;
 
 /**
  * @author aironman
@@ -56,8 +58,8 @@ public class StreamTests {
 		productsList.add(new Product(3, "Lenevo Laptop", 28000f));
 		productsList.add(new Product(4, "Sony Laptop", 28000f));
 		productsList.add(new Product(5, "Apple Laptop", 90000f));
-		//logger.debug("setUp. productsList.size: " + productsList.size());
-		//logger.debug("Done setUp.");
+		logger.debug("setUp. productsList.size: " + productsList.size());
+		logger.debug("Done setUp.");
 	}
 
 	@Test
@@ -86,7 +88,7 @@ public class StreamTests {
 	public void testUsingCollector_to_sum_prices() {
 		// Using Collectors's method to sum the prices.
 		double totalPrice3 = productsList.stream().collect(Collectors.summingDouble(product -> product.getPrice()));
-		//logger.debug("total sum " + totalPrice3);
+		logger.debug("total sum " + totalPrice3);
 		Assert.assertNotNull(Double.toString(totalPrice3));
 	}
 
@@ -96,7 +98,7 @@ public class StreamTests {
 		Product productA = productsList.stream()
 				.max((product1, product2) -> product1.getPrice() > product2.getPrice() ? 1 : -1).get();
 
-		// logger.debug("max product price " + productA.getPrice());
+		logger.debug("max product price " + productA.getPrice());
 		Assert.assertNotNull(productA);
 	}
 
@@ -105,7 +107,7 @@ public class StreamTests {
 		// min() method to get min Product price
 		Product productB = productsList.stream()
 				.max((product1, product2) -> product1.getPrice() < product2.getPrice() ? 1 : -1).get();
-		// logger.debug("min product price " + productB.getPrice());
+		logger.debug("min product price " + productB.getPrice());
 		Assert.assertNotNull(productB);
 	}
 
@@ -114,7 +116,7 @@ public class StreamTests {
 		// Converting product List into Set
 		Set<Float> productPriceSet = productsList.stream().filter(product -> product.getPrice() < 30000)
 				.map(product -> product.getPrice()).collect(Collectors.toSet());
-		// logger.debug("productPriceSet " + productPriceSet);
+		logger.debug("productPriceSet " + productPriceSet);
 		Assert.assertNotNull(productPriceSet);
 		int expected = 2;
 		Assert.assertEquals(expected, productPriceSet.size());
@@ -125,14 +127,14 @@ public class StreamTests {
 		// Converting Product List into a Map
 		Map<Integer, String> productPriceMap = productsList.stream()
 				.collect(Collectors.toMap(p -> p.getId(), p -> p.getName()));
-		// logger.debug("productPriceMap " + productPriceMap);
+		logger.debug("productPriceMap " + productPriceMap);
 		int expected = 5;
 		Assert.assertEquals("Should be five...", expected, productPriceMap.size());
 
 		List<Float> productPriceList = productsList.stream().filter(p -> p.getPrice() > 30000)// filtering data
 				.map(Product::getPrice) // fetching price by referring getPrice method
 				.collect(Collectors.toList()); // collecting as list
-		// logger.debug("productPriceList " + productPriceList);
+		logger.debug("productPriceList " + productPriceList);
 		expected = 1;
 		Assert.assertEquals("Should be only one...", expected, productPriceList.size());
 	}
@@ -140,7 +142,7 @@ public class StreamTests {
 	@Test
 	public void testParallelFilteringByPriceCreatingMap() {
 		// parallel
-		// logger.debug("Now parallelizing...");
+		logger.debug("Now parallelizing...");
 
 		// filtering by price, creating a map with filtered prices.
 		List<Float> listPricesP = productsList.parallelStream().filter(aProduct -> aProduct.getPrice() <= 28000f)
@@ -170,11 +172,11 @@ public class StreamTests {
 		// Using Collectors's method to sum the prices.
 		double totalPrice3P = productsList.parallelStream()
 				.collect(Collectors.summingDouble(product -> product.getPrice()));
-		// logger.debug("total sum " + totalPrice3P);
+		logger.debug("total sum " + totalPrice3P);
 
 		Assert.assertNotNull("Should be not nulll... ", Double.toString(totalPrice3P));
 
-		Assert.assertEquals(201000.0d, totalPrice3P);
+		Assert.assertEquals("Should be 201000.0d.",201000.0d, totalPrice3P,0);
 	}
 
 	@Test
@@ -183,11 +185,11 @@ public class StreamTests {
 		Product productA_P = productsList.parallelStream()
 				.max((product1, product2) -> product1.getPrice() > product2.getPrice() ? 1 : -1).get();
 
-		// logger.debug("max product price " + productA_P.getPrice());
+		logger.debug("max product price " + productA_P.getPrice());
 
 		Assert.assertNotNull(productA_P);
 		float expected = 90000.0f;
-		Assert.assertEquals("Should be 900000", expected, productA_P.getPrice());
+		Assert.assertEquals("Should be 900000", expected, productA_P.getPrice(),0f);
 	}
 
 	@Test
@@ -195,11 +197,11 @@ public class StreamTests {
 		// min() method to get min Product price
 		Product productB_P = productsList.parallelStream()
 				.max((product1, product2) -> product1.getPrice() < product2.getPrice() ? 1 : -1).get();
-		// logger.debug("min product price " + productB_P.getPrice());
+		logger.debug("min product price " + productB_P.getPrice());
 
 		Assert.assertNotNull(productB_P);
 		float expected = 25000.0f;
-		Assert.assertEquals("Should be 25000.0", expected, productB_P.getPrice());
+		Assert.assertEquals("Should be 25000.0", expected, productB_P.getPrice(),0f);
 	}
 
 	@Test
@@ -207,7 +209,7 @@ public class StreamTests {
 		// Converting product List into Set
 		Set<Float> productPriceSet_P = productsList.parallelStream().filter(product -> product.getPrice() < 30000)
 				.map(product -> product.getPrice()).collect(Collectors.toSet());
-		// logger.debug("productPriceSet " + productPriceSet_P);
+		logger.debug("productPriceSet " + productPriceSet_P);
 
 		Assert.assertNotNull(productPriceSet_P);
 		int expected = 2;
@@ -219,7 +221,7 @@ public class StreamTests {
 		// Converting Product List into a Map
 		Map<Integer, String> productPriceMap_P = productsList.parallelStream()
 				.collect(Collectors.toMap(p -> p.getId(), p -> p.getName()));
-		// logger.debug("productPriceMap " + productPriceMap_P);
+		logger.debug("productPriceMap " + productPriceMap_P);
 		int expected = 5;
 		Assert.assertEquals(expected, productPriceMap_P.size());
 		List<Float> productPriceList_P = productsList.parallelStream().filter(p -> p.getPrice() > 30000) // filtering
@@ -239,10 +241,10 @@ public class StreamTests {
 		logger.debug("Creating stream from collection, set or array...");
 		Collection<String> collection = Arrays.asList("JAVA", "J2EE", "Spring", "Hibernate");
 		Stream<String> stream2 = collection.stream();
-		// stream2.forEach(e->logger.debug(e));
-		List<String> list = Arrays.asList("JAVA", "J2EE", "Spring", "Hibernate");
+		stream2.forEach(e->Assert.assertNotNull(e));
+		List<String> list = Arrays.asList("JAVA-8", "J2EE-8", "SpringCore", "HibernateShit");
 		Stream<String> stream3 = list.stream();
-		// stream3.forEach(e->logger.debug(e));
+		stream3.forEach(e->Assert.assertNotNull(e));
 		Set<String> set = new HashSet<>(list);
 		Stream<String> stream4 = set.stream();
 		stream4.forEach(Assert::assertNotNull);
@@ -250,10 +252,11 @@ public class StreamTests {
 		// Array can also be a source of a Stream
 		logger.debug("Array can also be a source of a Stream...");
 		Stream<String> streamOfArray = Stream.of("a", "b", "c");
-		// streamOfArray.forEach(e->logger.debug(e));
+		streamOfArray.forEach(e->assertNotNull(e));
 		// creating from existing array or of a part of an array:
-		String[] arr = new String[] { "a", "b", "c" };
+		String[] arr = new String[] { "a1", "b1", "c1" };
 		Stream<String> streamOfArrayFull = Arrays.stream(arr);
+		streamOfArrayFull.forEach(e->Assert.assertNotNull(e));
 		// streamOfArrayFull.forEach(e->logger.debug(e));
 		Stream<String> streamOfArrayPart = Arrays.stream(arr, 1, 3);
 		streamOfArrayPart.forEach(Assert::assertNotNull);
@@ -311,6 +314,7 @@ public class StreamTests {
 		IntStream intStream = IntStream.range(1, 3);
 		intStream.forEach(Assert::assertNotNull);
 		LongStream longStream = LongStream.rangeClosed(1, 3);
+		Assert.assertNotNull(longStream);
 		// longStream.forEach(e->logger.debug(String.valueOf(e)));
 		Random random = new Random();
 		DoubleStream doubleStream = random.doubles(3);
