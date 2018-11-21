@@ -486,7 +486,7 @@ public class StreamTests {
 			List<AnotherEMPojo> myListEMPojo = Utils.processHistoricInputFile(inputFilePath);
 			logger.debug("There are " + myListEMPojo.size() + " lines in the file. Lets try to find something useful. ");
 			logger.debug("Data comes from 2004 to 2018.");
-			
+			logger.info("Reading Euromillones2004_2018.csv");
 			Set<Entry<Integer, List<Integer>>> mySetStar1 = myListEMPojo.stream().map(o -> o.getStar1())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
 			Utils.showValueReversedOrder(mySetStar1,"Star1 ");
