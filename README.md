@@ -8,6 +8,7 @@ Actual Output. <br />
 <br />
 Most of logger info is set up in debug mode.
  <br />
+ [main] INFO com.aironman.StreamTests - Reading Euromillones2004_2018.csv <br />
 [main] INFO com.aironman.Utils - type: Star1  number is 7 frequency is 72 <br />
 [main] INFO com.aironman.Utils - type: Star2  number is 12 frequency is 32 <br />
 [main] INFO com.aironman.Utils - type: Winner1  number is 18 frequency is 15 <br />
