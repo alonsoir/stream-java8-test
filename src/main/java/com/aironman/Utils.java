@@ -28,8 +28,8 @@ import org.slf4j.LoggerFactory;
 public class Utils {
 
 	static final String COMMA = ",";
-	private static Logger logger = LoggerFactory.getLogger(Utils.class);
-	
+	// private static Logger logger = LoggerFactory.getLogger(Utils.class);
+
 	static List<EMPojo> processInputFile(String inputFilePath) throws FileNotFoundException {
 		List<EMPojo> inputList = new ArrayList<EMPojo>();
 		try {
@@ -40,7 +40,7 @@ public class Utils {
 			inputList = br.lines().skip(1).map(mapToItem).collect(Collectors.toList());
 			br.close();
 		} catch (IOException e) {
-			logger.error("FileNotFoundException or IOException ");
+			// logger.error("FileNotFoundException or IOException ");
 			e.printStackTrace();
 		}
 		return inputList;
@@ -53,7 +53,7 @@ public class Utils {
 		return item;
 
 	};
-	
+
 	static List<AnotherEMPojo> processHistoricInputFile(String inputFilePath) throws FileNotFoundException {
 		List<AnotherEMPojo> inputList = new ArrayList<AnotherEMPojo>();
 		try {
@@ -64,16 +64,16 @@ public class Utils {
 			inputList = br.lines().skip(1).map(mapToHistoricItem).collect(Collectors.toList());
 			br.close();
 		} catch (IOException e) {
-			logger.error("FileNotFoundException or IOException ");
+			// logger.error("FileNotFoundException or IOException ");
 			e.printStackTrace();
 		}
 		return inputList;
 	}
-	
+
 	static Function<String, AnotherEMPojo> mapToHistoricItem = (line) -> {
 		String[] p = line.split(COMMA);// a CSV has comma separated lines
 		AnotherEMPojo item = new AnotherEMPojo();
-		item .setDateContest(p[0]);
+		item.setDateContest(p[0]);
 		item.setWiner1(Integer.parseInt(p[1]));
 		item.setWiner2(Integer.parseInt(p[2]));
 		item.setWiner3(Integer.parseInt(p[3]));
@@ -85,10 +85,8 @@ public class Utils {
 		return item;
 
 	};
-	
-	static void showValueReversedOrder(Set<Entry<Integer, List<Integer>>> mySetwinner,String type) {
-		logger.debug(type + "list and number of times sortered reversed by number of times: ");
-		
+
+	static void showValueReversedOrder(Set<Entry<Integer, List<Integer>>> mySetwinner, String type) {
 
 		Iterator<Entry<Integer, List<Integer>>> iteratorSetWinner1 = mySetwinner.iterator();
 		HashMap<Integer, Integer> aMap = new HashMap<Integer, Integer>();
@@ -103,26 +101,25 @@ public class Utils {
 		LinkedHashMap<Integer, Integer> aLinkedHM = aMap.entrySet().stream()
 				.sorted(Collections.reverseOrder(comparingByValue()))
 				.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
-		
+
 		int max = aLinkedHM.size();
-		int min=1;
+		int min = 1;
 		int key = ThreadLocalRandom.current().nextInt(min, max + 1);
-		
+
 		Integer value = aLinkedHM.get(key);
-		
-		logger.info("type: " + type + " number is " + key + " " + "frequency is " + value );
+
+		System.out.println(type + " " + key + " " + "frequency is " + value);
 		// showing data...
 		// Iterator<Entry<Integer, Integer>> itLK = aLinkedHM.entrySet().iterator();
 		// while (itLK.hasNext()) {
-		// Entry<Integer, Integer> it = itLK.next();
-		//	logger.debug(type + it.getKey() + " numTimes: " + it.getValue());
-		//}
-		logger.debug("Done " + type + "list and number of times sortered reversed by number of times! " + aLinkedHM.size());
+		// 	Entry<Integer, Integer> it = itLK.next();
+		// 	System.out.println(type + it.getKey() + " numTimes: " + it.getValue());
+		// }
+		// System.out.println("Done " + type + "list and number of times sortered reversed by number of times! " + aLinkedHM.size());
 	}
-	
-	
+
 	static void showStar1ReversedOrder(List<AnotherEMPojo> myListEMPojo) {
-		logger.debug("Star1 list and number of times sortered reversed by number of times: ");
+		// logger.debug("Star1 list and number of times sortered reversed by number of times: ");
 		Set<Entry<Integer, List<Integer>>> mySetwinner = myListEMPojo.stream().map(o -> o.getStar1())
 				.collect(Collectors.groupingBy(obj -> obj)).entrySet();
 
@@ -140,16 +137,15 @@ public class Utils {
 				.sorted(Collections.reverseOrder(comparingByValue()))
 				.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
 		/*
-		Iterator<Entry<Integer, Integer>> itLK = aLinkedHM.entrySet().iterator();
-		while (itLK.hasNext()) {
-			Entry<Integer, Integer> it = itLK.next();
-			logger.debug("star1: " + it.getKey() + " numTimes: " + it.getValue());
-		}*/
-		logger.debug("Done star1 list and number of times sortered reversed by number of times! " + aLinkedHM.size());
+		 * Iterator<Entry<Integer, Integer>> itLK = aLinkedHM.entrySet().iterator();
+		 * while (itLK.hasNext()) { Entry<Integer, Integer> it = itLK.next();
+		 * logger.debug("star1: " + it.getKey() + " numTimes: " + it.getValue()); }
+		 */
+		// logger.debug("Done star1 list and number of times sortered reversed by number of times! " + aLinkedHM.size());
 	}
-	
+
 	static void showStar2ReversedOrder(List<AnotherEMPojo> myListEMPojo) {
-		logger.debug("Star2 list and number of times sortered reversed by number of times: ");
+		// logger.debug("Star2 list and number of times sortered reversed by number of times: ");
 		Set<Entry<Integer, List<Integer>>> mySetwinner = myListEMPojo.stream().map(o -> o.getStar2())
 				.collect(Collectors.groupingBy(obj -> obj)).entrySet();
 
@@ -167,17 +163,15 @@ public class Utils {
 				.sorted(Collections.reverseOrder(comparingByValue()))
 				.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
 		/*
-		Iterator<Entry<Integer, Integer>> itLK = aLinkedHM.entrySet().iterator();
-		while (itLK.hasNext()) {
-			Entry<Integer, Integer> it = itLK.next();
-			logger.debug("star2: " + it.getKey() + " numTimes: " + it.getValue());
-		}*/
-		logger.debug("Done star2 list and number of times sortered reversed by number of times! " + aLinkedHM.size());
+		 * Iterator<Entry<Integer, Integer>> itLK = aLinkedHM.entrySet().iterator();
+		 * while (itLK.hasNext()) { Entry<Integer, Integer> it = itLK.next();
+		 * logger.debug("star2: " + it.getKey() + " numTimes: " + it.getValue()); }
+		 */
+		// logger.debug("Done star2 list and number of times sortered reversed by number of times! " + aLinkedHM.size());
 	}
-	
-	
+
 	static void showWinner1ReversedOrder(List<AnotherEMPojo> myListEMPojo) {
-		logger.debug("Winer1 list and number of times sortered reversed by number of times: ");
+		// logger.debug("Winer1 list and number of times sortered reversed by number of times: ");
 		Set<Entry<Integer, List<Integer>>> mySetwinner = myListEMPojo.stream().map(o -> o.getWiner1())
 				.collect(Collectors.groupingBy(obj -> obj)).entrySet();
 
@@ -195,16 +189,15 @@ public class Utils {
 				.sorted(Collections.reverseOrder(comparingByValue()))
 				.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
 		/*
-		Iterator<Entry<Integer, Integer>> itLK = aLinkedHM.entrySet().iterator();
-		while (itLK.hasNext()) {
-			Entry<Integer, Integer> it = itLK.next();
-			logger.debug("winner2: " + it.getKey() + " numTimes: " + it.getValue());
-		}*/
-		logger.debug("Done Winer2 list and number of times sortered reversed by number of times! " + aLinkedHM.size());
+		 * Iterator<Entry<Integer, Integer>> itLK = aLinkedHM.entrySet().iterator();
+		 * while (itLK.hasNext()) { Entry<Integer, Integer> it = itLK.next();
+		 * logger.debug("winner2: " + it.getKey() + " numTimes: " + it.getValue()); }
+		 */
+		// logger.debug("Done Winer2 list and number of times sortered reversed by number of times! " + aLinkedHM.size());
 	}
 
 	static void showWinner2ReversedOrder(List<AnotherEMPojo> myListEMPojo) {
-		logger.debug("Winer2 list and number of times sortered reversed by number of times: ");
+		// logger.debug("Winer2 list and number of times sortered reversed by number of times: ");
 		Set<Entry<Integer, List<Integer>>> mySetwinner = myListEMPojo.stream().map(o -> o.getWiner2())
 				.collect(Collectors.groupingBy(obj -> obj)).entrySet();
 
@@ -222,16 +215,15 @@ public class Utils {
 				.sorted(Collections.reverseOrder(comparingByValue()))
 				.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
 		/*
-		Iterator<Entry<Integer, Integer>> itLK = aLinkedHM.entrySet().iterator();
-		while (itLK.hasNext()) {
-			Entry<Integer, Integer> it = itLK.next();
-			logger.debug("winner2: " + it.getKey() + " numTimes: " + it.getValue());
-		}*/
-		logger.debug("Done Winer2 list and number of times sortered reversed by number of times!  " + aLinkedHM.size());
+		 * Iterator<Entry<Integer, Integer>> itLK = aLinkedHM.entrySet().iterator();
+		 * while (itLK.hasNext()) { Entry<Integer, Integer> it = itLK.next();
+		 * logger.debug("winner2: " + it.getKey() + " numTimes: " + it.getValue()); }
+		 */
+		// logger.debug("Done Winer2 list and number of times sortered reversed by number of times!  " + aLinkedHM.size());
 	}
 
 	static void showWinner3ReversedOrder(List<AnotherEMPojo> myListEMPojo) {
-		logger.debug("Winer3 list and number of times sortered reversed by number of times: ");
+		// logger.debug("Winer3 list and number of times sortered reversed by number of times: ");
 		Set<Entry<Integer, List<Integer>>> mySetwinner = myListEMPojo.stream().map(o -> o.getWiner3())
 				.collect(Collectors.groupingBy(obj -> obj)).entrySet();
 
@@ -249,16 +241,15 @@ public class Utils {
 				.sorted(Collections.reverseOrder(comparingByValue()))
 				.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
 		/*
-		Iterator<Entry<Integer, Integer>> itLK = aLinkedHM.entrySet().iterator();
-		while (itLK.hasNext()) {
-			Entry<Integer, Integer> it = itLK.next();
-			logger.debug("winner3: " + it.getKey() + " numTimes: " + it.getValue());
-		}*/
-		logger.debug("Done Winer3 list and number of times sortered reversed by number of times! " + aLinkedHM.size());
+		 * Iterator<Entry<Integer, Integer>> itLK = aLinkedHM.entrySet().iterator();
+		 * while (itLK.hasNext()) { Entry<Integer, Integer> it = itLK.next();
+		 * logger.debug("winner3: " + it.getKey() + " numTimes: " + it.getValue()); }
+		 */
+		// logger.debug("Done Winer3 list and number of times sortered reversed by number of times! " + aLinkedHM.size());
 	}
 
 	static void showWinner4ReversedOrder(List<AnotherEMPojo> myListEMPojo) {
-		logger.debug("Winer4 list and number of times sortered reversed by number of times: ");
+		// logger.debug("Winer4 list and number of times sortered reversed by number of times: ");
 		Set<Entry<Integer, List<Integer>>> mySetwinner = myListEMPojo.stream().map(o -> o.getWiner4())
 				.collect(Collectors.groupingBy(obj -> obj)).entrySet();
 
@@ -276,16 +267,15 @@ public class Utils {
 				.sorted(Collections.reverseOrder(comparingByValue()))
 				.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
 		/*
-		Iterator<Entry<Integer, Integer>> itLK = aLinkedHM.entrySet().iterator();
-		while (itLK.hasNext()) {
-			Entry<Integer, Integer> it = itLK.next();
-			logger.debug("winner4: " + it.getKey() + " numTimes: " + it.getValue());
-		}*/
-		logger.debug("Done Winer4 list and number of times sortered reversed by number of times! " + aLinkedHM.size());
+		 * Iterator<Entry<Integer, Integer>> itLK = aLinkedHM.entrySet().iterator();
+		 * while (itLK.hasNext()) { Entry<Integer, Integer> it = itLK.next();
+		 * logger.debug("winner4: " + it.getKey() + " numTimes: " + it.getValue()); }
+		 */
+		// logger.debug("Done Winer4 list and number of times sortered reversed by number of times! " + aLinkedHM.size());
 	}
 
 	static void showWinner5ReversedOrder(List<AnotherEMPojo> myListEMPojo) {
-		logger.debug("Winer5 list and number of times sortered reversed by number of times: ");
+		// logger.debug("Winer5 list and number of times sortered reversed by number of times: ");
 		Set<Entry<Integer, List<Integer>>> mySetwinner = myListEMPojo.stream().map(o -> o.getWiner5())
 				.collect(Collectors.groupingBy(obj -> obj)).entrySet();
 
@@ -303,13 +293,78 @@ public class Utils {
 				.sorted(Collections.reverseOrder(comparingByValue()))
 				.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
 		/*
-		Iterator<Entry<Integer, Integer>> itLK = aLinkedHM.entrySet().iterator();
-		while (itLK.hasNext()) {
-			Entry<Integer, Integer> it = itLK.next();
-			logger.debug("winner5: " + it.getKey() + " numTimes: " + it.getValue());
-		}*/
-		logger.debug("Done Winer5 list and number of times sortered reversed by number of times! " + aLinkedHM.size());
+		 * Iterator<Entry<Integer, Integer>> itLK = aLinkedHM.entrySet().iterator();
+		 * while (itLK.hasNext()) { Entry<Integer, Integer> it = itLK.next();
+		 * logger.debug("winner5: " + it.getKey() + " numTimes: " + it.getValue()); }
+		 */
+		// logger.debug("Done Winer5 list and number of times sortered reversed by number of times! " + aLinkedHM.size());
 	}
-	
-	
+
+	static void calculateEM() {
+		String inputFilePath = "src/main/resources/Euromillones2004_2018.csv";
+
+		try {
+			List<AnotherEMPojo> myListEMPojo = Utils.processHistoricInputFile(inputFilePath);
+			Set<Entry<Integer, List<Integer>>> mySetStar1 = myListEMPojo.stream().map(o -> o.getStar1())
+					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+			Utils.showValueReversedOrder(mySetStar1, "Star1 ");
+
+			Set<Entry<Integer, List<Integer>>> mySetStar2 = myListEMPojo.stream().map(o -> o.getStar2())
+					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+			Utils.showValueReversedOrder(mySetStar2, "Star2 ");
+
+			Set<Entry<Integer, List<Integer>>> mySetWinner1 = myListEMPojo.stream().map(o -> o.getWiner1())
+					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+			Utils.showValueReversedOrder(mySetWinner1, "Winner1 ");
+
+			Set<Entry<Integer, List<Integer>>> mySetWinner2 = myListEMPojo.stream().map(o -> o.getWiner2())
+					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+			Utils.showValueReversedOrder(mySetWinner2, "Winner2 ");
+
+			Set<Entry<Integer, List<Integer>>> mySetWinner3 = myListEMPojo.stream().map(o -> o.getWiner3())
+					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+			Utils.showValueReversedOrder(mySetWinner3, "Winner3 ");
+
+			Set<Entry<Integer, List<Integer>>> mySetWinner4 = myListEMPojo.stream().map(o -> o.getWiner4())
+					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+			Utils.showValueReversedOrder(mySetWinner4, "Winner4 ");
+
+			Set<Entry<Integer, List<Integer>>> mySetWinner5 = myListEMPojo.stream().map(o -> o.getWiner5())
+					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+			Utils.showValueReversedOrder(mySetWinner5, "Winner5 ");
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("Error, file Euromillones2004_2018.csv not found.");
+		}
+	}
+
+	static void calculatePrimitiva() {
+		// reading historico_euromillones.csv
+		String inputFilePath = "src/main/resources/primitiva.csv";
+
+		try {
+			List<EMPojo> myListEMPojo = Utils.processInputFile(inputFilePath);
+			final Comparator<EMPojo> compTotal2017 = (p1, p2) -> Integer.compare(p1.getTotal_2017(),
+					p2.getTotal_2017());
+			final Comparator<EMPojo> compTotal2018 = (p1, p2) -> Integer.compare(p1.getTotal_2018(),
+					p2.getTotal_2018());
+			long maxSize = 7l;
+
+			System.out.println("Primitiva 2017. ");
+			myListEMPojo.stream().sorted(compTotal2017.reversed()) // sort from max to min
+					.limit(maxSize).forEach(e -> System.out.println(e.toString()));
+
+			System.out.println("Primitiva 2018. ");
+			myListEMPojo.stream().sorted(compTotal2018.reversed()) // sort from max to min
+					.limit(maxSize).forEach(e -> System.out.println(e.toString()));
+
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			System.out.println("Error, file primitiva.csv not found");
+		}
+	}
+
 }

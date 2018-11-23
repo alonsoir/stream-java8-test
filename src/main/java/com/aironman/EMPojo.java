@@ -54,7 +54,7 @@ public class EMPojo {
 
 	@Override
 	public String toString() {
-		return "EMPojo [number=" + number + ", total=" + total + ", total_2017=" + total_2017 + ", total_2018="
+		return "EMPojo [number=" + number + /* ", total=" + total +*/ ", total_2017=" + total_2017 + ", total_2018="
 				+ total_2018 + "]";
 	}
 	
