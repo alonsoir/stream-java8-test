@@ -189,7 +189,7 @@ public class StreamTests {
 
 		Assert.assertNotNull(productA_P);
 		float expected = 90000.0f;
-		Assert.assertEquals("Should be 900000", expected, productA_P.getPrice(),0f);
+		Assert.assertEquals("Should be 90000", expected, productA_P.getPrice(),0f);
 	}
 
 	@Test
@@ -223,7 +223,7 @@ public class StreamTests {
 				.collect(Collectors.toMap(p -> p.getId(), p -> p.getName()));
 		logger.debug("productPriceMap " + productPriceMap_P);
 		int expected = 5;
-		Assert.assertEquals(expected, productPriceMap_P.size());
+		Assert.assertEquals("Should be five.",expected, productPriceMap_P.size());
 		List<Float> productPriceList_P = productsList.parallelStream().filter(p -> p.getPrice() > 30000) // filtering
 																											// data
 				.map(Product::getPrice) // fetching price by referring getPrice method
@@ -257,7 +257,6 @@ public class StreamTests {
 		String[] arr = new String[] { "a1", "b1", "c1" };
 		Stream<String> streamOfArrayFull = Arrays.stream(arr);
 		streamOfArrayFull.forEach(e->Assert.assertNotNull(e));
-		// streamOfArrayFull.forEach(e->logger.debug(e));
 		Stream<String> streamOfArrayPart = Arrays.stream(arr, 1, 3);
 		streamOfArrayPart.forEach(Assert::assertNotNull);
 	}
