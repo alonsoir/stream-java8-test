@@ -17,7 +17,9 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -69,7 +71,7 @@ public class StreamTests {
 				.map(aProduct -> aProduct.getPrice()).collect(Collectors.toList());
 
 		// iterating over list
-		//listPrices.forEach(e->logger.debug(String.valueOf(e)));
+		// listPrices.forEach(e->logger.debug(String.valueOf(e)));
 		listPrices.forEach(Assert::assertNotNull);
 
 	}
@@ -77,7 +79,8 @@ public class StreamTests {
 	@Test
 	public void testCompactFilteringByPrice() {
 		// This more compact approach for filtering data
-		// productsList.stream().filter(product -> product.getPrice() == 30000).forEach(product -> logger.debug(String.valueOf(product.getPrice())));
+		// productsList.stream().filter(product -> product.getPrice() ==
+		// 30000).forEach(product -> logger.debug(String.valueOf(product.getPrice())));
 
 		productsList.stream().filter(product -> product.getPrice() == 30000)
 				.forEach(product -> Assert.assertNotNull(product.getPrice()));
@@ -160,7 +163,8 @@ public class StreamTests {
 	@Test
 	public void testParallelCompactApproachFilteringData() {
 		// This more compact approach for filtering data
-		// productsList.parallelStream().filter(product -> product.getPrice() == 30000).forEach(product -> logger.debug(String.valueOf(product.getPrice())));
+		// productsList.parallelStream().filter(product -> product.getPrice() ==
+		// 30000).forEach(product -> logger.debug(String.valueOf(product.getPrice())));
 
 		productsList.parallelStream().filter(product -> product.getPrice() == 30000)
 				.forEach(product -> Assert.assertNotNull(product.getPrice()));
@@ -176,7 +180,7 @@ public class StreamTests {
 
 		Assert.assertNotNull("Should be not nulll... ", Double.toString(totalPrice3P));
 
-		Assert.assertEquals("Should be 201000.0d.",201000.0d, totalPrice3P,0);
+		Assert.assertEquals("Should be 201000.0d.", 201000.0d, totalPrice3P, 0);
 	}
 
 	@Test
@@ -189,7 +193,7 @@ public class StreamTests {
 
 		Assert.assertNotNull(productA_P);
 		float expected = 90000.0f;
-		Assert.assertEquals("Should be 90000", expected, productA_P.getPrice(),0f);
+		Assert.assertEquals("Should be 90000", expected, productA_P.getPrice(), 0f);
 	}
 
 	@Test
@@ -201,7 +205,7 @@ public class StreamTests {
 
 		Assert.assertNotNull(productB_P);
 		float expected = 25000.0f;
-		Assert.assertEquals("Should be 25000.0", expected, productB_P.getPrice(),0f);
+		Assert.assertEquals("Should be 25000.0", expected, productB_P.getPrice(), 0f);
 	}
 
 	@Test
@@ -223,7 +227,7 @@ public class StreamTests {
 				.collect(Collectors.toMap(p -> p.getId(), p -> p.getName()));
 		logger.debug("productPriceMap " + productPriceMap_P);
 		int expected = 5;
-		Assert.assertEquals("Should be five.",expected, productPriceMap_P.size());
+		Assert.assertEquals("Should be five.", expected, productPriceMap_P.size());
 		List<Float> productPriceList_P = productsList.parallelStream().filter(p -> p.getPrice() > 30000) // filtering
 																											// data
 				.map(Product::getPrice) // fetching price by referring getPrice method
@@ -241,10 +245,10 @@ public class StreamTests {
 		logger.debug("Creating stream from collection, set or array...");
 		Collection<String> collection = Arrays.asList("JAVA", "J2EE", "Spring", "Hibernate");
 		Stream<String> stream2 = collection.stream();
-		stream2.forEach(e->Assert.assertNotNull(e));
+		stream2.forEach(e -> Assert.assertNotNull(e));
 		List<String> list = Arrays.asList("JAVA-8", "J2EE-8", "SpringCore", "HibernateShit");
 		Stream<String> stream3 = list.stream();
-		stream3.forEach(e->Assert.assertNotNull(e));
+		stream3.forEach(e -> Assert.assertNotNull(e));
 		Set<String> set = new HashSet<>(list);
 		Stream<String> stream4 = set.stream();
 		stream4.forEach(Assert::assertNotNull);
@@ -252,11 +256,11 @@ public class StreamTests {
 		// Array can also be a source of a Stream
 		logger.debug("Array can also be a source of a Stream...");
 		Stream<String> streamOfArray = Stream.of("a", "b", "c");
-		streamOfArray.forEach(e->assertNotNull(e));
+		streamOfArray.forEach(e -> assertNotNull(e));
 		// creating from existing array or of a part of an array:
 		String[] arr = new String[] { "a1", "b1", "c1" };
 		Stream<String> streamOfArrayFull = Arrays.stream(arr);
-		streamOfArrayFull.forEach(e->Assert.assertNotNull(e));
+		streamOfArrayFull.forEach(e -> Assert.assertNotNull(e));
 		Stream<String> streamOfArrayPart = Arrays.stream(arr, 1, 3);
 		streamOfArrayPart.forEach(Assert::assertNotNull);
 	}
@@ -353,15 +357,16 @@ public class StreamTests {
 			final Comparator<EMPojo> compTotal2018 = (p1, p2) -> Integer.compare(p1.getTotal_2018(),
 					p2.getTotal_2018());
 			long maxSize = 7l;
-			
+
 			logger.debug("reading historico_euromillones.csv sorted by total_2017, 7 values...");
 			// sort from max to min
-			myListEMPojo.stream().sorted(compTotal2017.reversed()).limit(maxSize).forEach(e->logger.debug(e.toString()));
+			myListEMPojo.stream().sorted(compTotal2017.reversed()).limit(maxSize)
+					.forEach(e -> logger.debug(e.toString()));
 
-			
 			logger.debug("reading historico_euromillones.csv sorted by total_2018, 7 values...");
 			// sort from max to min
-			myListEMPojo.stream().sorted(compTotal2018.reversed()) .limit(maxSize).forEach(e->logger.debug(e.toString()));
+			myListEMPojo.stream().sorted(compTotal2018.reversed()).limit(maxSize)
+					.forEach(e -> logger.debug(e.toString()));
 
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
@@ -377,71 +382,74 @@ public class StreamTests {
 
 		try {
 			List<EMPojo> myListEMPojo = Utils.processInputFile(inputFilePath);
-			myListEMPojo.forEach(e->logger.debug(e.toString()));
+			myListEMPojo.forEach(e -> logger.debug(e.toString()));
 			final Comparator<EMPojo> compTotal2017 = (p1, p2) -> Integer.compare(p1.getTotal_2017(),
 					p2.getTotal_2017());
 			final Comparator<EMPojo> compTotal2018 = (p1, p2) -> Integer.compare(p1.getTotal_2018(),
 					p2.getTotal_2018());
 			long maxSize = 7l;
-			
-			logger.info("reading primitiva.csv sorted from max to min by total_2017, 7 values...");
-			
-			myListEMPojo.stream().sorted(compTotal2017.reversed()) // sort from max to min
-					.limit(maxSize).forEach(e->logger.info(e.toString()));
 
-			
+			logger.info("reading primitiva.csv sorted from max to min by total_2017, 7 values...");
+
+			myListEMPojo.stream().sorted(compTotal2017.reversed()) // sort from max to min
+					.limit(maxSize).forEach(e -> logger.info(e.toString()));
+
 			logger.info("reading primitiva.csv sorted from max to min by total_2018, 7 values...");
-			
+
 			myListEMPojo.stream().sorted(compTotal2018.reversed()) // sort from max to min
-					.limit(maxSize).forEach(e->logger.info(e.toString()));
+					.limit(maxSize).forEach(e -> logger.info(e.toString()));
 
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void testPlay_With_Historico_EM() {
 
-		
 		logger.debug("reading Lotoideas.com - Histórico de Resultados - Euromillones - 2004 a 2018-2.csv...");
 		String inputFilePath = "src/test/resources/Euromillones2004_2018.csv";
 
 		try {
 			List<AnotherEMPojo> myListEMPojo = Utils.processHistoricInputFile(inputFilePath);
-			logger.debug("There are " + myListEMPojo.size() + " lines in the file. Lets try to find something useful. ");
+			logger.debug(
+					"There are " + myListEMPojo.size() + " lines in the file. Lets try to find something useful. ");
 			logger.debug("Data comes from 2004 to 2018.");
-			
+
 			logger.debug("Winer1 list and number of times. Unsortered");
 			myListEMPojo.stream().map(o -> o.getWiner1()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet()
-					.forEach(e -> logger.debug("winer1 " + e.getKey() + " appeared " + e.getValue().size() + " times."));
-			
+					.forEach(
+							e -> logger.debug("winer1 " + e.getKey() + " appeared " + e.getValue().size() + " times."));
+
 			logger.debug("Winer2 list and number of times. Unsortered");
 			myListEMPojo.stream().map(o -> o.getWiner2()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet()
-					.forEach(e -> logger.debug("winer2 " + e.getKey() + " appeared " + e.getValue().size() + " times."));
-			
+					.forEach(
+							e -> logger.debug("winer2 " + e.getKey() + " appeared " + e.getValue().size() + " times."));
+
 			logger.debug("Winer3 list and number of times. Unsortered");
 			myListEMPojo.stream().map(o -> o.getWiner3()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet()
-					.forEach(e -> logger.debug("winer3 " + e.getKey() + " appeared " + e.getValue().size() + " times."));
-			
+					.forEach(
+							e -> logger.debug("winer3 " + e.getKey() + " appeared " + e.getValue().size() + " times."));
+
 			logger.debug("Winer4 list and number of times. Unsortered");
 			myListEMPojo.stream().map(o -> o.getWiner4()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet()
-					.forEach(e -> logger.debug("winer4 " + e.getKey() + " appeared " + e.getValue().size() + " times."));
-			
+					.forEach(
+							e -> logger.debug("winer4 " + e.getKey() + " appeared " + e.getValue().size() + " times."));
+
 			logger.debug("Winer5 list and number of times. Unsortered");
 			myListEMPojo.stream().map(o -> o.getWiner1()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet()
-					.forEach(e -> logger.debug("winer5 " + e.getKey() + " appeared " + e.getValue().size() + " times."));
-			
+					.forEach(
+							e -> logger.debug("winer5 " + e.getKey() + " appeared " + e.getValue().size() + " times."));
+
 			logger.debug("Star1 list and number of times. Unsortered");
 			myListEMPojo.stream().map(o -> o.getStar1()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet()
 					.forEach(e -> logger.debug("star1 " + e.getKey() + " appeared " + e.getValue().size() + " times."));
-			
 
 			logger.debug("Star2 list and number of times. Unsortered");
 			myListEMPojo.stream().map(o -> o.getStar2()).sorted().collect(Collectors.groupingBy(obj -> obj)).entrySet()
 					.forEach(e -> logger.debug("star2 " + e.getKey() + " appeared " + e.getValue().size() + " times."));
-			
+
 			logger.debug("Done unsortered!");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -456,24 +464,24 @@ public class StreamTests {
 
 		try {
 			List<AnotherEMPojo> myListEMPojo = Utils.processHistoricInputFile(inputFilePath);
-			logger.debug("There are " + myListEMPojo.size() + " lines in the file. Lets try to find something useful. ");
+			logger.debug(
+					"There are " + myListEMPojo.size() + " lines in the file. Lets try to find something useful. ");
 			logger.debug("Data comes from 2004 to 2018.");
-			
 
 			Utils.showWinner1ReversedOrder(myListEMPojo);
-			
+
 			Utils.showWinner2ReversedOrder(myListEMPojo);
-			
+
 			Utils.showWinner3ReversedOrder(myListEMPojo);
-			
+
 			Utils.showWinner4ReversedOrder(myListEMPojo);
-			
+
 			Utils.showWinner5ReversedOrder(myListEMPojo);
-			
+
 			Utils.showStar1ReversedOrder(myListEMPojo);
-			
+
 			Utils.showStar2ReversedOrder(myListEMPojo);
-			
+
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -487,47 +495,208 @@ public class StreamTests {
 
 		try {
 			List<AnotherEMPojo> myListEMPojo = Utils.processHistoricInputFile(inputFilePath);
-			logger.debug("There are " + myListEMPojo.size() + " lines in the file. Lets try to find something useful. ");
+			logger.debug(
+					"There are " + myListEMPojo.size() + " lines in the file. Lets try to find something useful. ");
 			logger.debug("Data comes from 2004 to 2018.");
 			logger.info("Reading Euromillones2004_2018.csv");
 			Set<Entry<Integer, List<Integer>>> mySetStar1 = myListEMPojo.stream().map(o -> o.getStar1())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showRandomValuesReversedOrder(mySetStar1,"Star1 ");
-			
+			Utils.showRandomValuesReversedOrder(mySetStar1, "Star1 ");
 
 			Set<Entry<Integer, List<Integer>>> mySetStar2 = myListEMPojo.stream().map(o -> o.getStar2())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showRandomValuesReversedOrder(mySetStar2,"Star2 ");
-			
+			Utils.showRandomValuesReversedOrder(mySetStar2, "Star2 ");
 
 			Set<Entry<Integer, List<Integer>>> mySetWinner1 = myListEMPojo.stream().map(o -> o.getWiner1())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showRandomValuesReversedOrder(mySetWinner1,"Winner1 ");
-			
+			Utils.showRandomValuesReversedOrder(mySetWinner1, "Winner1 ");
 
 			Set<Entry<Integer, List<Integer>>> mySetWinner2 = myListEMPojo.stream().map(o -> o.getWiner2())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showRandomValuesReversedOrder(mySetWinner2,"Winner2 ");
-			
+			Utils.showRandomValuesReversedOrder(mySetWinner2, "Winner2 ");
 
 			Set<Entry<Integer, List<Integer>>> mySetWinner3 = myListEMPojo.stream().map(o -> o.getWiner3())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showRandomValuesReversedOrder(mySetWinner3,"Winner3 ");
-			
+			Utils.showRandomValuesReversedOrder(mySetWinner3, "Winner3 ");
 
 			Set<Entry<Integer, List<Integer>>> mySetWinner4 = myListEMPojo.stream().map(o -> o.getWiner4())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showRandomValuesReversedOrder(mySetWinner4,"Winner4 ");
-			
+			Utils.showRandomValuesReversedOrder(mySetWinner4, "Winner4 ");
 
 			Set<Entry<Integer, List<Integer>>> mySetWinner5 = myListEMPojo.stream().map(o -> o.getWiner5())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showRandomValuesReversedOrder(mySetWinner5,"Winner5 ");
-			
+			Utils.showRandomValuesReversedOrder(mySetWinner5, "Winner5 ");
+
 			logger.debug("Done testRefactoredFeatureEM1");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+
+	}
+
+	@Test
+	public void testshowSorteredValuesReversedOrder() {
+
+		String inputFilePath = "src/main/resources/Euromillones2004_2018.csv";
+
+		try {
+			List<AnotherEMPojo> myListEMPojo = Utils.processHistoricInputFile(inputFilePath);
+
+			Set<Entry<Integer, List<Integer>>> mySetStar1 = myListEMPojo.stream().map(o -> o.getStar1())
+					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+
+			Set<Entry<Integer, List<Integer>>> mySetStar2 = myListEMPojo.stream().map(o -> o.getStar2())
+					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+
+			Set<Entry<Integer, List<Integer>>> mySetWinner1 = myListEMPojo.stream().map(o -> o.getWiner1())
+					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+
+			Set<Entry<Integer, List<Integer>>> mySetWinner2 = myListEMPojo.stream().map(o -> o.getWiner2())
+					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+
+			Set<Entry<Integer, List<Integer>>> mySetWinner3 = myListEMPojo.stream().map(o -> o.getWiner3())
+					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+
+			Set<Entry<Integer, List<Integer>>> mySetWinner4 = myListEMPojo.stream().map(o -> o.getWiner4())
+					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+
+			Set<Entry<Integer, List<Integer>>> mySetWinner5 = myListEMPojo.stream().map(o -> o.getWiner5())
+					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+
+			LinkedHashMap<Integer, Integer> lhmStar1 = Utils.calculateMostFrequentValuesReversedOrder(mySetStar1);
+
+			LinkedHashMap<Integer, Integer> lhmStar2 = Utils.calculateMostFrequentValuesReversedOrder(mySetStar2);
+
+			LinkedHashMap<Integer, Integer> lhmWinner1 = Utils.calculateMostFrequentValuesReversedOrder(mySetWinner1);
+
+			LinkedHashMap<Integer, Integer> lhmWinner2 = Utils.calculateMostFrequentValuesReversedOrder(mySetWinner2);
+
+			LinkedHashMap<Integer, Integer> lhmWinner3 = Utils.calculateMostFrequentValuesReversedOrder(mySetWinner3);
+
+			LinkedHashMap<Integer, Integer> lhmWinner4 = Utils.calculateMostFrequentValuesReversedOrder(mySetWinner4);
+
+			LinkedHashMap<Integer, Integer> lhmWinner5 = Utils.calculateMostFrequentValuesReversedOrder(mySetWinner5);
+
+			// tengo que seleccionar los cinco primeros de cada lista enlazada, de tal
+			// manera que ninguno sea repetido
+
+			Set<Integer> setStars = new LinkedHashSet<Integer>();
+
+			Set<Integer> setStar1 = lhmStar1.keySet();
+			
+			setStars.addAll(setStar1);
+			/*
+			Iterator<Integer> itSetStar1 = setStar1.iterator();
+
+			int contSetStar1 = 1;
+
+			while (itSetStar1.hasNext() && contSetStar1 != 5) {
+				Integer star1 = itSetStar1.next();
+				setStars.add(star1);
+				contSetStar1++;
+			}
+*/
+			Set<Integer> setStar2 = lhmStar2.keySet();
+			
+			setStars.retainAll(setStar2 );
+			/*
+			Iterator<Integer> itSetStar2 = setStar2.iterator();
+
+			int contSetStar2 = 1;
+
+			while (itSetStar2.hasNext() && contSetStar2 != 5) {
+				Integer star2 = itSetStar2.next();
+				setStars.add(star2);
+				contSetStar2++;
+			}
+*/
+			Set<Integer> setWinners = new LinkedHashSet<Integer>();
+
+			Set<Integer> setWinner1 = lhmWinner1.keySet();
+
+			setWinners.addAll(setWinner1);
+			/*
+			Iterator<Integer> itSetWinner1 = setWinner1.iterator();
+
+			int contSetWinner1 = 1;
+
+			while (itSetWinner1 .hasNext() && contSetWinner1 != 5) {
+				Integer winner1 = itSetWinner1 .next();
+				setWinners .add(winner1 );
+				contSetWinner1 ++;
+			}
+*/
+			Set<Integer> setWinner2 = lhmWinner2.keySet();
+
+			setWinners.addAll(setWinner2);
+/*			
+			Iterator<Integer> itSetWinner2 = setWinner2.iterator();
+
+			int contSetWinner2 = 1;
+
+			while (itSetWinner2 .hasNext() && contSetWinner2 != 5) {
+				Integer winner2 = itSetWinner2 .next();
+				setWinners .add(winner2 );
+				contSetWinner2 ++;
+			}
+*/			
+			Set<Integer> setWinner3 = lhmWinner3.keySet();
+
+			setWinners.retainAll(setWinner3);
+/*			
+			Iterator<Integer> itSetWinner3 = setWinner3.iterator();
+
+			int contSetWinner3 = 1;
+
+			while (itSetWinner3 .hasNext() && contSetWinner3 != 5) {
+				Integer winner3 = itSetWinner3.next();
+				setWinners .add(winner3);
+				contSetWinner3 ++;
+			}
+*/			
+			Set<Integer> setWinner4 = lhmWinner4.keySet();
+
+			setWinners.retainAll(setWinner4);
+/*			
+			Iterator<Integer> itSetWinner4 = setWinner4.iterator();
+
+			int contSetWinner4 = 1;
+
+			while (itSetWinner4 .hasNext() && contSetWinner4 != 5) {
+				Integer winner4 = itSetWinner4 .next();
+				setWinners .add(winner4 );
+				contSetWinner4 ++;
+			}
+*/			
+			Set<Integer> setWinner5 = lhmWinner5.keySet();
+
+			setWinners.retainAll(setWinner5);
+/*			
+			Iterator<Integer> itSetWinner5 = setWinner5.iterator();
+
+			int contSetWinner5 = 1;
+
+			while (itSetWinner5 .hasNext() && contSetWinner5 != 5) {
+				Integer winner5 = itSetWinner5 .next();
+				setWinners .add(winner5 );
+				contSetWinner5 ++;
+			}
+*/
+			// ahora me quedo con dos estrellas del conjunto de estrellas que no estén en el conjunto de ganadores.
+			int maxSizeWinners = 5;
+			
+			Stream<Integer> setDifferentWinners = setWinners.stream().distinct().limit(maxSizeWinners );
+			
+			int maxSizeStars = 2;
+			
+			Stream<Integer> setDifferentStars = setStars.stream().distinct().limit(maxSizeStars);
+			
+			setDifferentWinners.forEach(e -> System.out.println("winner: " + e));
+			setDifferentStars.forEach(e -> System.out.println("star: " + e));
+			System.out.println("Done!");
+		} catch (FileNotFoundException e) {
+			System.out.println("FileNotFoundException " + e.getLocalizedMessage());
 		}
 
 	}

@@ -38,13 +38,13 @@ public class ApiStreamTests {
 		
 		
 		if (isEm)
-			Utils.calculateEM();
+			Utils.calculateRandomEM();
 		else
 		if (isPrimitiva)
 			Utils.calculatePrimitiva();
 		else
 		if (all) {
-			Utils.calculateEM();
+			Utils.calculateRandomEM();
 			Utils.calculatePrimitiva();
 		}
 		System.out.println("Done!");
