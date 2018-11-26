@@ -104,11 +104,27 @@ public class Utils {
 
 		int max = aLinkedHM.size();
 		int min = 1;
-		int key = ThreadLocalRandom.current().nextInt(min, max + 1);
-
-		Integer value = aLinkedHM.get(key);
-
-		System.out.println(type + " " + key + " " + "frequency is " + value);
+		// key must be within the keys in aLinkedHM!! 
+		// maybe i have to store the keys of keySet in another dataset in order to recover correct key!
+		int key = ThreadLocalRandom.current().nextInt(min, max);
+		Object[] keySet = aLinkedHM.keySet().toArray();
+		// System.out.println("max "+ max + " min " + min + " key " + key + " length " + keySet.length );
+		HashMap<Integer,Integer> aMapWithKeys = new HashMap<Integer,Integer>();
+		int innerKey=-1;
+		int innerHashMapKey=1;
+		for (int i=1;i<keySet.length;i++) {
+			innerKey=(int) keySet[i];
+			aMapWithKeys .put(innerHashMapKey, innerKey);
+			// System.out.println("innerKey is " + innerKey + " innerHashMapKey is " + innerHashMapKey);
+			innerHashMapKey++;
+		}
+		Integer realKey = aMapWithKeys.get(key);
+		// System.out.println("realKey " + realKey );
+		Integer value = aLinkedHM.get(realKey );
+		
+		//if (value == null)
+		//	System.out.println("issue!");
+		System.out.println(type + "is " + key + " " + "frequency is " + value);
 		// showing data...
 		// Iterator<Entry<Integer, Integer>> itLK = aLinkedHM.entrySet().iterator();
 		// while (itLK.hasNext()) {
