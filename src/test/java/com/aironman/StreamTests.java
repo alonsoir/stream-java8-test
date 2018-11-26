@@ -492,37 +492,37 @@ public class StreamTests {
 			logger.info("Reading Euromillones2004_2018.csv");
 			Set<Entry<Integer, List<Integer>>> mySetStar1 = myListEMPojo.stream().map(o -> o.getStar1())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showValueReversedOrder(mySetStar1,"Star1 ");
+			Utils.showRandomValuesReversedOrder(mySetStar1,"Star1 ");
 			
 
 			Set<Entry<Integer, List<Integer>>> mySetStar2 = myListEMPojo.stream().map(o -> o.getStar2())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showValueReversedOrder(mySetStar2,"Star2 ");
+			Utils.showRandomValuesReversedOrder(mySetStar2,"Star2 ");
 			
 
 			Set<Entry<Integer, List<Integer>>> mySetWinner1 = myListEMPojo.stream().map(o -> o.getWiner1())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showValueReversedOrder(mySetWinner1,"Winner1 ");
+			Utils.showRandomValuesReversedOrder(mySetWinner1,"Winner1 ");
 			
 
 			Set<Entry<Integer, List<Integer>>> mySetWinner2 = myListEMPojo.stream().map(o -> o.getWiner2())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showValueReversedOrder(mySetWinner2,"Winner2 ");
+			Utils.showRandomValuesReversedOrder(mySetWinner2,"Winner2 ");
 			
 
 			Set<Entry<Integer, List<Integer>>> mySetWinner3 = myListEMPojo.stream().map(o -> o.getWiner3())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showValueReversedOrder(mySetWinner3,"Winner3 ");
+			Utils.showRandomValuesReversedOrder(mySetWinner3,"Winner3 ");
 			
 
 			Set<Entry<Integer, List<Integer>>> mySetWinner4 = myListEMPojo.stream().map(o -> o.getWiner4())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showValueReversedOrder(mySetWinner4,"Winner4 ");
+			Utils.showRandomValuesReversedOrder(mySetWinner4,"Winner4 ");
 			
 
 			Set<Entry<Integer, List<Integer>>> mySetWinner5 = myListEMPojo.stream().map(o -> o.getWiner5())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showValueReversedOrder(mySetWinner5,"Winner5 ");
+			Utils.showRandomValuesReversedOrder(mySetWinner5,"Winner5 ");
 			
 			logger.debug("Done testRefactoredFeatureEM1");
 		} catch (FileNotFoundException e) {

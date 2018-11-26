@@ -71,6 +71,7 @@ public class Utils {
 	}
 
 	static Function<String, AnotherEMPojo> mapToHistoricItem = (line) -> {
+		// System.out.println("Processing line " + line);
 		String[] p = line.split(COMMA);// a CSV has comma separated lines
 		AnotherEMPojo item = new AnotherEMPojo();
 		item.setDateContest(p[0]);
@@ -86,8 +87,8 @@ public class Utils {
 
 	};
 
-	static void showValueReversedOrder(Set<Entry<Integer, List<Integer>>> mySetwinner, String type) {
-
+	static LinkedHashMap<Integer, Integer>  calculateMostFrequentValuesReversedOrder(Set<Entry<Integer, List<Integer>>> mySetwinner) {
+		
 		Iterator<Entry<Integer, List<Integer>>> iteratorSetWinner1 = mySetwinner.iterator();
 		HashMap<Integer, Integer> aMap = new HashMap<Integer, Integer>();
 		while (iteratorSetWinner1.hasNext()) {
@@ -101,37 +102,58 @@ public class Utils {
 		LinkedHashMap<Integer, Integer> aLinkedHM = aMap.entrySet().stream()
 				.sorted(Collections.reverseOrder(comparingByValue()))
 				.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
+		return aLinkedHM ;
+	}
+	
+	/***
+	 * I must refactor this method in order to achieve better perfomance. Probably there is too much data structures.
+	 * @param mySetwinner
+	 * @param type
+	 */
+	static void showRandomValuesReversedOrder(Set<Entry<Integer, List<Integer>>> mySetwinner, String type) {
+
+		LinkedHashMap<Integer, Integer> aLinkedHM = calculateMostFrequentValuesReversedOrder(mySetwinner);
 
 		int max = aLinkedHM.size();
 		int min = 1;
-		// key must be within the keys in aLinkedHM!! 
-		// maybe i have to store the keys of keySet in another dataset in order to recover correct key!
 		int key = ThreadLocalRandom.current().nextInt(min, max);
+		Integer realKey = calculateRealKeyReverserOrder(aLinkedHM, max, min, key);
+		
+		Integer value = aLinkedHM.get(realKey );
+		
+		if (value == null)
+			System.out.println("PROBLEM! Check showRandomValuesReversedOrder.");
+		System.out.println("Selected " + type + "is " + realKey + " " + "frequency is " + value);
+		// showing data...
+		iterateAndShowRandomValuesReversedOrder(type, aLinkedHM);
+	}
+
+	private static void iterateAndShowRandomValuesReversedOrder(String type,
+			LinkedHashMap<Integer, Integer> aLinkedHM) {
+		Iterator<Entry<Integer, Integer>> itLK = aLinkedHM.entrySet().iterator();
+		while (itLK.hasNext()) {
+			Entry<Integer, Integer> it = itLK.next();
+			System.out.println("*** DEBUG *** " + type + it.getKey() + " numTimes: " + it.getValue());
+		}
+		//System.out.println("Done " + type + "list and number of times sortered reversed by number of times! " + aLinkedHM.size());
+	}
+
+	private static Integer calculateRealKeyReverserOrder(LinkedHashMap<Integer, Integer> aLinkedHM, int max, int min,
+			int key) {
 		Object[] keySet = aLinkedHM.keySet().toArray();
 		// System.out.println("max "+ max + " min " + min + " key " + key + " length " + keySet.length );
 		HashMap<Integer,Integer> aMapWithKeys = new HashMap<Integer,Integer>();
-		int innerKey=-1;
-		int innerHashMapKey=1;
+		int internalKey=-1;
+		int internalHashMapKey=1;
 		for (int i=1;i<keySet.length;i++) {
-			innerKey=(int) keySet[i];
-			aMapWithKeys .put(innerHashMapKey, innerKey);
-			// System.out.println("innerKey is " + innerKey + " innerHashMapKey is " + innerHashMapKey);
-			innerHashMapKey++;
+			internalKey=(int) keySet[i];
+			aMapWithKeys .put(internalHashMapKey, internalKey);
+			// System.out.println("internalKey is " + internalKey + " internalHashMapKey is " + internalHashMapKey);
+			internalHashMapKey++;
 		}
 		Integer realKey = aMapWithKeys.get(key);
-		// System.out.println("realKey " + realKey );
-		Integer value = aLinkedHM.get(realKey );
-		
-		//if (value == null)
-		//	System.out.println("issue!");
-		System.out.println(type + "is " + key + " " + "frequency is " + value);
-		// showing data...
-		// Iterator<Entry<Integer, Integer>> itLK = aLinkedHM.entrySet().iterator();
-		// while (itLK.hasNext()) {
-		// 	Entry<Integer, Integer> it = itLK.next();
-		// 	System.out.println(type + it.getKey() + " numTimes: " + it.getValue());
-		// }
-		// System.out.println("Done " + type + "list and number of times sortered reversed by number of times! " + aLinkedHM.size());
+		//System.out.println("realKey " + realKey );
+		return realKey;
 	}
 
 	static void showStar1ReversedOrder(List<AnotherEMPojo> myListEMPojo) {
@@ -323,31 +345,31 @@ public class Utils {
 			List<AnotherEMPojo> myListEMPojo = Utils.processHistoricInputFile(inputFilePath);
 			Set<Entry<Integer, List<Integer>>> mySetStar1 = myListEMPojo.stream().map(o -> o.getStar1())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showValueReversedOrder(mySetStar1, "Star1 ");
+			Utils.showRandomValuesReversedOrder(mySetStar1, "Star1 ");
 
 			Set<Entry<Integer, List<Integer>>> mySetStar2 = myListEMPojo.stream().map(o -> o.getStar2())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showValueReversedOrder(mySetStar2, "Star2 ");
+			Utils.showRandomValuesReversedOrder(mySetStar2, "Star2 ");
 
 			Set<Entry<Integer, List<Integer>>> mySetWinner1 = myListEMPojo.stream().map(o -> o.getWiner1())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showValueReversedOrder(mySetWinner1, "Winner1 ");
+			Utils.showRandomValuesReversedOrder(mySetWinner1, "Winner1 ");
 
 			Set<Entry<Integer, List<Integer>>> mySetWinner2 = myListEMPojo.stream().map(o -> o.getWiner2())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showValueReversedOrder(mySetWinner2, "Winner2 ");
+			Utils.showRandomValuesReversedOrder(mySetWinner2, "Winner2 ");
 
 			Set<Entry<Integer, List<Integer>>> mySetWinner3 = myListEMPojo.stream().map(o -> o.getWiner3())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showValueReversedOrder(mySetWinner3, "Winner3 ");
+			Utils.showRandomValuesReversedOrder(mySetWinner3, "Winner3 ");
 
 			Set<Entry<Integer, List<Integer>>> mySetWinner4 = myListEMPojo.stream().map(o -> o.getWiner4())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showValueReversedOrder(mySetWinner4, "Winner4 ");
+			Utils.showRandomValuesReversedOrder(mySetWinner4, "Winner4 ");
 
 			Set<Entry<Integer, List<Integer>>> mySetWinner5 = myListEMPojo.stream().map(o -> o.getWiner5())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showValueReversedOrder(mySetWinner5, "Winner5 ");
+			Utils.showRandomValuesReversedOrder(mySetWinner5, "Winner5 ");
 
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
