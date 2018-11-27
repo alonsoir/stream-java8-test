@@ -18,6 +18,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -431,27 +432,132 @@ public class Utils {
 	/***
 	 * issue-euromillions-mode-must-select-different-values
 	 * The idea is to select winners and stars with highest frequency and less repeated within a temporary window, maybe a month or whatever.
-	 * @param mySetwinner
-	 * @param type
 	 */
-	static void showSorteredValuesReversedOrder(Set<Entry<Integer, List<Integer>>> mySetwinner, String type, boolean isDebug) {
+	public static void showSorteredValuesReversedOrder() {
 		
-		LinkedHashMap<Integer, Integer> aLinkedHM = calculateMostFrequentValuesReversedOrder(mySetwinner);
+		System.out.println("init showSorteredValuesReversedOrder");
+		String inputFilePath = "src/main/resources/Euromillones2004_2018.csv";
 
-		int max = aLinkedHM.size();
-		int min = 1;
-		int key = ThreadLocalRandom.current().nextInt(min, max);
-		Integer realKey = calculateRealKeyReverserOrder(aLinkedHM, max, min, key);
+		try {
+			List<AnotherEMPojo> myListEMPojo = Utils.processHistoricInputFile(inputFilePath);
 
-		Integer value = aLinkedHM.get(realKey);
+			Set<Entry<Integer, List<Integer>>> mySetStar1 = myListEMPojo.stream().map(o -> o.getStar1())
+					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
 
-		if (value == null)
-			System.out.println("PROBLEM! Check showSorteredValuesReversedOrder.");
-		System.out.println("Selected " + type + "is " + realKey + " " + "frequency is " + value);
-		// showing data...
-		if (isDebug)
-		iterateAndShowRandomValuesReversedOrder(type, aLinkedHM);
-		
+			Set<Entry<Integer, List<Integer>>> mySetStar2 = myListEMPojo.stream().map(o -> o.getStar2())
+					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+
+			Set<Entry<Integer, List<Integer>>> mySetWinner1 = myListEMPojo.stream().map(o -> o.getWiner1())
+					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+
+			Set<Entry<Integer, List<Integer>>> mySetWinner2 = myListEMPojo.stream().map(o -> o.getWiner2())
+					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+
+			Set<Entry<Integer, List<Integer>>> mySetWinner3 = myListEMPojo.stream().map(o -> o.getWiner3())
+					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+
+			Set<Entry<Integer, List<Integer>>> mySetWinner4 = myListEMPojo.stream().map(o -> o.getWiner4())
+					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+
+			Set<Entry<Integer, List<Integer>>> mySetWinner5 = myListEMPojo.stream().map(o -> o.getWiner5())
+					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+
+			LinkedHashMap<Integer, Integer> lhmStar1 = Utils.calculateMostFrequentValuesReversedOrder(mySetStar1);
+
+			LinkedHashMap<Integer, Integer> lhmStar2 = Utils.calculateMostFrequentValuesReversedOrder(mySetStar2);
+
+			LinkedHashMap<Integer, Integer> lhmWinner1 = Utils.calculateMostFrequentValuesReversedOrder(mySetWinner1);
+
+			LinkedHashMap<Integer, Integer> lhmWinner2 = Utils.calculateMostFrequentValuesReversedOrder(mySetWinner2);
+
+			LinkedHashMap<Integer, Integer> lhmWinner3 = Utils.calculateMostFrequentValuesReversedOrder(mySetWinner3);
+
+			LinkedHashMap<Integer, Integer> lhmWinner4 = Utils.calculateMostFrequentValuesReversedOrder(mySetWinner4);
+
+			LinkedHashMap<Integer, Integer> lhmWinner5 = Utils.calculateMostFrequentValuesReversedOrder(mySetWinner5);
+
+			// tengo que seleccionar los cinco primeros de cada lista enlazada, de tal
+			// manera que ninguno sea repetido
+			Set<Entry<Integer, Integer>> setStars = new LinkedHashSet<Entry<Integer, Integer>>();
+
+			Iterator<Entry<Integer, Integer>> itStar1 = lhmStar1.entrySet().iterator();
+			int contStar1 = 0;
+			while (itStar1.hasNext() && contStar1 != 1) {
+				Entry<Integer, Integer> it = itStar1.next();
+				if (setStars.add(it)) {
+					contStar1++;
+					System.out.println("star " + it .getKey() + " frequency " + it.getValue() + " contStar1 " + contStar1);
+				}
+				
+			}
+
+			Iterator<Entry<Integer, Integer>> itStar2 = lhmStar2.entrySet().iterator();
+			int contStar2 = 0;
+			while (itStar2.hasNext() && contStar2 != 1) {
+				Entry<Integer, Integer> it = itStar2.next();
+				// only adding to set if element is not present
+				if (setStars.add(it)) {
+					contStar2++;
+					System.out.println("star " + it .getKey() + " frequency " + it.getValue()+ " contStar2 " + contStar2);
+				}
+			}
+
+			Set<Entry<Integer, Integer>> setWinners = new LinkedHashSet<Entry<Integer, Integer>>();
+			
+			Iterator<Entry<Integer, Integer>> itWinner1= lhmWinner1.entrySet().iterator();
+			int contWinner1 = 0;
+			while (itWinner1.hasNext() && contWinner1 != 1) {
+				Entry<Integer, Integer> it = itWinner1.next();
+				if (setWinners .add(it)) {
+					contWinner1 ++;
+					System.out.println("winner " + it .getKey() + " frequency " + it.getValue() + " contWinner1 " + contWinner1 );
+				}
+			}
+			
+			Iterator<Entry<Integer, Integer>> itWinner2= lhmWinner2.entrySet().iterator();
+			int contWinner2 = 0;
+			while (itWinner2.hasNext() && contWinner2 != 1) {
+				Entry<Integer, Integer> it = itWinner2.next();
+				if (setWinners .add(it)) {
+					contWinner2 ++;
+					System.out.println("winner " + it .getKey() + " frequency " + it.getValue() + " contWinner2 " + contWinner2 );
+				}
+			}
+			
+			Iterator<Entry<Integer, Integer>> itWinner3= lhmWinner3.entrySet().iterator();
+			int contWinner3 = 0;
+			while (itWinner3.hasNext() && contWinner3 != 1) {
+				Entry<Integer, Integer> it = itWinner3.next();
+				if (setWinners .add(it)) {
+					contWinner3 ++;
+					System.out.println("winner " + it .getKey() + " frequency " + it.getValue() + " contWinner3 " + contWinner3 );
+				}
+			}
+			
+			Iterator<Entry<Integer, Integer>> itWinner4= lhmWinner4.entrySet().iterator();
+			int contWinner4 = 0;
+			while (itWinner1.hasNext() && contWinner4 != 1) {
+				Entry<Integer, Integer> it = itWinner4.next();
+				if (setWinners .add(it)) {
+					contWinner4++;
+					System.out.println("winner " + it .getKey() + " frequency " + it.getValue() + "contWinner4 " + contWinner4);
+				}
+			}
+			
+			Iterator<Entry<Integer, Integer>> itWinner5= lhmWinner5.entrySet().iterator();
+			int contWinner5 = 0;
+			while (itWinner5.hasNext() && contWinner5 != 1) {
+				Entry<Integer, Integer> it = itWinner5.next();
+				if (setWinners .add(it)) {
+					contWinner5++;
+					System.out.println("winner " + it .getKey() + " frequency " + it.getValue() + " contWinner5 "  + contWinner5);
+				}
+			}
+			
+			System.out.println("Done testshowSorteredValuesReversedOrder!");
+		} catch (FileNotFoundException e) {
+			System.out.println("FileNotFoundException " + e.getLocalizedMessage());
+		}		
 	}
 	
 	static Timestamp getTimestamp(Date date) {
