@@ -11,16 +11,26 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Timestamp;
+import java.text.DateFormatSymbols;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
@@ -492,7 +502,7 @@ public class StreamTests {
 	public void testRefactoredFeatureEM1() {
 		logger.debug("testRefactoredFeatureEM1");
 		String inputFilePath = "src/test/resources/Euromillones2004_2018.csv";
-
+		boolean isDebug = false;
 		try {
 			List<AnotherEMPojo> myListEMPojo = Utils.processHistoricInputFile(inputFilePath);
 			logger.debug(
@@ -501,31 +511,31 @@ public class StreamTests {
 			logger.info("Reading Euromillones2004_2018.csv");
 			Set<Entry<Integer, List<Integer>>> mySetStar1 = myListEMPojo.stream().map(o -> o.getStar1())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showRandomValuesReversedOrder(mySetStar1, "Star1 ");
+			Utils.showRandomValuesReversedOrder(mySetStar1, "Star1 ", isDebug);
 
 			Set<Entry<Integer, List<Integer>>> mySetStar2 = myListEMPojo.stream().map(o -> o.getStar2())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showRandomValuesReversedOrder(mySetStar2, "Star2 ");
+			Utils.showRandomValuesReversedOrder(mySetStar2, "Star2 ", isDebug);
 
 			Set<Entry<Integer, List<Integer>>> mySetWinner1 = myListEMPojo.stream().map(o -> o.getWiner1())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showRandomValuesReversedOrder(mySetWinner1, "Winner1 ");
+			Utils.showRandomValuesReversedOrder(mySetWinner1, "Winner1 ", isDebug);
 
 			Set<Entry<Integer, List<Integer>>> mySetWinner2 = myListEMPojo.stream().map(o -> o.getWiner2())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showRandomValuesReversedOrder(mySetWinner2, "Winner2 ");
+			Utils.showRandomValuesReversedOrder(mySetWinner2, "Winner2 ", isDebug);
 
 			Set<Entry<Integer, List<Integer>>> mySetWinner3 = myListEMPojo.stream().map(o -> o.getWiner3())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showRandomValuesReversedOrder(mySetWinner3, "Winner3 ");
+			Utils.showRandomValuesReversedOrder(mySetWinner3, "Winner3 ", isDebug);
 
 			Set<Entry<Integer, List<Integer>>> mySetWinner4 = myListEMPojo.stream().map(o -> o.getWiner4())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showRandomValuesReversedOrder(mySetWinner4, "Winner4 ");
+			Utils.showRandomValuesReversedOrder(mySetWinner4, "Winner4 ", isDebug);
 
 			Set<Entry<Integer, List<Integer>>> mySetWinner5 = myListEMPojo.stream().map(o -> o.getWiner5())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showRandomValuesReversedOrder(mySetWinner5, "Winner5 ");
+			Utils.showRandomValuesReversedOrder(mySetWinner5, "Winner5 ", isDebug);
 
 			logger.debug("Done testRefactoredFeatureEM1");
 		} catch (FileNotFoundException e) {
@@ -535,6 +545,16 @@ public class StreamTests {
 
 	}
 
+	/***
+	 * La idea de este test es tratar de mostrar una prediccion del euromillones
+	 * basandonse en dos puntos: 1) Ordenar los numeros ganadores en orden de
+	 * frecuencia ascendente, de manera que aparezcan los números que más veces han
+	 * salido arriba del todo. 2) Discriminar los números anteriores de manera que
+	 * no voy a seleccionar ese número si ha salido repetido en una ventana de
+	 * tiempo, de manera que me quedaré con los números que cumplan estas dos
+	 * condiciones. En progreso, no terminado. Por ahora la implementacion es
+	 * horrorosa...
+	 */
 	@Test
 	public void testshowSorteredValuesReversedOrder() {
 
@@ -584,114 +604,94 @@ public class StreamTests {
 			Set<Integer> setStars = new LinkedHashSet<Integer>();
 
 			Set<Integer> setStar1 = lhmStar1.keySet();
-			
+
 			setStars.addAll(setStar1);
 			/*
-			Iterator<Integer> itSetStar1 = setStar1.iterator();
-
-			int contSetStar1 = 1;
-
-			while (itSetStar1.hasNext() && contSetStar1 != 5) {
-				Integer star1 = itSetStar1.next();
-				setStars.add(star1);
-				contSetStar1++;
-			}
-*/
+			 * Iterator<Integer> itSetStar1 = setStar1.iterator();
+			 * 
+			 * int contSetStar1 = 1;
+			 * 
+			 * while (itSetStar1.hasNext() && contSetStar1 != 5) { Integer star1 =
+			 * itSetStar1.next(); setStars.add(star1); contSetStar1++; }
+			 */
 			Set<Integer> setStar2 = lhmStar2.keySet();
-			
-			setStars.retainAll(setStar2 );
+
+			setStars.retainAll(setStar2);
 			/*
-			Iterator<Integer> itSetStar2 = setStar2.iterator();
-
-			int contSetStar2 = 1;
-
-			while (itSetStar2.hasNext() && contSetStar2 != 5) {
-				Integer star2 = itSetStar2.next();
-				setStars.add(star2);
-				contSetStar2++;
-			}
-*/
+			 * Iterator<Integer> itSetStar2 = setStar2.iterator();
+			 * 
+			 * int contSetStar2 = 1;
+			 * 
+			 * while (itSetStar2.hasNext() && contSetStar2 != 5) { Integer star2 =
+			 * itSetStar2.next(); setStars.add(star2); contSetStar2++; }
+			 */
 			Set<Integer> setWinners = new LinkedHashSet<Integer>();
 
 			Set<Integer> setWinner1 = lhmWinner1.keySet();
 
 			setWinners.addAll(setWinner1);
 			/*
-			Iterator<Integer> itSetWinner1 = setWinner1.iterator();
-
-			int contSetWinner1 = 1;
-
-			while (itSetWinner1 .hasNext() && contSetWinner1 != 5) {
-				Integer winner1 = itSetWinner1 .next();
-				setWinners .add(winner1 );
-				contSetWinner1 ++;
-			}
-*/
+			 * Iterator<Integer> itSetWinner1 = setWinner1.iterator();
+			 * 
+			 * int contSetWinner1 = 1;
+			 * 
+			 * while (itSetWinner1 .hasNext() && contSetWinner1 != 5) { Integer winner1 =
+			 * itSetWinner1 .next(); setWinners .add(winner1 ); contSetWinner1 ++; }
+			 */
 			Set<Integer> setWinner2 = lhmWinner2.keySet();
 
 			setWinners.addAll(setWinner2);
-/*			
-			Iterator<Integer> itSetWinner2 = setWinner2.iterator();
-
-			int contSetWinner2 = 1;
-
-			while (itSetWinner2 .hasNext() && contSetWinner2 != 5) {
-				Integer winner2 = itSetWinner2 .next();
-				setWinners .add(winner2 );
-				contSetWinner2 ++;
-			}
-*/			
+			/*
+			 * Iterator<Integer> itSetWinner2 = setWinner2.iterator();
+			 * 
+			 * int contSetWinner2 = 1;
+			 * 
+			 * while (itSetWinner2 .hasNext() && contSetWinner2 != 5) { Integer winner2 =
+			 * itSetWinner2 .next(); setWinners .add(winner2 ); contSetWinner2 ++; }
+			 */
 			Set<Integer> setWinner3 = lhmWinner3.keySet();
 
 			setWinners.retainAll(setWinner3);
-/*			
-			Iterator<Integer> itSetWinner3 = setWinner3.iterator();
-
-			int contSetWinner3 = 1;
-
-			while (itSetWinner3 .hasNext() && contSetWinner3 != 5) {
-				Integer winner3 = itSetWinner3.next();
-				setWinners .add(winner3);
-				contSetWinner3 ++;
-			}
-*/			
+			/*
+			 * Iterator<Integer> itSetWinner3 = setWinner3.iterator();
+			 * 
+			 * int contSetWinner3 = 1;
+			 * 
+			 * while (itSetWinner3 .hasNext() && contSetWinner3 != 5) { Integer winner3 =
+			 * itSetWinner3.next(); setWinners .add(winner3); contSetWinner3 ++; }
+			 */
 			Set<Integer> setWinner4 = lhmWinner4.keySet();
 
 			setWinners.retainAll(setWinner4);
-/*			
-			Iterator<Integer> itSetWinner4 = setWinner4.iterator();
-
-			int contSetWinner4 = 1;
-
-			while (itSetWinner4 .hasNext() && contSetWinner4 != 5) {
-				Integer winner4 = itSetWinner4 .next();
-				setWinners .add(winner4 );
-				contSetWinner4 ++;
-			}
-*/			
+			/*
+			 * Iterator<Integer> itSetWinner4 = setWinner4.iterator();
+			 * 
+			 * int contSetWinner4 = 1;
+			 * 
+			 * while (itSetWinner4 .hasNext() && contSetWinner4 != 5) { Integer winner4 =
+			 * itSetWinner4 .next(); setWinners .add(winner4 ); contSetWinner4 ++; }
+			 */
 			Set<Integer> setWinner5 = lhmWinner5.keySet();
 
 			setWinners.retainAll(setWinner5);
-/*			
-			Iterator<Integer> itSetWinner5 = setWinner5.iterator();
-
-			int contSetWinner5 = 1;
-
-			while (itSetWinner5 .hasNext() && contSetWinner5 != 5) {
-				Integer winner5 = itSetWinner5 .next();
-				setWinners .add(winner5 );
-				contSetWinner5 ++;
-			}
-*/
-			// ahora me quedo con dos estrellas del conjunto de estrellas que no estén en el conjunto de ganadores.
+			/*
+			 * Iterator<Integer> itSetWinner5 = setWinner5.iterator();
+			 * 
+			 * int contSetWinner5 = 1;
+			 * 
+			 * while (itSetWinner5 .hasNext() && contSetWinner5 != 5) { Integer winner5 =
+			 * itSetWinner5 .next(); setWinners .add(winner5 ); contSetWinner5 ++; }
+			 */
+			// ahora me quedo con dos estrellas del conjunto de estrellas que no estén en el
+			// conjunto de ganadores.
 			int maxSizeWinners = 5;
-			
-			Stream<Integer> setDifferentWinners = setWinners.stream().distinct().limit(maxSizeWinners );
-			
+
+			Stream<Integer> setDifferentWinners = setWinners.stream().distinct().limit(maxSizeWinners);
+
 			int maxSizeStars = 2;
-			
+
 			Stream<Integer> setDifferentStars = setStars.stream().distinct().limit(maxSizeStars);
-			
+
 			setDifferentWinners.forEach(e -> System.out.println("winner: " + e));
 			setDifferentStars.forEach(e -> System.out.println("star: " + e));
 			System.out.println("Done!");
@@ -701,4 +701,108 @@ public class StreamTests {
 
 	}
 
+	@Test
+	public void testConvertingDateToLocalDate() {
+		// converting java.util.Date to java.time.LocalDate
+		Date today = new Date();
+		Instant instant = Instant.ofEpochMilli(today.getTime());
+		LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+		LocalDate localDate = localDateTime.toLocalDate();
+
+		System.out.println("java.util.Date: " + today);
+		System.out.println("java.time.LocalDate: " + localDate);
+	}
+
+	@Test
+	public void testConvertingDateToLocalDateCompact() {
+		Date today = new Date();
+		LocalDate localDate = today.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		System.out.println("Compact java.util.Date: " + today);
+		System.out.println("Compact java.time.LocalDate: " + localDate);
+	}
+
+	@Test
+	public void testConvertingDateToTimeStamp() {
+		Date today = new Date();
+
+		// converting date to Timestamp in JDBC
+		Timestamp timestamp = new Timestamp(today.getTime());
+		Timestamp t2 = Utils.getTimestamp(today);
+
+		System.out.println("date: " + today);
+		System.out.println("timestamp: " + timestamp);
+		System.out.println("timestamp2: " + t2);
+	}
+
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testConvert_Util_Date_To_SQL_Date() {
+		// contains both date and time information
+		java.util.Date utilDate = new java.util.Date();
+		System.out.println("Util date in Java : " + utilDate);
+
+		// contains only date information without time
+		java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+		System.out.println("SQL date in Java : " + sqlDate);
+	}
+
+	@Test
+	public void testConvert_String_To_LocalDate() {
+		String str = "2016-03-04 11:30";
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+		LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
+		System.out.println("dateTime : " + dateTime);
+	}
+
+	@Test
+	public void testCurrent_Date_To_TimeStamp() {
+		Date now = new java.util.Date();
+		Timestamp current = new java.sql.Timestamp(now.getTime());
+		System.out.println("current timestamp: " + current);
+		System.out.println("current date: " + now);
+	}
+
+	@Test
+	public void testParseString_to_localDate() {
+		// BASIC_ISO_DATE formatter can parse date in yyyyMMdd format
+		DateTimeFormatter formatter = DateTimeFormatter.BASIC_ISO_DATE;
+
+		LocalDate date = LocalDate.parse("20150927", formatter);
+		System.out.println("date string : 20150927, " + "localdate : " + date);
+
+		// The ISO date formatter format or parse date in yyyy-MM-dd format
+		// such as '2015-09-27' or '2015-09-27+01:00'
+		// This is also the default format of LocalDate, if you print LocalDate
+		// it prints date in this format only.
+		formatter = DateTimeFormatter.ISO_DATE;
+
+		date = LocalDate.parse("2015-09-27", formatter);
+		System.out.println("date string : 2015-09-27, " + "localdate : " + date);
+
+		// dd/MM/yyyy is also known as British or French date format, popular
+		// in England, India and France.
+		formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		date = LocalDate.parse("27/09/2015", formatter);
+		System.out.println("date string : 27/09/2015, " + "localdate : " + date);
+
+		// MM/dd/yyyy is also known USA standard date format
+		formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+		date = LocalDate.parse("09/27/2015", formatter);
+		System.out.println("date string : 09/27/2015, " + "localdate : " + date);
+
+		DateFormatSymbols sym = DateFormatSymbols.getInstance(new Locale("es", "ar"));
+		sym.setMonths(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto",
+				"Septiembre", "Octubre", "Noviembre", "Diciembre" });
+		sym.setShortMonths(new String[] { "Ene", "Feb", "Mar", "May", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic" });
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy", sym);
+		System.out.println(simpleDateFormat.format(new Date(2014 - 1900, 0, 1)));
+
+		String input = "6 junio 2012";
+		Locale l = new Locale("es", "ES");
+		DateTimeFormatter f = DateTimeFormatter.ofPattern("d MMMM uuuu", l);
+		LocalDate ld = LocalDate.parse(input, f);
+		String output = ld.toString(); // 2012-06-06.
+		System.out.println("output: " + output);
+
+	}
 }

@@ -10,9 +10,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -286,36 +288,36 @@ public class Utils {
 
 	static void calculateRandomEM() {
 		String inputFilePath = "src/main/resources/Euromillones2004_2018.csv";
-
+		boolean isDebug = false;
 		try {
 			List<AnotherEMPojo> myListEMPojo = Utils.processHistoricInputFile(inputFilePath);
 			Set<Entry<Integer, List<Integer>>> mySetStar1 = myListEMPojo.stream().map(o -> o.getStar1())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showRandomValuesReversedOrder(mySetStar1, "Star1 ");
+			Utils.showRandomValuesReversedOrder(mySetStar1, "Star1 ",isDebug );
 
 			Set<Entry<Integer, List<Integer>>> mySetStar2 = myListEMPojo.stream().map(o -> o.getStar2())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showRandomValuesReversedOrder(mySetStar2, "Star2 ");
+			Utils.showRandomValuesReversedOrder(mySetStar2, "Star2 ",isDebug );
 
 			Set<Entry<Integer, List<Integer>>> mySetWinner1 = myListEMPojo.stream().map(o -> o.getWiner1())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showRandomValuesReversedOrder(mySetWinner1, "Winner1 ");
+			Utils.showRandomValuesReversedOrder(mySetWinner1, "Winner1 ",isDebug );
 
 			Set<Entry<Integer, List<Integer>>> mySetWinner2 = myListEMPojo.stream().map(o -> o.getWiner2())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showRandomValuesReversedOrder(mySetWinner2, "Winner2 ");
+			Utils.showRandomValuesReversedOrder(mySetWinner2, "Winner2 ",isDebug );
 
 			Set<Entry<Integer, List<Integer>>> mySetWinner3 = myListEMPojo.stream().map(o -> o.getWiner3())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showRandomValuesReversedOrder(mySetWinner3, "Winner3 ");
+			Utils.showRandomValuesReversedOrder(mySetWinner3, "Winner3 ",isDebug );
 
 			Set<Entry<Integer, List<Integer>>> mySetWinner4 = myListEMPojo.stream().map(o -> o.getWiner4())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showRandomValuesReversedOrder(mySetWinner4, "Winner4 ");
+			Utils.showRandomValuesReversedOrder(mySetWinner4, "Winner4 ",isDebug );
 
 			Set<Entry<Integer, List<Integer>>> mySetWinner5 = myListEMPojo.stream().map(o -> o.getWiner5())
 					.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-			Utils.showRandomValuesReversedOrder(mySetWinner5, "Winner5 ");
+			Utils.showRandomValuesReversedOrder(mySetWinner5, "Winner5 ",isDebug );
 
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -388,7 +390,7 @@ public class Utils {
 	 * @param mySetwinner
 	 * @param type
 	 */
-	static void showRandomValuesReversedOrder(Set<Entry<Integer, List<Integer>>> mySetwinner, String type) {
+	static void showRandomValuesReversedOrder(Set<Entry<Integer, List<Integer>>> mySetwinner, String type,boolean isDebug) {
 
 		LinkedHashMap<Integer, Integer> aLinkedHM = calculateMostFrequentValuesReversedOrder(mySetwinner);
 
@@ -403,6 +405,7 @@ public class Utils {
 			System.out.println("PROBLEM! Check showRandomValuesReversedOrder.");
 		System.out.println("Selected " + type + "is " + realKey + " " + "frequency is " + value);
 		// showing data...
+		if (isDebug)
 		iterateAndShowRandomValuesReversedOrder(type, aLinkedHM);
 	}
 
@@ -431,7 +434,7 @@ public class Utils {
 	 * @param mySetwinner
 	 * @param type
 	 */
-	static void showSorteredValuesReversedOrder(Set<Entry<Integer, List<Integer>>> mySetwinner, String type) {
+	static void showSorteredValuesReversedOrder(Set<Entry<Integer, List<Integer>>> mySetwinner, String type, boolean isDebug) {
 		
 		LinkedHashMap<Integer, Integer> aLinkedHM = calculateMostFrequentValuesReversedOrder(mySetwinner);
 
@@ -446,7 +449,12 @@ public class Utils {
 			System.out.println("PROBLEM! Check showSorteredValuesReversedOrder.");
 		System.out.println("Selected " + type + "is " + realKey + " " + "frequency is " + value);
 		// showing data...
+		if (isDebug)
 		iterateAndShowRandomValuesReversedOrder(type, aLinkedHM);
 		
 	}
+	
+	static Timestamp getTimestamp(Date date) {
+        return date == null ? null : new java.sql.Timestamp(date.getTime());
+    }
 }
