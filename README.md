@@ -25,11 +25,11 @@ uniq <br />
 awk  <br />
  <br />
 
-I am running osx, so i have to use brew command to install them.  <br />
+I think these unix commands come by default in osx and I think they also come by default in linux, not sure in windows.  <br />
  <br />
 
 # Actual Output with runMe.sh script set up to em-experimental<br />
-init showSorteredValuesReversedOrder<br />
+<br />
 star 1<br />
 star 9<br />
 winner 1<br />
@@ -37,6 +37,4 @@ winner 15<br />
 winner 26<br />
 winner 38<br />
 winner 50<br />
-Done testshowSorteredValuesReversedOrder!<br />
-Done!<br />
 <br />
