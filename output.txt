@@ -1,0 +1,1000 @@
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
+init showSorteredValuesReversedOrder
+star 1
+star 9
+winner 1
+winner 15
+winner 26
+winner 38
+winner 50
+Done testshowSorteredValuesReversedOrder!
+Done!
