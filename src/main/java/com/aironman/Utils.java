@@ -404,7 +404,8 @@ public class Utils {
 
 		if (value == null)
 			System.out.println("PROBLEM! Check showRandomValuesReversedOrder.");
-		System.out.println("Selected " + type + "is " + realKey + " " + "frequency is " + value);
+		// System.out.println("Selected " + type + "is " + realKey + " " + "frequency is " + value);
+		System.out.println(type + " " + realKey);
 		// showing data...
 		if (isDebug)
 		iterateAndShowRandomValuesReversedOrder(type, aLinkedHM);
@@ -486,7 +487,8 @@ public class Utils {
 				Entry<Integer, Integer> it = itStar1.next();
 				if (setStars.add(it)) {
 					contStar1++;
-					System.out.println("star " + it .getKey() + " frequency " + it.getValue() + " contStar1 " + contStar1);
+					// System.out.println("star " + it .getKey() + " frequency " + it.getValue() + " contStar1 " + contStar1);
+					System.out.println("star " + it .getKey() );
 				}
 				
 			}
@@ -498,7 +500,8 @@ public class Utils {
 				// only adding to set if element is not present
 				if (setStars.add(it)) {
 					contStar2++;
-					System.out.println("star " + it .getKey() + " frequency " + it.getValue()+ " contStar2 " + contStar2);
+					// System.out.println("star " + it .getKey() + " frequency " + it.getValue()+ " contStar2 " + contStar2);
+					System.out.println("star " + it .getKey() );
 				}
 			}
 
@@ -510,7 +513,8 @@ public class Utils {
 				Entry<Integer, Integer> it = itWinner1.next();
 				if (setWinners .add(it)) {
 					contWinner1 ++;
-					System.out.println("winner " + it .getKey() + " frequency " + it.getValue() + " contWinner1 " + contWinner1 );
+					//System.out.println("winner " + it .getKey() + " frequency " + it.getValue() + " contWinner1 " + contWinner1 );
+					System.out.println("winner " + it .getKey() );
 				}
 			}
 			
@@ -520,7 +524,8 @@ public class Utils {
 				Entry<Integer, Integer> it = itWinner2.next();
 				if (setWinners .add(it)) {
 					contWinner2 ++;
-					System.out.println("winner " + it .getKey() + " frequency " + it.getValue() + " contWinner2 " + contWinner2 );
+					// System.out.println("winner " + it .getKey() + " frequency " + it.getValue() + " contWinner2 " + contWinner2 );
+					System.out.println("winner " + it .getKey() );
 				}
 			}
 			
@@ -530,7 +535,8 @@ public class Utils {
 				Entry<Integer, Integer> it = itWinner3.next();
 				if (setWinners .add(it)) {
 					contWinner3 ++;
-					System.out.println("winner " + it .getKey() + " frequency " + it.getValue() + " contWinner3 " + contWinner3 );
+					// System.out.println("winner " + it .getKey() + " frequency " + it.getValue() + " contWinner3 " + contWinner3 );
+					System.out.println("winner " + it .getKey() );
 				}
 			}
 			
@@ -540,7 +546,8 @@ public class Utils {
 				Entry<Integer, Integer> it = itWinner4.next();
 				if (setWinners .add(it)) {
 					contWinner4++;
-					System.out.println("winner " + it .getKey() + " frequency " + it.getValue() + "contWinner4 " + contWinner4);
+					// System.out.println("winner " + it .getKey() + " frequency " + it.getValue() + "contWinner4 " + contWinner4);
+					System.out.println("winner " + it .getKey() );
 				}
 			}
 			
@@ -550,7 +557,8 @@ public class Utils {
 				Entry<Integer, Integer> it = itWinner5.next();
 				if (setWinners .add(it)) {
 					contWinner5++;
-					System.out.println("winner " + it .getKey() + " frequency " + it.getValue() + " contWinner5 "  + contWinner5);
+					// System.out.println("winner " + it .getKey() + " frequency " + it.getValue() + " contWinner5 "  + contWinner5);
+					System.out.println("winner " + it .getKey() );
 				}
 			}
 			
