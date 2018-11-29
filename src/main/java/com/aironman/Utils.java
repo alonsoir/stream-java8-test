@@ -408,7 +408,7 @@ public class Utils {
 		System.out.println(type + " " + realKey);
 		// showing data...
 		if (isDebug)
-		iterateAndShowRandomValuesReversedOrder(type, aLinkedHM);
+			iterateAndShowRandomValuesReversedOrder(type, aLinkedHM);
 	}
 
 	static LinkedHashMap<Integer, Integer> calculateMostFrequentValuesReversedOrder(

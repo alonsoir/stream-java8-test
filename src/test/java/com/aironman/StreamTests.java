@@ -197,7 +197,7 @@ public class StreamTests {
 	public void testParallelMaxMethodToGetProductPrice() {
 		// max() method to get max Product price
 		Product productA_P = productsList.parallelStream()
-				.max((product1, product2) -> product1.getPrice() > product2.getPrice() ? 1 : -1).get();
+										 .max((product1, product2) -> product1.getPrice() > product2.getPrice() ? 1 : -1).get();
 
 		logger.debug("max product price " + productA_P.getPrice());
 
@@ -317,6 +317,8 @@ public class StreamTests {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			logger.error(e.getLocalizedMessage());
+			Assert.assertNotNull("IOException", null);
 		}
 	}
 
@@ -381,6 +383,8 @@ public class StreamTests {
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+			logger.error(e1.getLocalizedMessage());
+			Assert.assertNotNull("FileNotFoundException", null);
 		}
 	}
 
@@ -412,6 +416,8 @@ public class StreamTests {
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+			logger.error(e1.getLocalizedMessage());
+			Assert.assertNotNull("FileNotFoundException", null);
 		}
 	}
 
@@ -464,6 +470,8 @@ public class StreamTests {
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			logger.error(e.getLocalizedMessage());
+			Assert.assertNotNull("FileNotFoundException", null);
 		}
 
 	}
@@ -495,6 +503,8 @@ public class StreamTests {
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			logger.error(e.getLocalizedMessage());
+			Assert.assertNotNull("FileNotFoundException", null);
 		}
 	}
 
@@ -541,6 +551,8 @@ public class StreamTests {
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			logger.error(e.getLocalizedMessage());
+			Assert.assertNotNull("FileNotFoundException", null);
 		}
 
 	}
