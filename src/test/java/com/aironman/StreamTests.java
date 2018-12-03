@@ -389,6 +389,11 @@ public class StreamTests {
 	}
 
 	@Test
+	public void testCalculatePrimitivaUsingThreads() {
+		Runnable runnable = Utils.calculatePrimitiva();
+		new Thread (runnable).start();
+	}
+	@Test
 	public void testCalculatePrimitiva() {
 		// reading historico_euromillones.csv
 		logger.debug("reading primitiva.csv...");
@@ -570,10 +575,23 @@ public class StreamTests {
 	@Test
 	public void testshowSorteredValuesReversedOrder() {
 
-		Utils.showSorteredValuesReversedOrder();
+		try {
+			Runnable runnable = Utils.showSorteredValuesReversedOrder();
+			new Thread(runnable).start();
+		} catch (FileNotFoundException | InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
+	@Test
+	public void testcalculateRandomEM() {
+		
+		Runnable runnable = Utils.calculateRandomEM();
+		new Thread(runnable).start();
+		
+	}
 	@Test
 	public void testConvertingDateToLocalDate() {
 		// converting java.util.Date to java.time.LocalDate
