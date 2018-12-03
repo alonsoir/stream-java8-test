@@ -26,7 +26,6 @@ public class ApiStreamTests {
 	 */
 	public static void main(String[] args) throws FileNotFoundException, InterruptedException, ExecutionException, TimeoutException {
 
-		String threadName;
 		boolean isEmExp = false;
 		boolean isEm = false;
 		boolean isPrimitiva = false;
@@ -56,8 +55,9 @@ public class ApiStreamTests {
 			System.out.println(e.getLocalizedMessage());
 			System.exit(-1);
 		}
-		
-		ExecutorService executor = Executors.newFixedThreadPool(numThreadsToRun);
+		int cores = Runtime.getRuntime().availableProcessors();
+		System.out.println("There are " + cores + " physical cores. I will use the double.");
+		ExecutorService executor = Executors.newFixedThreadPool(cores * 2);
 		
 		if (args.length == 2) {
 			if (!isEm && !isPrimitiva && !all && !isEmExp && !allWithExperimental) {
@@ -76,34 +76,24 @@ public class ApiStreamTests {
 
 		for (int i = 1; i <= numThreadsToRun; i++) {
 			if (isEmExp) {
-				threadName = Thread.currentThread().getName();
-				
 				Future<?> future = executor.submit(Utils.showSorteredValuesReversedOrder());
 				future.get(5, TimeUnit.SECONDS);
 			}
 
 			else if (isEm) {
-				threadName = Thread.currentThread().getName();
-				
 				Future<?> future = executor.submit(Utils.calculateRandomEM());
 				future.get(5, TimeUnit.SECONDS);
 			} else if (isPrimitiva) {
-				threadName = Thread.currentThread().getName();
-				
 				Future <?> future = executor.submit(Utils.calculatePrimitiva());
 				future.get(5, TimeUnit.SECONDS);
 			}
 
 			else if (all) {
-				threadName = Thread.currentThread().getName();
-				
 				Future <?> futureRandomEM = executor.submit(Utils.calculateRandomEM());
 				Future <?> futurePrimitive = executor.submit(Utils.calculatePrimitiva());
 				futureRandomEM .get(5, TimeUnit.SECONDS);
 				futurePrimitive.get(5, TimeUnit.SECONDS);
 			} else if (allWithExperimental) {
-				threadName = Thread.currentThread().getName();
-				
 				Future <?> futureSortered = executor.submit(Utils.showSorteredValuesReversedOrder());
 				Future <?> futurePrimitive = executor.submit(Utils.calculatePrimitiva());
 				futureSortered .get(5, TimeUnit.SECONDS);
