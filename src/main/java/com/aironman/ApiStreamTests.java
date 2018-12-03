@@ -55,7 +55,8 @@ public class ApiStreamTests {
 			System.out.println(e.getLocalizedMessage());
 			System.exit(-1);
 		}
-		int cores = Runtime.getRuntime().availableProcessors();
+		// Runtime.getRuntime().availableProcessors();
+		int cores = Utils.getNumberOfCPUCores();
 		System.out.println("There are " + cores + " physical cores. I will use the double.");
 		ExecutorService executor = Executors.newFixedThreadPool(cores * 2);
 		

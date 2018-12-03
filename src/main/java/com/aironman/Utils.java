@@ -599,4 +599,60 @@ public class Utils {
 	static Timestamp getTimestamp(Date date) {
 		return date == null ? null : new java.sql.Timestamp(date.getTime());
 	}
+	
+	static int getNumberOfCPUCores() {
+	    String command = "";
+	    if(OSValidator.isMac()){
+	    	System.out.println("It looks like this is OsX...");
+	        command = "sysctl -n machdep.cpu.core_count";
+	    }else if(OSValidator.isUnix()){
+	    	System.out.println("It looks like this is Unix/Linux...");
+	        command = "lscpu";
+	    }else if(OSValidator.isWindows()){
+	    	System.out.println("It looks like this is Windows...");
+	        command = "cmd /C WMIC CPU Get /Format:List";
+	    }
+	    Process process = null;
+	    int numberOfCores = 0;
+	    int sockets = 0;
+	    try {
+	        if(OSValidator.isMac()){
+	            String[] cmd = { "/bin/sh", "-c", command};
+	            process = Runtime.getRuntime().exec(cmd);
+	        }else{
+	            process = Runtime.getRuntime().exec(command);
+	        }
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+
+	    BufferedReader reader = new BufferedReader(
+	            new InputStreamReader(process.getInputStream()));
+	    String line;
+
+	    try {
+	        while ((line = reader.readLine()) != null) {
+	            if(OSValidator.isMac()){
+	                numberOfCores = line.length() > 0 ? Integer.parseInt(line) : 0;
+	            }else if (OSValidator.isUnix()) {
+	                if (line.contains("Core(s) per socket:")) {
+	                    numberOfCores = Integer.parseInt(line.split("\\s+")[line.split("\\s+").length - 1]);
+	                }
+	                if(line.contains("Socket(s):")){
+	                    sockets = Integer.parseInt(line.split("\\s+")[line.split("\\s+").length - 1]);
+	                }
+	            } else if (OSValidator.isWindows()) {
+	                if (line.contains("NumberOfCores")) {
+	                    numberOfCores = Integer.parseInt(line.split("=")[1]);
+	                }
+	            }
+	        }
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	    if(OSValidator.isUnix()){
+	        return numberOfCores * sockets;
+	    }
+	    return numberOfCores;
+	}
 }
