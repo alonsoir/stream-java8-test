@@ -2,8 +2,9 @@ mvn clean install
 start_time=$(date +%s)
 rm output.txt
 rm final_output.txt
-# em,primitiva,all,all-experimental
 echo "Running with arguments $*"
+# $1 em,primitiva,all,all-experimental
+# $2 numIterations
 clear && java -cp target/MyStreamjava8-1.0.jar com.aironman.ApiStreamTests "$1" "$2" >> output.txt
 echo "pruning data..."
 echo "tr, sort, uniq, awk, print..."
