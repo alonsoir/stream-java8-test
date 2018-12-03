@@ -4,9 +4,12 @@
 package com.aironman;
 
 import java.io.FileNotFoundException;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 /**
  * @author aironman
@@ -18,10 +21,11 @@ public class ApiStreamTests {
 	 * @param args
 	 * @throws InterruptedException
 	 * @throws FileNotFoundException
+	 * @throws TimeoutException 
+	 * @throws ExecutionException 
 	 */
-	public static void main(String[] args) throws FileNotFoundException, InterruptedException {
+	public static void main(String[] args) throws FileNotFoundException, InterruptedException, ExecutionException, TimeoutException {
 
-		
 		String threadName;
 		boolean isEmExp = false;
 		boolean isEm = false;
@@ -46,8 +50,15 @@ public class ApiStreamTests {
 		all = args[0] != null && args[0].equalsIgnoreCase("all");
 		isEmExp = args[0] != null && args[0].equalsIgnoreCase("em-experimental");
 		allWithExperimental = args[0] != null && args[0].equalsIgnoreCase("all-experimental");
-		numThreadsToRun = Integer.parseInt(args[1]);
-		ExecutorService executor = Executors.newFixedThreadPool(numThreadsToRun );
+		try {
+			numThreadsToRun = Integer.parseInt(args[1]);
+		} catch (NumberFormatException e) {
+			System.out.println(e.getLocalizedMessage());
+			System.exit(-1);
+		}
+		
+		ExecutorService executor = Executors.newFixedThreadPool(numThreadsToRun);
+		
 		if (args.length == 2) {
 			if (!isEm && !isPrimitiva && !all && !isEmExp && !allWithExperimental) {
 				System.out.println("Wrong argument. Must be em, primitiva, all, em-experimental or all-experimental. "
@@ -66,38 +77,40 @@ public class ApiStreamTests {
 		for (int i = 1; i <= numThreadsToRun; i++) {
 			if (isEmExp) {
 				threadName = Thread.currentThread().getName();
-				System.out.println("Working " + threadName);
-				executor.submit(Utils.showSorteredValuesReversedOrder());
-				// shutdownThreads(executor);
+				
+				Future<?> future = executor.submit(Utils.showSorteredValuesReversedOrder());
+				future.get(5, TimeUnit.SECONDS);
 			}
 
 			else if (isEm) {
 				threadName = Thread.currentThread().getName();
-				System.out.println("Working " + threadName);
-				executor.submit(Utils.calculateRandomEM());
-				// shutdownThreads(executor);
+				
+				Future<?> future = executor.submit(Utils.calculateRandomEM());
+				future.get(5, TimeUnit.SECONDS);
 			} else if (isPrimitiva) {
 				threadName = Thread.currentThread().getName();
-				System.out.println("Working " + threadName);
-				executor.submit(Utils.calculatePrimitiva());
-				// shutdownThreads(executor);
+				
+				Future <?> future = executor.submit(Utils.calculatePrimitiva());
+				future.get(5, TimeUnit.SECONDS);
 			}
 
 			else if (all) {
 				threadName = Thread.currentThread().getName();
-				System.out.println("Working " + threadName);
-				executor.submit(Utils.calculateRandomEM());
-				executor.submit(Utils.calculatePrimitiva());
-				// shutdownThreads(executor);
+				
+				Future <?> futureRandomEM = executor.submit(Utils.calculateRandomEM());
+				Future <?> futurePrimitive = executor.submit(Utils.calculatePrimitiva());
+				futureRandomEM .get(5, TimeUnit.SECONDS);
+				futurePrimitive.get(5, TimeUnit.SECONDS);
 			} else if (allWithExperimental) {
 				threadName = Thread.currentThread().getName();
-				System.out.println("Working " + threadName);
-				executor.submit(Utils.showSorteredValuesReversedOrder());
-				executor.submit(Utils.calculatePrimitiva());
-				// shutdownThreads(executor);
+				
+				Future <?> futureSortered = executor.submit(Utils.showSorteredValuesReversedOrder());
+				Future <?> futurePrimitive = executor.submit(Utils.calculatePrimitiva());
+				futureSortered .get(5, TimeUnit.SECONDS);
+				futurePrimitive.get(5, TimeUnit.SECONDS);
 			}
 		}
-		
+
 		shutdownThreads(executor);
 		System.out.println("Done!");
 		System.exit(0);
