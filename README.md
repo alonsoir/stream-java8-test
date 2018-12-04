@@ -35,7 +35,17 @@ I think these unix commands come by default in osx and I think they also come by
 
 # Actual Output with runMe.sh script set up to em 10<br />
 <br />
-
+aironman$ sh runMe.sh em 10<br />
+...<br />
+Running with arguments em 10000 at martes,  4 de diciembre de 2018, 13:18:13 CET<br />
+<br />
+pruning winners data<br /> 
+tr, sort, uniq, awk, print...<br />
+pruning stars data <br />
+tr, sort, uniq, awk, print...<br />
+Deleting temporal files.<br />
+Done. Time duration: 0 secs.<br />
+<br />
 aironman$ cat final_output_star_martes\,\ \ 4\ de\ diciembre\ de\ 2018\,\ 13\:18\:13\ CET.txt<br /> 
 10@2<br />
 11@2<br />
