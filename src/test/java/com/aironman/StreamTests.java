@@ -697,4 +697,14 @@ public class StreamTests {
 		System.out.println("output: " + output);
 
 	}
+	
+	@Test
+	public void testPermutations() {
+		String [] arrWinners= { "01", "02", "03", "04", "05" };
+		Permutation.permute(arrWinners);
+		System.out.println("Done permute Winners");
+		String [] arrStars= { "08","09" };
+		Permutation.permute(arrStars);
+		System.out.println("Done permute Stars");
+	}
 }
