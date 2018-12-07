@@ -33,13 +33,13 @@ public class ApiStreamTests {
 		boolean allWithExperimental = false;
 		int numThreadsToRun = -1;
 		if (args.length != 2) {
-			System.out.println("Use java -jar ApiStreamTests.jar em 8 to show euromillions prediction.");
+			System.out.println("Use java -cp PATH_TO/MyStreamjava-8-1.0.jar com.aironman.ApiStreamTests em 8 to show 8 euromillions prediction.");
 			System.out.println(
-					"Use java -jar ApiStreamTests.jar em-experimental 8 to show euromillions drawing by superior frequency of appearance ordered discarding repeated. EXPERIMENTAL!");
-			System.out.println("Use java -jar ApiStreamTests.jar primitiva 8 to show primitiva prediction.");
-			System.out.println("Use java -jar ApiStreamTests.jar all 8 to show both predictions.");
+					"Use java -cp PATH_TO/MyStreamjava-8-1.0.jar com.aironman.ApiStreamTests em-experimental 8 to show euromillions drawing by superior frequency of appearance ordered discarding repeated. EXPERIMENTAL!");
+			System.out.println("Use java -cp PATH_TO/MyStreamjava-8-1.0.jar com.aironman.ApiStreamTests primitiva 8 to show primitiva prediction.");
+			System.out.println("Use java -cp PATH_TO/MyStreamjava-8-1.0.jar com.aironman.ApiStreamTests all 8 to show both predictions.");
 			System.out.println(
-					"Use java -jar ApiStreamTests.jar all-experimental 8 to show both predictions with experimental euromillions.");
+					"Use java -cp PATH_TO/MyStreamjava-8-1.0.jar com.aironman.ApiStreamTests all-experimental 8 to show both predictions with experimental euromillions.");
 			System.out.println("Insuficient arguments.");
 			System.exit(-1);
 		}
