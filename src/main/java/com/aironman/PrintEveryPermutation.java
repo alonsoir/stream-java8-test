@@ -1,5 +1,7 @@
 package com.aironman;
 
+import java.util.Arrays;
+
 /***
  * I want that this main class receives a file with combinations, generates the permutations of each combination and
  * print to the terminal. The script will catch all permutations and check with Euromillones2004_2018.csv
@@ -22,9 +24,13 @@ public class PrintEveryPermutation {
 		String combination = args[0];
 		System.out.println("Initial combination " + combination);
 		String [] stringCombination = combination.split(",");
-		Permutation.permute(stringCombination);
-		System.out.println("Done permutations!");
+		// this method do not avoid duplicates!
+		// Permutation.permute(stringCombination);
+		Permutation.permuteAndPrintWithoutDuplicates(stringCombination);
+		System.out.println("Done permutations! ");
 		
 	}
+
+	
 
 }
