@@ -49,7 +49,6 @@ echo "tr, sort, uniq, awk, print..."
 echo "Deleting temporal files."
 rm "final_star_$actual_date.txt"
 rm "final_winners_$actual_date.txt"
-rm "output_$actual_date.txt"
 
 finish_time=$(date +%s)
 echo "Done. Time duration: $((finish_time - start_time)) secs."

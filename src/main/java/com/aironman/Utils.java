@@ -293,12 +293,6 @@ public class Utils {
 				List<AnotherEMPojo> myListEMPojo = Utils.processHistoricInputFile(inputFilePath);
 				Set<Entry<Integer, List<Integer>>> mySetStar1 = myListEMPojo.stream().map(o -> o.getStar1())
 						.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-				Utils.showRandomValuesReversedOrder(mySetStar1, "Star1 ", isDebug);
-
-				Set<Entry<Integer, List<Integer>>> mySetStar2 = myListEMPojo.stream().map(o -> o.getStar2())
-						.collect(Collectors.groupingBy(obj -> obj)).entrySet();
-				Utils.showRandomValuesReversedOrder(mySetStar2, "Star2 ", isDebug);
-
 				Set<Entry<Integer, List<Integer>>> mySetWinner1 = myListEMPojo.stream().map(o -> o.getWiner1())
 						.collect(Collectors.groupingBy(obj -> obj)).entrySet();
 				Utils.showRandomValuesReversedOrder(mySetWinner1, "Winner1 ", isDebug);
@@ -318,7 +312,12 @@ public class Utils {
 				Set<Entry<Integer, List<Integer>>> mySetWinner5 = myListEMPojo.stream().map(o -> o.getWiner5())
 						.collect(Collectors.groupingBy(obj -> obj)).entrySet();
 				Utils.showRandomValuesReversedOrder(mySetWinner5, "Winner5 ", isDebug);
+				
+				Utils.showRandomValuesReversedOrder(mySetStar1, "Star1 ", isDebug);
 
+				Set<Entry<Integer, List<Integer>>> mySetStar2 = myListEMPojo.stream().map(o -> o.getStar2())
+						.collect(Collectors.groupingBy(obj -> obj)).entrySet();
+				Utils.showRandomValuesReversedOrder(mySetStar2, "Star2 ", isDebug);
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
