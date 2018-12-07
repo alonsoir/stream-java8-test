@@ -45,7 +45,7 @@ public class Flattener {
 		// hay que hacer el new
 		List<OutputFlatten> inputList = br.lines().map(mapToHistoricItem).collect(Collectors.toList());
 		int cont = 0;
-		System.out.println("#Winner1,Winner2,Winner3,Winner4,Winner5,,Star1,Star2");
+		// System.out.println("#Winner1,Winner2,Winner3,Winner4,Winner5,,Star1,Star2");
 		/*
 		 * hay un problema, bueno dos, el fichero que quieres procesar,
 		 * output_1_12_2018.csv tiene los numeros estrellas primero por lo que estas
@@ -54,6 +54,7 @@ public class Flattener {
 		 * winner2,winner3,winner4,winner5,,star1,star2 pq luego quieres hacer un grep
 		 * contra el fichero EuroMillones2004_2018.csv en el script.
 		 */
+		/*
 		for (OutputFlatten output : inputList) {
 			if (output != null) {
 				System.out.print(output.getValue());
@@ -68,6 +69,19 @@ public class Flattener {
 				}
 			} 
 				
+		}
+		*/
+		for (OutputFlatten output : inputList) {
+			if (output!=null) {
+				System.out.print(output.getValue());
+				cont++;
+				if (cont!=7)
+					System.out.print(",");
+				else if (cont==7) {
+					cont=0;
+					System.out.println();
+				}
+			}
 		}
 		br.close();
 	}

@@ -1,11 +1,12 @@
 package com.aironman;
 
 /***
- * I want that this main class receives a combination, create all permutations and scan them in a file.
+ * I want that this main class receives a file with combinations, generates the permutations of each combination and
+ * print to the terminal. The script will catch all permutations and check with Euromillones2004_2018.csv
  * @author aironman
  *
  */
-public class PrintEveryCombinations {
+public class PrintEveryPermutation {
 
 	/***
 	 * 
@@ -22,7 +23,7 @@ public class PrintEveryCombinations {
 		System.out.println("Initial combination " + combination);
 		String [] stringCombination = combination.split(",");
 		Permutation.permute(stringCombination);
-		System.out.println("Done!");
+		System.out.println("Done permutations!");
 		
 	}
 
