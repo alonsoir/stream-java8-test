@@ -1,7 +1,5 @@
 package com.aironman;
 
-import java.util.Arrays;
-
 /***
  * I want that this main class receives a file with combinations, generates the permutations of each combination and
  * print to the terminal. The script will catch all permutations and check with Euromillones2004_2018.csv

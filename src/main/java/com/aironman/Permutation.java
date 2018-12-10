@@ -91,11 +91,18 @@ public class Permutation {
 		for (int i = 0; i < stringCombination.length; i++)
 			intCombination[i] = Integer.valueOf(stringCombination[i]);
 		Arrays.sort(intCombination);
-		
-		System.out.println("There are " + Permutation.factorial(intCombination.length) + " possible permutations.");
-		tengo que conseguir el formato w1,w2,w3,w4,w5,,s1,s2
+		StringBuilder sbCombination = null;
+		// System.out.println("There are " + Permutation.factorial(intCombination.length) + " possible permutations.");
 		do {
-			System.out.println(Arrays.toString(intCombination));
+			sbCombination = new StringBuilder();
+			for (int i = 0; i <= intCombination.length - 1; i++) {
+				sbCombination.append(intCombination[i]);
+				if (i == 4) // i have to print with this particular format: 01,02,03,04,05,,07,08
+					sbCombination.append(",,");
+				else if (i!=6)
+					sbCombination.append(",");
+			}
+			System.out.println(sbCombination.toString());
 		} while (Permutation.permuteLexically(intCombination)); // this method avoids duplication.
 	}
 
