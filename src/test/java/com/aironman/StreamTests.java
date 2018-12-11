@@ -197,7 +197,7 @@ public class StreamTests {
 	public void testParallelMaxMethodToGetProductPrice() {
 		// max() method to get max Product price
 		Product productA_P = productsList.parallelStream()
-										 .max((product1, product2) -> product1.getPrice() > product2.getPrice() ? 1 : -1).get();
+				.max((product1, product2) -> product1.getPrice() > product2.getPrice() ? 1 : -1).get();
 
 		logger.debug("max product price " + productA_P.getPrice());
 
@@ -391,8 +391,9 @@ public class StreamTests {
 	@Test
 	public void testCalculatePrimitivaUsingThreads() {
 		Runnable runnable = Utils.calculatePrimitiva();
-		new Thread (runnable).start();
+		new Thread(runnable).start();
 	}
+
 	@Test
 	public void testCalculatePrimitiva() {
 		// reading historico_euromillones.csv
@@ -587,11 +588,12 @@ public class StreamTests {
 
 	@Test
 	public void testcalculateRandomEM() {
-		
+
 		Runnable runnable = Utils.calculateRandomEM();
 		new Thread(runnable).start();
-		
+
 	}
+
 	@Test
 	public void testConvertingDateToLocalDate() {
 		// converting java.util.Date to java.time.LocalDate
@@ -697,14 +699,30 @@ public class StreamTests {
 		System.out.println("output: " + output);
 
 	}
-	
+
 	@Test
 	public void testPermutations() {
-		String [] arrWinners= { "01", "02", "03", "04", "05" };
+		String[] arrWinners = { "01", "02", "03", "04", "05" };
 		Permutation.permute(arrWinners);
 		System.out.println("Done permute Winners");
-		String [] arrStars= { "08","09" };
+		String[] arrStars = { "08", "09" };
 		Permutation.permute(arrStars);
 		System.out.println("Done permute Stars");
+	}
+
+	@Test
+	public void testAdela() {
+		
+		String[] correos = Stream.of("").toArray(String[]::new);
+		String cuerpo_del_mail = "CORREO-BAJA-TOTAL";
+
+		if (cuerpo_del_mail.contains("CORREO-BAJA-TOTAL")) {
+
+			correos = cuerpo_del_mail.split("CORREO-BAJA-TOTAL");
+			System.out.println("Hay mas de un correo. " + correos != null && correos.length != 0 ? correos[0] : "NOTHING TO SHOW");
+		} else {
+			correos[0] = cuerpo_del_mail;
+			System.out.println("Hay un correo");
+		}
 	}
 }
