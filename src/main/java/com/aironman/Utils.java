@@ -287,7 +287,9 @@ public class Utils {
 
 	static Runnable calculateRandomEM() {
 		Runnable runnable = () -> {
-			String inputFilePath = "src/main/resources/Euromillones2004_2018.csv";
+			
+			// String inputFilePath = "src/main/resources/Euromillones2004_2018.csv";
+			String inputFilePath = "/Euromillones2004_2018.csv";
 			boolean isDebug = false;
 			try {
 				List<AnotherEMPojo> myListEMPojo = Utils.processHistoricInputFile(inputFilePath);
@@ -331,8 +333,8 @@ public class Utils {
 	static Runnable calculatePrimitiva() {
 		Runnable runnable = () -> {
 			// reading historico_euromillones.csv
-			String inputFilePath = "src/main/resources/primitiva.csv";
-
+			// String inputFilePath = "src/main/resources/primitiva.csv";
+			String inputFilePath = "primitiva.csv";
 			try {
 				List<EMPojo> myListEMPojo = Utils.processInputFile(inputFilePath);
 				final Comparator<EMPojo> compTotal2017 = (p1, p2) -> Integer.compare(p1.getTotal_2017(),
@@ -446,7 +448,9 @@ public class Utils {
 	public static Runnable showSorteredValuesReversedOrder() throws FileNotFoundException, InterruptedException {
 
 		System.out.println("init showSorteredValuesReversedOrder");
-		String inputFilePath = "src/main/resources/Euromillones2004_2018.csv";
+		// when i create the Dockerfile, this file is not found, so i have to put it on / folder
+		// String inputFilePath = "src/main/resources/Euromillones2004_2018.csv";
+		String inputFilePath = "Euromillones2004_2018.csv";
 		Runnable runnable = () -> {
 			List<AnotherEMPojo> myListEMPojo;
 			try {

@@ -1,4 +1,4 @@
-mvn clean install
+# mvn clean install
 start_time=$(date +%s)
 actual_date=`date`
 echo "Running with arguments $* at $actual_date"
@@ -52,4 +52,4 @@ rm "final_winners_$actual_date.txt"
 mv "output_$actual_date.txt" output.txt
 finish_time=$(date +%s)
 echo "Done. Time duration: $((finish_time - start_time)) secs."
-
+cat output.txt

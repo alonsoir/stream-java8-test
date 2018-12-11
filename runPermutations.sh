@@ -1,7 +1,7 @@
 # The idea of this script is to check if any of the generated combinations of previous runMe.sh script happen before 
 # in the past. For that, i will flatten the output.txt file, generate each permutation of every combination and 
 # check each permutation with the file Euromillones2004_2018.csv
-mvn clean install
+# mvn clean install
 start_time=$(date +%s)
 actual_date=`date`
 echo "Running with arguments $* at $actual_date"
@@ -23,3 +23,4 @@ done < output_permutations_$actual_date.txt > final_permutations_$actual_date.tx
 
 finish_time=$(date +%s)
 echo "Done. Time duration: $((finish_time - start_time)) secs."
+cat final_permutations_$actual_date.txt
