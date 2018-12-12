@@ -390,7 +390,8 @@ public class StreamTests {
 
 	@Test
 	public void testCalculatePrimitivaUsingThreads() {
-		Runnable runnable = Utils.calculatePrimitiva();
+		String pathToPrimitiva = "src/test/resources/primitiva.csv";
+		Runnable runnable = Utils.calculatePrimitiva(pathToPrimitiva );
 		new Thread(runnable).start();
 	}
 
@@ -576,8 +577,9 @@ public class StreamTests {
 	@Test
 	public void testshowSorteredValuesReversedOrder() {
 
+		String pathToEM = "src/test/resources/Euromillions2004_2018.csv";
 		try {
-			Runnable runnable = Utils.showSorteredValuesReversedOrder();
+			Runnable runnable = Utils.showSorteredValuesReversedOrder(pathToEM );
 			new Thread(runnable).start();
 		} catch (FileNotFoundException | InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -588,8 +590,8 @@ public class StreamTests {
 
 	@Test
 	public void testcalculateRandomEM() {
-
-		Runnable runnable = Utils.calculateRandomEM();
+		String pathEM = "src/test/resources/Euromillones2004_2018.csv";
+		Runnable runnable = Utils.calculateRandomEM(pathEM);
 		new Thread(runnable).start();
 
 	}

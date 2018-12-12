@@ -285,14 +285,13 @@ public class Utils {
 		// number of times! " + aLinkedHM.size());
 	}
 
-	static Runnable calculateRandomEM() {
+	static Runnable calculateRandomEM(String pathToEM) {
 		Runnable runnable = () -> {
 			
 			// String inputFilePath = "src/main/resources/Euromillones2004_2018.csv";
-			String inputFilePath = "/Euromillones2004_2018.csv";
 			boolean isDebug = false;
 			try {
-				List<AnotherEMPojo> myListEMPojo = Utils.processHistoricInputFile(inputFilePath);
+				List<AnotherEMPojo> myListEMPojo = Utils.processHistoricInputFile(pathToEM);
 				Set<Entry<Integer, List<Integer>>> mySetStar1 = myListEMPojo.stream().map(o -> o.getStar1())
 						.collect(Collectors.groupingBy(obj -> obj)).entrySet();
 				Set<Entry<Integer, List<Integer>>> mySetWinner1 = myListEMPojo.stream().map(o -> o.getWiner1())
@@ -330,13 +329,12 @@ public class Utils {
 		return runnable;
 	}
 
-	static Runnable calculatePrimitiva() {
+	static Runnable calculatePrimitiva(String pathToPrimitiva) {
 		Runnable runnable = () -> {
 			// reading historico_euromillones.csv
 			// String inputFilePath = "src/main/resources/primitiva.csv";
-			String inputFilePath = "primitiva.csv";
 			try {
-				List<EMPojo> myListEMPojo = Utils.processInputFile(inputFilePath);
+				List<EMPojo> myListEMPojo = Utils.processInputFile(pathToPrimitiva);
 				final Comparator<EMPojo> compTotal2017 = (p1, p2) -> Integer.compare(p1.getTotal_2017(),
 						p2.getTotal_2017());
 				final Comparator<EMPojo> compTotal2018 = (p1, p2) -> Integer.compare(p1.getTotal_2018(),
@@ -445,16 +443,16 @@ public class Utils {
 	 * 
 	 * @return
 	 */
-	public static Runnable showSorteredValuesReversedOrder() throws FileNotFoundException, InterruptedException {
+	public static Runnable showSorteredValuesReversedOrder(String pathToEM) throws FileNotFoundException, InterruptedException {
 
 		System.out.println("init showSorteredValuesReversedOrder");
 		// when i create the Dockerfile, this file is not found, so i have to put it on / folder
 		// String inputFilePath = "src/main/resources/Euromillones2004_2018.csv";
-		String inputFilePath = "Euromillones2004_2018.csv";
+		// String inputFilePath = "Euromillones2004_2018.csv";
 		Runnable runnable = () -> {
 			List<AnotherEMPojo> myListEMPojo;
 			try {
-				myListEMPojo = Utils.processHistoricInputFile(inputFilePath);
+				myListEMPojo = Utils.processHistoricInputFile(pathToEM);
 				Set<Entry<Integer, List<Integer>>> mySetStar1 = myListEMPojo.stream().map(o -> o.getStar1())
 						.collect(Collectors.groupingBy(obj -> obj)).entrySet();
 
