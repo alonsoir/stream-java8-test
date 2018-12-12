@@ -1,10 +1,12 @@
-mvn clean install
+# mvn clean install
 start_time=$(date +%s)
 actual_date=`date`
 echo "Running with arguments $* at $actual_date"
 # $1 em,primitiva,all,all-experimental
 # $2 numIterations
-clear && java -cp target/MyStreamjava8-1.0.jar com.aironman.ApiStreamTests "$1" "$2" >> output_$actual_date.txt
+# $3 PATH_TO_Euromillones2004_2018.csv
+# $4 PATH_TO_Primitiva.csv
+clear && java -cp target/MyStreamjava8-1.0.jar com.aironman.ApiStreamTests "$1" "$2" "$3" "$4">> output_$actual_date.txt
 
 # Me quedo con los ganadores y las guardo en un fichero
 while read linea;
@@ -51,5 +53,6 @@ rm "final_star_$actual_date.txt"
 rm "final_winners_$actual_date.txt"
 mv "output_$actual_date.txt" output.txt
 finish_time=$(date +%s)
+echo "Showing results."
+cat output.txt
 echo "Done. Time duration: $((finish_time - start_time)) secs."
-
