@@ -75,24 +75,12 @@ Running with arguments em 1 Euromillones2004_2018.csv primitiva.csv at Wed Dec 1
 pruning winners data <br />
 tr, sort, uniq, awk, print...<br />
 TERM environment variable not set.<br />
-runMe.sh: 12: runMe.sh: cannot open output_Wed Dec 12 12:59:38 UTC 2018.txt: No such file<br />
-<br />
-runMe.sh: 33: runMe.sh: cannot open final_winners_Wed Dec 12 12:59:38 UTC 2018.txt: No such file<br />
-runMe.sh: 36: runMe.sh: cannot open output_Wed Dec 12 12:59:38 UTC 2018.txt: No such file<br />
 <br />
 pruning stars data<br /> 
 tr, sort, uniq, awk, print...<br />
 Deleting temporal files.<br />
-runMe.sh: 48: runMe.sh: cannot open final_star_Wed Dec 12 12:59:38 UTC 2018.txt: No such file<br />
-<br />
-rm: cannot remove ‘final_star_Wed Dec 12 12:59:38 UTC 2018.txt’: No such file or directory<br />
-<br />
-rm: cannot remove ‘final_winners_Wed Dec 12 12:59:38 UTC 2018.txt’: No such file or directory<br />
-<br />
-mv: cannot stat ‘output_Wed Dec 12 12:59:38 UTC 2018.txt’: No such file or directory<br />
-<br />
 Showing results.<br />
-cat: output.txt: No such file or directory<br />
+...
 <br />
 Done. Time duration: 0 secs.<br />
 Removing intermediate container 3baa2c005a88<br />
