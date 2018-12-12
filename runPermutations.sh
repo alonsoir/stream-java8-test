@@ -14,13 +14,13 @@ echo "Running print permutations"
 while read linea;
 do
 	java -cp target/MyStreamjava8-1.0.jar com.aironman.PrintEveryPermutation $linea
-done < flattened_output.txt >> output_permutations_$actual_date.txt
+done < flattened_output.txt >> "output_permutations_$actual_date.txt"
 
 echo "Searching for coincidences in Euromillones2004_2018.csv"
 while read linea;
 do 
 	grep "$linea" $2	
-done < output_permutations_$actual_date.txt > final_permutations_$actual_date.txt
+done < "output_permutations_$actual_date.txt" > "final_permutations_$actual_date.txt"
 
 finish_time=$(date +%s)
 cat "final_permutations_$actual_date.txt"
