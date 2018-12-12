@@ -32,14 +32,17 @@ public class ApiStreamTests {
 		boolean all = false;
 		boolean allWithExperimental = false;
 		int numThreadsToRun = -1;
-		if (args.length != 2) {
-			System.out.println("Use java -cp PATH_TO/MyStreamjava-8-1.0.jar com.aironman.ApiStreamTests em 8 to show 8 euromillions prediction.");
+		
+		// I am going to pass PATH_TO_Euromillion2004-2018.csv file and PATH_TO_Primitiva.csv too. 
+		// The reason is that i want a docker image and maven did not create fine the resources folders.
+		if (args.length != 4) {
+			System.out.println("Use java -cp PATH_TO/MyStreamjava-8-1.0.jar com.aironman.ApiStreamTests em 8 PATH_TO_EM file PATH_TO_Primitiva file to show 8 euromillions prediction.");
 			System.out.println(
-					"Use java -cp PATH_TO/MyStreamjava-8-1.0.jar com.aironman.ApiStreamTests em-experimental 8 to show euromillions drawing by superior frequency of appearance ordered discarding repeated. EXPERIMENTAL!");
-			System.out.println("Use java -cp PATH_TO/MyStreamjava-8-1.0.jar com.aironman.ApiStreamTests primitiva 8 to show primitiva prediction.");
-			System.out.println("Use java -cp PATH_TO/MyStreamjava-8-1.0.jar com.aironman.ApiStreamTests all 8 to show both predictions.");
+					"Use java -cp PATH_TO/MyStreamjava-8-1.0.jar com.aironman.ApiStreamTests em-experimental 8 to PATH_TO_EM file PATH_TO_Primitiva file show euromillions drawing by superior frequency of appearance ordered discarding repeated. EXPERIMENTAL!");
+			System.out.println("Use java -cp PATH_TO/MyStreamjava-8-1.0.jar com.aironman.ApiStreamTests primitiva 8 PATH_TO_EM file PATH_TO_Primitiva file to show primitiva prediction.");
+			System.out.println("Use java -cp PATH_TO/MyStreamjava-8-1.0.jar com.aironman.ApiStreamTests all 8 PATH_TO_EM file PATH_TO_Primitiva file to show both predictions.");
 			System.out.println(
-					"Use java -cp PATH_TO/MyStreamjava-8-1.0.jar com.aironman.ApiStreamTests all-experimental 8 to show both predictions with experimental euromillions.");
+					"Use java -cp PATH_TO/MyStreamjava-8-1.0.jar com.aironman.ApiStreamTests all-experimental 8 PATH_TO_EM file PATH_TO_Primitiva file to show both predictions with experimental euromillions.");
 			System.out.println("Insuficient arguments.");
 			System.exit(-1);
 		}
@@ -49,15 +52,23 @@ public class ApiStreamTests {
 		all = args[0] != null && args[0].equalsIgnoreCase("all");
 		isEmExp = args[0] != null && args[0].equalsIgnoreCase("em-experimental");
 		allWithExperimental = args[0] != null && args[0].equalsIgnoreCase("all-experimental");
+		
 		try {
 			numThreadsToRun = Integer.parseInt(args[1]);
 		} catch (NumberFormatException e) {
 			System.out.println(e.getLocalizedMessage());
 			System.exit(-1);
 		}
-		// Runtime.getRuntime().availableProcessors();
+		
+		String pathToEM = args[2];
+		String pathToPrimitiva = args[3];
+		if (pathToEM == null || pathToPrimitiva == null) {
+			System.out.println("You must provide the paths of these files. Euromillions2004_2018.csv and Primitiva.csv. Check resources folder.");
+			System.exit(-1);
+		}
+		
 		int cores = Utils.getNumberOfCPUCores();
-		System.out.println("There are " + cores + " physical cores. I will use the double.");
+		System.out.println("There are " + cores + " physical cores. I will use the double for the executor thread pool.");
 		ExecutorService executor = Executors.newFixedThreadPool(cores * 2);
 		
 		if (args.length == 2) {
@@ -77,26 +88,26 @@ public class ApiStreamTests {
 
 		for (int i = 1; i <= numThreadsToRun; i++) {
 			if (isEmExp) {
-				Future<?> future = executor.submit(Utils.showSorteredValuesReversedOrder());
+				Future<?> future = executor.submit(Utils.showSorteredValuesReversedOrder(pathToEM));
 				future.get(5, TimeUnit.SECONDS);
 			}
 
 			else if (isEm) {
-				Future<?> future = executor.submit(Utils.calculateRandomEM());
+				Future<?> future = executor.submit(Utils.calculateRandomEM(pathToEM));
 				future.get(5, TimeUnit.SECONDS);
 			} else if (isPrimitiva) {
-				Future <?> future = executor.submit(Utils.calculatePrimitiva());
+				Future <?> future = executor.submit(Utils.calculatePrimitiva(pathToPrimitiva));
 				future.get(5, TimeUnit.SECONDS);
 			}
 
 			else if (all) {
-				Future <?> futureRandomEM = executor.submit(Utils.calculateRandomEM());
-				Future <?> futurePrimitive = executor.submit(Utils.calculatePrimitiva());
+				Future <?> futureRandomEM = executor.submit(Utils.calculateRandomEM(pathToEM));
+				Future <?> futurePrimitive = executor.submit(Utils.calculatePrimitiva(pathToPrimitiva));
 				futureRandomEM .get(5, TimeUnit.SECONDS);
 				futurePrimitive.get(5, TimeUnit.SECONDS);
 			} else if (allWithExperimental) {
-				Future <?> futureSortered = executor.submit(Utils.showSorteredValuesReversedOrder());
-				Future <?> futurePrimitive = executor.submit(Utils.calculatePrimitiva());
+				Future <?> futureSortered = executor.submit(Utils.showSorteredValuesReversedOrder(pathToEM));
+				Future <?> futurePrimitive = executor.submit(Utils.calculatePrimitiva(pathToPrimitiva));
 				futureSortered .get(5, TimeUnit.SECONDS);
 				futurePrimitive.get(5, TimeUnit.SECONDS);
 			}
