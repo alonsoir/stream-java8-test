@@ -166,11 +166,46 @@ To run the container: <br />
 <br />
 docker run -it 73cb3614f30a /bin/bash<br />
 <br />
-Where 73cb3614f30a is the container Id. To know yours, run docker ps <br />
+Where 73cb3614f30a is the container Id. To know yours, run docker images <br />
 <br />
+You can pull an uploaded docker container: <br />
  <br />
-# Dependencies
-The Project needs maven, java8 to compile and run the jar, and some unix commands to run the script: <br />
+$ docker pull aironman/mystreamjava8:latest <br />
+ <br />
+$ docker images <br />
+REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE <br />
+aironman/mystreamjava8   latest              0f84573210c9        About an hour ago   643MB <br />
+<none>                   <none>              55896ea1d18f        2 hours ago         643MB <br />
+java                     8                   d23bdf5b1b1b        23 months ago       643MB <br />
+ <br />
+$ docker run -it 0f84573210c9 /bin/bash <br />
+root@d58c4b8303fd:/# sh runMe.sh em 1 Euromillones2004_2018.csv primitiva.csv <br /> 
+Running with arguments em 1 Euromillones2004_2018.csv primitiva.csv at Wed Dec 12 18:08:21 UTC 2018 <br />
+pruning winners data  <br />
+tr, sort, uniq, awk, print... <br />
+pruning stars data  <br />
+tr, sort, uniq, awk, print... <br />
+Deleting temporal files. <br />
+Showing results. <br />
+It looks like this is Unix/Linux... <br />
+There are 4 physical cores. I will use the double for the executor thread pool. <br />
+Winner1  24 <br />
+Winner2  36 <br />
+Winner3  18 <br />
+Winner4  18 <br />
+Winner5  45 <br />
+Star1  7 <br />
+Star2  7 <br />
+attempt to shutdown executor <br />
+shutdown finished <br />
+Done! <br />
+Showing winners. <br />
+Showing stars. <br />
+Done. Time duration: 1 secs. <br />
+ <br />
+ <br />
+# Dependencies<br />
+The Project needs maven, java8 to compile and run the jar, some unix commands to run the script and docker if you want to run a container: <br />
 tr <br />
 sort <br />
 uniq <br />
@@ -180,9 +215,14 @@ awk  <br />
 I think these unix commands come by default in osx and I think they also come by default in linux, not sure in windows.  <br />
  <br />
 
+# To install Docker, follow this link: <br />
+
+https://docs.docker.com/install/<br />
+<br />
 # Actual Output with runMe.sh script set up to em 10<br />
 <br />
-aironman$ sh runMe.sh em 10<br />
+aironman$ sh runMe.sh em 10 PATH_TO_/Euromillones2004_2018.csv PATH_TO/primitiva.csv<br />
+Both files are within src/main/resources folder.<br />
 ...<br />
 Running with arguments em 10000 at martes,  4 de diciembre de 2018, 13:18:13 CET<br />
 <br />
