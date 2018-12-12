@@ -23,5 +23,5 @@ do
 done < output_permutations_$actual_date.txt > final_permutations_$actual_date.txt
 
 finish_time=$(date +%s)
+cat "final_permutations_$actual_date.txt"
 echo "Done. Time duration: $((finish_time - start_time)) secs."
-cat final_permutations_$actual_date.txt
