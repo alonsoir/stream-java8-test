@@ -5,7 +5,7 @@
 	<groupId>com.aironman</groupId>
 	<artifactId>MyStreamjava8</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0</version>
+	<version>1.0-RELEASE</version>
 	<name>MyStreamjava8</name>
 	<url>http://maven.apache.org</url>
 	<properties>

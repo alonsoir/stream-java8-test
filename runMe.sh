@@ -19,7 +19,7 @@ type=$1
 numIterations=$2
 PATH_TO_Euromillones2004_2018=$3
 PATH_TO_Primitiva=$4
-clear && java -cp target/MyStreamjava8-1.0.jar com.aironman.ApiStreamTests "$type" "$numIterations" "$PATH_TO_Euromillones2004_2018" "$PATH_TO_Primitiva" >> "output.txt"
+clear && java -cp target/MyStreamjava8-1.0-RELEASE.jar com.aironman.ApiStreamTests "$type" "$numIterations" "$PATH_TO_Euromillones2004_2018" "$PATH_TO_Primitiva" >> "output.txt"
 
 # Me quedo con los ganadores y las guardo en un fichero
 while read linea;
