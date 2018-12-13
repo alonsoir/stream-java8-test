@@ -26,26 +26,24 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Set;
-import java.util.Map.Entry;
 import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.junit.Assert;
 
 /**
  * @author aironman
@@ -81,17 +79,12 @@ public class StreamTests {
 				.map(aProduct -> aProduct.getPrice()).collect(Collectors.toList());
 
 		// iterating over list
-		// listPrices.forEach(e->logger.debug(String.valueOf(e)));
 		listPrices.forEach(Assert::assertNotNull);
 
 	}
 
 	@Test
 	public void testCompactFilteringByPrice() {
-		// This more compact approach for filtering data
-		// productsList.stream().filter(product -> product.getPrice() ==
-		// 30000).forEach(product -> logger.debug(String.valueOf(product.getPrice())));
-
 		productsList.stream().filter(product -> product.getPrice() == 30000)
 				.forEach(product -> Assert.assertNotNull(product.getPrice()));
 
@@ -161,9 +154,6 @@ public class StreamTests {
 		List<Float> listPricesP = productsList.parallelStream().filter(aProduct -> aProduct.getPrice() <= 28000f)
 				.map(aProduct -> aProduct.getPrice()).collect(Collectors.toList());
 
-		// iterating over list
-		// listPricesP.forEach(e->logger.debug(String.valueOf(e)));
-
 		listPricesP.forEach(Assert::assertNotNull);
 		int expected = 3;
 		Assert.assertEquals("Should be three... ", expected, listPricesP.size());
@@ -173,9 +163,6 @@ public class StreamTests {
 	@Test
 	public void testParallelCompactApproachFilteringData() {
 		// This more compact approach for filtering data
-		// productsList.parallelStream().filter(product -> product.getPrice() ==
-		// 30000).forEach(product -> logger.debug(String.valueOf(product.getPrice())));
-
 		productsList.parallelStream().filter(product -> product.getPrice() == 30000)
 				.forEach(product -> Assert.assertNotNull(product.getPrice()));
 
@@ -330,7 +317,6 @@ public class StreamTests {
 		intStream.forEach(Assert::assertNotNull);
 		LongStream longStream = LongStream.rangeClosed(1, 3);
 		Assert.assertNotNull(longStream);
-		// longStream.forEach(e->logger.debug(String.valueOf(e)));
 		Random random = new Random();
 		DoubleStream doubleStream = random.doubles(3);
 		doubleStream.forEach(Assert::assertNotNull);
@@ -357,13 +343,10 @@ public class StreamTests {
 	public void testCalculateEuroMillions() {
 		// reading historico_euromillones.csv
 		logger.debug("reading historico_euromillones.csv...");
-		// FILE not provided, go to
-		// https://www.loteriasyapuestas.es/es/euromillones/estadisticas
 		String inputFilePath = "src/test/resources/historico_euromillones.csv";
 
 		try {
 			List<EMPojo> myListEMPojo = Utils.processInputFile(inputFilePath);
-			// myListEMPojo.forEach(e-> logger.debug(e.toString()));
 			final Comparator<EMPojo> compTotal2017 = (p1, p2) -> Integer.compare(p1.getTotal_2017(),
 					p2.getTotal_2017());
 			final Comparator<EMPojo> compTotal2018 = (p1, p2) -> Integer.compare(p1.getTotal_2018(),
@@ -391,7 +374,7 @@ public class StreamTests {
 	@Test
 	public void testCalculatePrimitivaUsingThreads() {
 		String pathToPrimitiva = "src/test/resources/primitiva.csv";
-		Runnable runnable = Utils.calculatePrimitiva(pathToPrimitiva );
+		Runnable runnable = Utils.calculatePrimitiva(pathToPrimitiva);
 		new Thread(runnable).start();
 	}
 
@@ -421,7 +404,6 @@ public class StreamTests {
 					.limit(maxSize).forEach(e -> logger.info(e.toString()));
 
 		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 			logger.error(e1.getLocalizedMessage());
 			Assert.assertNotNull("FileNotFoundException", null);
@@ -565,21 +547,20 @@ public class StreamTests {
 	}
 
 	/***
-	 * La idea de este test es tratar de mostrar una prediccion del euromillones
-	 * basandonse en dos puntos: 1) Ordenar los numeros ganadores en orden de
-	 * frecuencia ascendente, de manera que aparezcan los números que más veces han
-	 * salido arriba del todo. 2) Discriminar los números anteriores de manera que
-	 * no voy a seleccionar ese número si ha salido repetido en una ventana de
-	 * tiempo, de manera que me quedaré con los números que cumplan estas dos
-	 * condiciones. En progreso, no terminado. Por ahora la implementacion es
-	 * horrorosa...
+	 * The idea of this test is to try to show a prediction of the basandonse in two
+	 * points: 1) Sort the winning numbers in ascending order of frequency, so that
+	 * they appear the numbers that most times have gone up above all. 2)
+	 * Discriminate the previous numbers so that I am not going to select that
+	 * number if it has been repeated in a window of time, so I'll keep the numbers
+	 * that meet these two. conditions. In progress, not finished. For now the
+	 * implementation is Horrible...
 	 */
 	@Test
 	public void testshowSorteredValuesReversedOrder() {
 
 		String pathToEM = "src/test/resources/Euromillions2004_2018.csv";
 		try {
-			Runnable runnable = Utils.showSorteredValuesReversedOrder(pathToEM );
+			Runnable runnable = Utils.showSorteredValuesReversedOrder(pathToEM);
 			new Thread(runnable).start();
 		} catch (FileNotFoundException | InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -629,7 +610,6 @@ public class StreamTests {
 		System.out.println("timestamp2: " + t2);
 	}
 
-	@SuppressWarnings("deprecation")
 	@Test
 	public void testConvert_Util_Date_To_SQL_Date() {
 		// contains both date and time information
@@ -714,14 +694,15 @@ public class StreamTests {
 
 	@Test
 	public void testAdela() {
-		
+
 		String[] correos = Stream.of("").toArray(String[]::new);
 		String cuerpo_del_mail = "CORREO-BAJA-TOTAL";
 
 		if (cuerpo_del_mail.contains("CORREO-BAJA-TOTAL")) {
 
 			correos = cuerpo_del_mail.split("CORREO-BAJA-TOTAL");
-			System.out.println("Hay mas de un correo. " + correos != null && correos.length != 0 ? correos[0] : "NOTHING TO SHOW");
+			System.out.println(
+					"Hay mas de un correo. " + correos != null && correos.length != 0 ? correos[0] : "NOTHING TO SHOW");
 		} else {
 			correos[0] = cuerpo_del_mail;
 			System.out.println("Hay un correo");
