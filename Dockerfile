@@ -1,6 +1,6 @@
 FROM java:8
 VOLUME /tmp
-ADD target/MyStreamjava8-1.0.jar target/MyStreamjava8-1.0.jar
+ADD target/MyStreamjava8-1.0-RELEASE.jar target/MyStreamjava8-1.0-RELEASE.jar
 COPY runMe.sh /scripts/runMe.sh
 COPY runPermutations.sh /scripts/runPermutations.sh
 COPY src/main/resources/Euromillones2004_2018.csv /files/Euromillones2004_2018.csv
