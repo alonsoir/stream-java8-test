@@ -1,3 +1,4 @@
+#!/bin/bash
 # mvn clean install
 start_time=$(date +%s)
 actual_date=`date`
