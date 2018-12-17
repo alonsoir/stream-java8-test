@@ -10,7 +10,7 @@ import com.aironman.pojo.OutputEntity;
 
 public interface OutputRepository extends CrudRepository<OutputEntity,Long>{
 
-	@Query("Select * from OutputEntity as entity order by entity.frequency")
+	@Query("Select * from OUTPUT_ENTITY as entity order by entity.frequency")
 	List<OutputEntity> sortOrderByFrequency(Float frequency);
 
 }

@@ -33,4 +33,8 @@ public class OutputServiceImpl implements OutputService{
 		return repository.sortOrderByFrequency(frequency);
 	}
 
+	@Transactional(readOnly= true)
+	public void dropData() {
+		repository.deleteAll();
+	}
 }

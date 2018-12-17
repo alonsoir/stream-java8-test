@@ -1,2 +1,2 @@
-INSERT INTO OutputEntity(id, fecha,winner1,winner2,winner3,winner4,winner5,star1,star2,frequency) values (1,'13/12/2018',1,2,3,4,5,6,7,13.8256);
-INSERT INTO OutputEntity(id, fecha,winner1,winner2,winner3,winner4,winner5,star1,star2,frequency) values (2,'13/12/2018',1,2,3,4,5,6,7,13.8256);
+INSERT INTO OUTPUT_ENTITY(id, fecha,winner1,winner2,winner3,winner4,winner5,star1,star2,frequency) values (1,'13/12/2018',1,2,3,4,5,6,7,13.8256);
+INSERT INTO OUTPUT_ENTITY(id, fecha,winner1,winner2,winner3,winner4,winner5,star1,star2,frequency) values (2,'13/12/2018',1,2,3,4,5,6,7,13.8257);

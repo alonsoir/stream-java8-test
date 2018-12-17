@@ -1,4 +1,4 @@
-CREATE TABLE OutputEntity (
+CREATE TABLE OUTPUT_ENTITY (
   id             INTEGER IDENTITY PRIMARY KEY,
   fecha     		 			 VARCHAR(50),
   winner1  		 			 INTEGER,
