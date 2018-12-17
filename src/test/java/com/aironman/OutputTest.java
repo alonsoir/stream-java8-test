@@ -5,14 +5,18 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import com.aironman.pojo.OutputEntity;
 import com.aironman.service.OutputService;
 
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@AutoConfigureTestDatabase
 public class OutputTest {
 
 	@Autowired
@@ -23,7 +27,7 @@ public class OutputTest {
 	@Before
 	public void setUp() throws Exception {
 		entity = new OutputEntity();
-		entity.setDate("jueves, 13 de diciembre de 2018, 19:14:35 CET");
+		entity.setFecha("jueves, 13 de diciembre de 2018, 19:14:35 CET");
 		entity.setFrequency(13.876786f);
 		entity.setStar1(1);
 		entity.setStar2(2);
