@@ -44,7 +44,7 @@ done < "output.txt" > "final_winners.txt"
 # echo "pruning winners data "
 # echo "tr, sort, uniq, awk, print..."
 echo "numIterations $numIterations"
-(tr ' ' '\n' | sort | uniq -c | awk '{print "winner " $2 " appeared "$1 " times of '"$numIterations"'. Frequency is "$1*100 / '"$numIterations"'"%"}') < "final_winners.txt" > "final_output_winners.txt"
+(tr ' ' '\n' | sort | uniq -c | awk '{print "winner " $2 " appeared "$1 " times of '"$numIterations"'. Frequency is "$1*100 / '"$numIterations"'" %"}') < "final_winners.txt" > "final_output_winners.txt"
 
 # Me quedo con las estrellas y las guardo en un fichero
 while read linea;
@@ -59,7 +59,7 @@ done < "output.txt" > "final_star.txt"
 
 # echo "pruning stars data "
 # echo "tr, sort, uniq, awk, print..."
-(tr ' ' '\n' | sort | uniq -c | awk '{print "star " $2 " appeared "$1 " times of '"$numIterations"'. Frequency is "$1*100 / '"$numIterations"'"%"}') < "final_star.txt" > "final_output_star.txt"
+(tr ' ' '\n' | sort | uniq -c | awk '{print "star " $2 " appeared "$1 " times of '"$numIterations"'. Frequency is "$1*100 / '"$numIterations"'" %"}') < "final_star.txt" > "final_output_star.txt"
 
 # borrando temporales
 # echo "Deleting temporal files."
@@ -70,8 +70,10 @@ finish_time=$(date +%s)
 # echo "Showing general results."
 # cat output.txt
 echo "A general file named output.txt has been generated. "
+cat final_output_winners.txt | tail -r | tail -n +6 | tail -r > clean_final_output_winners.txt
 echo "Showing winners."
-cat "final_output_winners.txt"
+cat "clean_final_output_winners.txt"
 echo "Showing stars."
-cat "final_output_star.txt"
+cat final_output_star.txt | tail -r | tail -n +2 | tail -r > clean_final_output_star.txt
+cat "clean_final_output_star.txt"
 echo "Done. Time duration: $((finish_time - start_time)) secs."
