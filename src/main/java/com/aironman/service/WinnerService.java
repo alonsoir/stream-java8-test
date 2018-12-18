@@ -9,4 +9,5 @@ public interface WinnerService {
 	Winners create (Winners entity);
 	List<Winners> getByFrequency();
 	void dropData();
+	Iterable<Winners> findAll();
 }

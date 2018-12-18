@@ -23,13 +23,11 @@ public class StarTest {
 	@Autowired
 	StarService service;
 
-	
-
 	@Before
 	public void setUp() throws Exception {
-		
+
 	}
-	
+
 	@After
 	public void dropData() {
 		service.dropData();
@@ -43,65 +41,36 @@ public class StarTest {
 		star.setFrequency(10.123456f);
 		star.setStar(1);
 		Stars created = service.create(star);
-		Assert.assertNotNull(created );
-		System.out.println( created .toString());
+		Assert.assertNotNull(created);
+		System.out.println(created.toString());
 		star.setId(2l);
 		star.setFrequency(12.123456f);
 		star.setStar(2);
 		created = service.create(star);
-		Assert.assertNotNull(created );
-		System.out.println(created .toString());
+		Assert.assertNotNull(created);
+		System.out.println(created.toString());
 		star.setId(3l);
 		star.setFrequency(13.123456f);
 		star.setStar(3);
 		created = service.create(star);
-		Assert.assertNotNull(created );
-		System.out.println(created .toString());
+		Assert.assertNotNull(created);
+		System.out.println(created.toString());
 		star.setId(4l);
 		star.setFrequency(14.123456f);
 		star.setStar(4);
 		created = service.create(star);
-		Assert.assertNotNull(created );
-		System.out.println(created .toString());
+		Assert.assertNotNull(created);
+		System.out.println(created.toString());
 		System.out.println("testCreateEntities DONE!");
 
 	}
-	
+
 	@Test
 	public void testGetOrderByFrequency() {
 		System.out.println("testGetOrderByFrequency...");
-		Stars star = new Stars();
-		
-		star.setId(5l);
-		star.setFrequency(10.123456f);
-		star.setStar(1);
-		Stars created = service.create(star);
-		Assert.assertNotNull(created );
-		System.out.println(created .toString());
-
-		star.setId(6l);
-		star.setFrequency(12.123456f);
-		star.setStar(2);
-		created = service.create(star);
-		Assert.assertNotNull(created );
-		System.out.println(created .toString());
-		
-		star.setId(7l);
-		star.setFrequency(13.123456f);
-		star.setStar(3);
-		created = service.create(star);
-		Assert.assertNotNull(created );
-		System.out.println(created .toString());
-		
-		star.setId(8l);
-		star.setFrequency(14.123456f);
-		star.setStar(4);
-		created = service.create(star);
-		Assert.assertNotNull(created );
-		
 		List<Stars> list = service.getByFrequency();
 		list.stream().forEach(System.out::println);
-		Assert.assertNotNull("List cannot be null",list);
+		Assert.assertNotNull("List cannot be null", list);
 		System.out.println("testGetOrderByFrequency DONE!");
 	}
 }

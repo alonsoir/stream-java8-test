@@ -81,6 +81,7 @@ public class SampleDataJdbcApplication {
 	public void processFiles() {
 
 		if (pathToWinner == null || pathToStar == null) return;
+		
 		try {
 			File inputFWinners = new File(pathToWinner);
 			InputStream inputFSWinners = new FileInputStream(inputFWinners);
@@ -100,8 +101,11 @@ public class SampleDataJdbcApplication {
 				entityToCreate.setFrequency(entity.getFrequency());
 				entityToCreate.setWinner(entity.getWinner1());
 				Winners created = winnerService.create(entityToCreate);
-				System.out.println("winner created. " + created .toString());
+				// System.out.println("winner created. " + created .toString());
 			}
+			Iterable<Winners> iterable = winnerService.findAll();
+			iterable.forEach(System.out::println);
+			
 			List<Winners> listWinners = winnerService.getByFrequency();
 			listWinners .forEach(System.out::println);
 			
@@ -113,7 +117,7 @@ public class SampleDataJdbcApplication {
 				entityToCreate.setFrequency(entity.getFrequency());
 				entityToCreate.setStar(entity.getStar1());
 				Stars created = starService.create(entityToCreate);
-				System.out.println("star created. " + created .toString());
+				// System.out.println("star created. " + created .toString());
 			}
 			
 			List<Stars> listStars = starService.getByFrequency();

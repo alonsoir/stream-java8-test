@@ -9,7 +9,7 @@ import com.aironman.pojo.Winners;
 
 public interface WinnerRepository extends CrudRepository<Winners,Long>{
 	
-	@Query("Select * from WINNERS order by frequency")
+	@Query("Select * from WINNERS order by frequency DESC")
 	List<Winners> sortOrderByFrequency();
 
 }

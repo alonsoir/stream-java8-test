@@ -9,6 +9,6 @@ import com.aironman.pojo.Stars;
 
 public interface StarRepository extends CrudRepository<Stars, Long>{
 	
-	@Query("Select * from STARS order by frequency")
+	@Query("Select * from STARS order by frequency DESC")
 	List<Stars> sortOrderByFrequency();
 }
