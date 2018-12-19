@@ -1,10 +1,7 @@
 package com.aironman.pojo;
 
-import org.springframework.data.annotation.Id;
-
 public class OutputEntity {
 
-	@Id
 	private Long id;
 
 	private String fecha;

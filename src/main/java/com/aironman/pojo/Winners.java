@@ -1,10 +1,7 @@
 package com.aironman.pojo;
 
-import org.springframework.data.annotation.Id;
-
 public class Winners {
 
-	@Id
 	private Long id;
 	private Integer winner;
 	private Float frequency;

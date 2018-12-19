@@ -1,10 +1,7 @@
 package com.aironman.pojo;
 
-import org.springframework.data.annotation.Id;
-
 public class Stars {
 
-	@Id
 	private Long id;
 	private Integer star;
 	private Float frequency;
