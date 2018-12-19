@@ -8,7 +8,7 @@ echo "Running with $# arguments. $* at $actual_date" >> "output.txt"
 if [ "$#" != 4 ]
 then
 	echo "Insuficients arguments."
-	echo "sh runMe.sh em 10 /PATH_TO_Euromillones2004_2018.csv /PATH_TO_Primitiva.csv"
+	echo "bash runMe.sh em 10 /PATH_TO_Euromillones2004_2018.csv /PATH_TO_Primitiva.csv"
 	exit;
 fi;
 # $1 em,primitiva,all,all-experimental
@@ -44,7 +44,7 @@ done < "output.txt" > "final_winners.txt"
 # echo "pruning winners data "
 # echo "tr, sort, uniq, awk, print..."
 echo "numIterations $numIterations"
-(tr ' ' '\n' | sort | uniq -c | awk '{print "winner " $2 " appeared "$1 " times of '"$numIterations"'. Frequency is "$1*100 / '"$numIterations"'"%"}') < "final_winners.txt" > "final_output_winners.txt"
+(tr ' ' '\n' | sort | uniq -c | awk '{print "winner " $2 " appeared "$1 " times of '"$numIterations"'. Frequency is "$1*100 / '"$numIterations"'" %"}') < "final_winners.txt" > "final_output_winners.txt"
 
 # Me quedo con las estrellas y las guardo en un fichero
 while read linea;
@@ -59,19 +59,21 @@ done < "output.txt" > "final_star.txt"
 
 # echo "pruning stars data "
 # echo "tr, sort, uniq, awk, print..."
-(tr ' ' '\n' | sort | uniq -c | awk '{print "star " $2 " appeared "$1 " times of '"$numIterations"'. Frequency is "$1*100 / '"$numIterations"'"%"}') < "final_star.txt" > "final_output_star.txt"
+(tr ' ' '\n' | sort | uniq -c | awk '{print "star " $2 " appeared "$1 " times of '"$numIterations"'. Frequency is "$1*100 / '"$numIterations"'" %"}') < "final_star.txt" > "final_output_star.txt"
 
 # borrando temporales
 # echo "Deleting temporal files."
 # rm "final_star.txt"
 # rm "final_winners.txt"
 # mv "output_$actual_date.txt" output.txt
-finish_time=$(date +%s)
-# echo "Showing general results."
+finish_time=$(date +%s)# echo "Showing general results."
 # cat output.txt
 echo "A general file named output.txt has been generated. "
+cat final_output_winners.txt | tail -r | tail -n +6 | tail -r > clean_final_output_winners.txt
 echo "Showing winners."
-cat "final_output_winners.txt"
+cat "clean_final_output_winners.txt"
 echo "Showing stars."
-cat "final_output_star.txt"
+cat final_output_star.txt | tail -r | tail -n +2 | tail -r > clean_final_output_star.txt
+cat "clean_final_output_star.txt"
+java -jar target/demo-jdbc-0.0.1-SNAPSHOT.jar clean_final_output_winners.txt clean_final_output_star.txt
 echo "Done. Time duration: $((finish_time - start_time)) secs."
