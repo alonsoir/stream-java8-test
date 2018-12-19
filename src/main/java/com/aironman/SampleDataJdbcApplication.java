@@ -47,12 +47,12 @@ public class SampleDataJdbcApplication {
 	 */
 	public static void main(String[] args) {
 
-		if (args.length != 2) {
+		if (args.length != 3) {
 			System.err.println("Please provide two arguments, PATH_TO/clean_final_output_winners.txt PATH_TO/clean_final_output_stars.txt");
 			System.exit(-1);
 		}
-		pathToWinner = args[0];
-		pathToStar = args[1];
+		pathToWinner = args[1];
+		pathToStar = args[2];
 		SpringApplication.run(SampleDataJdbcApplication.class);
 
 	}
