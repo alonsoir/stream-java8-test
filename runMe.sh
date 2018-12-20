@@ -1,5 +1,4 @@
 #!/bin/bash
-# mvn clean install
 start_time=$(date +%s)
 actual_date=`date`
 clear
@@ -69,11 +68,11 @@ done < "output.txt" > "final_star.txt"
 finish_time=$(date +%s)# echo "Showing general results."
 # cat output.txt
 echo "A general file named output.txt has been generated. "
-cat final_output_winners.txt | tail -r | tail -n +6 | tail -r > clean_final_output_winners.txt
+# cat final_output_winners.txt | tail -r | tail -n +6 | tail -r > clean_final_output_winners.txt
 echo "Showing winners."
-cat "clean_final_output_winners.txt"
+cat "final_output_winners.txt"
 echo "Showing stars."
-cat final_output_star.txt | tail -r | tail -n +2 | tail -r > clean_final_output_star.txt
-cat "clean_final_output_star.txt"
-java -jar target/demo-jdbc-0.0.1-SNAPSHOT.jar clean_final_output_winners.txt clean_final_output_star.txt
+# cat final_output_star.txt | tail -r | tail -n +2 | tail -r > clean_final_output_star.txt
+cat "final_output_star.txt"
+java -jar target/demo-jdbc-0.0.1-SNAPSHOT.jar final_output_winners.txt final_output_star.txt
 echo "Done. Time duration: $((finish_time - start_time)) secs."
