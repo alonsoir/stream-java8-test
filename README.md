@@ -39,7 +39,8 @@ java -cp target/MyStreamjava8-1.0.jar com.aironman.ApiStreamTests primitiva 80. 
 # To run the project with the shell script <br />
 
 bash runMe.sh em 100 /PATH/TO/Euromillones2004_2018.csv /PATH/TO/primitiva.csv<br /> 
-
+After a few seconds or minutes, depending on how many predictions you want to calculate, a web server will rise at localhost:8080/frequencies and you will be able to see the results sorted by frequency.
+<br />
 # OUTPUT
 
 <br />
