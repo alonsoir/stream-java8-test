@@ -18,7 +18,7 @@ type=$1
 numIterations=$2
 PATH_TO_Euromillones2004_2018=$3
 PATH_TO_Primitiva=$4
-clear && java -cp target/MyStreamjava8-1.0-RELEASE.jar com.aironman.ApiStreamTests "$type" "$numIterations" "$PATH_TO_Euromillones2004_2018" "$PATH_TO_Primitiva" >> "output.txt"
+clear && java -cp target/MyStreamjava8-1.0.1-RELEASE.jar com.aironman.ApiStreamTests "$type" "$numIterations" "$PATH_TO_Euromillones2004_2018" "$PATH_TO_Primitiva" >> "output.txt"
 
 # Me quedo con los ganadores y las guardo en un fichero
 while read linea;
@@ -65,7 +65,8 @@ done < "output.txt" > "final_star.txt"
 # rm "final_star.txt"
 # rm "final_winners.txt"
 # mv "output_$actual_date.txt" output.txt
-finish_time=$(date +%s)# echo "Showing general results."
+finish_time=$(date +%s)
+# echo "Showing general results."
 # cat output.txt
 echo "A general file named output.txt has been generated. "
 # cat final_output_winners.txt | tail -r | tail -n +6 | tail -r > clean_final_output_winners.txt
@@ -74,5 +75,5 @@ cat "final_output_winners.txt"
 echo "Showing stars."
 # cat final_output_star.txt | tail -r | tail -n +2 | tail -r > clean_final_output_star.txt
 cat "final_output_star.txt"
-java -jar target/demo-jdbc-0.0.1-SNAPSHOT.jar final_output_winners.txt final_output_star.txt
 echo "Done. Time duration: $((finish_time - start_time)) secs."
+java -jar target/demo-jdbc-0.0.1-SNAPSHOT.jar final_output_winners.txt final_output_star.txt

@@ -501,7 +501,7 @@ public class StreamTests {
 	public void testRefactoredFeatureEM1() {
 		logger.debug("testRefactoredFeatureEM1");
 		String inputFilePath = "src/test/resources/Euromillones2004_2018.csv";
-		boolean isDebug = false;
+		boolean isDebug = true;
 		try {
 			List<AnotherEMPojo> myListEMPojo = Utils.processHistoricInputFile(inputFilePath);
 			logger.debug(

@@ -36,23 +36,26 @@ public class ApiStreamTests {
 		// I am going to pass PATH_TO_Euromillion2004-2018.csv file and PATH_TO_Primitiva.csv too. 
 		// The reason is that i want a docker image and maven did not create fine the resources folders.
 		if (args.length != 4) {
-			System.out.println("Use java -cp PATH_TO/MyStreamjava-8-1.0.jar com.aironman.ApiStreamTests em 8 PATH_TO_EM file PATH_TO_Primitiva file to show 8 euromillions prediction.");
-			System.out.println(
-					"Use java -cp PATH_TO/MyStreamjava-8-1.0.jar com.aironman.ApiStreamTests em-experimental 8 to PATH_TO_EM file PATH_TO_Primitiva file show euromillions drawing by superior frequency of appearance ordered discarding repeated. EXPERIMENTAL!");
-			System.out.println("Use java -cp PATH_TO/MyStreamjava-8-1.0.jar com.aironman.ApiStreamTests primitiva 8 PATH_TO_EM file PATH_TO_Primitiva file to show primitiva prediction.");
-			System.out.println("Use java -cp PATH_TO/MyStreamjava-8-1.0.jar com.aironman.ApiStreamTests all 8 PATH_TO_EM file PATH_TO_Primitiva file to show both predictions.");
-			System.out.println(
-					"Use java -cp PATH_TO/MyStreamjava-8-1.0.jar com.aironman.ApiStreamTests all-experimental 8 PATH_TO_EM file PATH_TO_Primitiva file to show both predictions with experimental euromillions.");
+			showArguments();
 			System.out.println("Insuficient arguments.");
 			System.exit(-1);
 		}
 
-		isEm = args[0] != null && args[0].equalsIgnoreCase("em");
-		isPrimitiva = args[0] != null && args[0].equalsIgnoreCase("primitiva");
-		all = args[0] != null && args[0].equalsIgnoreCase("all");
-		isEmExp = args[0] != null && args[0].equalsIgnoreCase("em-experimental");
-		allWithExperimental = args[0] != null && args[0].equalsIgnoreCase("all-experimental");
+		isEm = "em".equalsIgnoreCase(args[0]);
+		isPrimitiva = "primitiva".equalsIgnoreCase(args[0]);
+		all = "all".equalsIgnoreCase(args[0]);
+		isEmExp = "em-experimental".equalsIgnoreCase(args[0]);
+		allWithExperimental = "all-experimental".equalsIgnoreCase(args[0]);
 		
+		if (!isEm && !isPrimitiva && !all && !isEmExp && !allWithExperimental) {
+			System.out.println("isEm " + isEm);
+			System.out.println("isPrimitiva " + isPrimitiva );
+			System.out.println("isEmExp " + isEmExp );
+			System.out.println("allWithExperimental "+ allWithExperimental);
+			showArguments();
+			System.out.println("Wrong arguments.");
+			System.exit(-1);
+		}
 		try {
 			numThreadsToRun = Integer.parseInt(args[1]);
 		} catch (NumberFormatException e) {
@@ -71,6 +74,8 @@ public class ApiStreamTests {
 		System.out.println("There are " + cores + " physical cores. I will use the double for the executor thread pool.");
 		ExecutorService executor = Executors.newFixedThreadPool(cores * 2);
 		
+		/*
+		Unnecessary
 		if (args.length == 2) {
 			if (!isEm && !isPrimitiva && !all && !isEmExp && !allWithExperimental) {
 				System.out.println("Wrong argument. Must be em, primitiva, all, em-experimental or all-experimental. "
@@ -85,7 +90,7 @@ public class ApiStreamTests {
 				System.exit(-1);
 			}
 		}
-
+		 */
 		for (int i = 1; i <= numThreadsToRun; i++) {
 			if (isEmExp) {
 				Future<?> future = executor.submit(Utils.showSorteredValuesReversedOrder(pathToEM));
@@ -116,6 +121,16 @@ public class ApiStreamTests {
 		shutdownThreads(executor);
 		System.out.println("Done!");
 		System.exit(0);
+	}
+
+	private static void showArguments() {
+		System.out.println("Use java -cp PATH_TO/MyStreamjava-8-1.0.jar com.aironman.ApiStreamTests em 8 PATH_TO_EM file PATH_TO_Primitiva file to show 8 euromillions prediction.");
+		System.out.println(
+				"Use java -cp PATH_TO/MyStreamjava-8-1.0.jar com.aironman.ApiStreamTests em-experimental 8 to PATH_TO_EM file PATH_TO_Primitiva file show euromillions drawing by superior frequency of appearance ordered discarding repeated. EXPERIMENTAL!");
+		System.out.println("Use java -cp PATH_TO/MyStreamjava-8-1.0.jar com.aironman.ApiStreamTests primitiva 8 PATH_TO_EM file PATH_TO_Primitiva file to show primitiva prediction.");
+		System.out.println("Use java -cp PATH_TO/MyStreamjava-8-1.0.jar com.aironman.ApiStreamTests all 8 PATH_TO_EM file PATH_TO_Primitiva file to show both predictions.");
+		System.out.println(
+				"Use java -cp PATH_TO/MyStreamjava-8-1.0.jar com.aironman.ApiStreamTests all-experimental 8 PATH_TO_EM file PATH_TO_Primitiva file to show both predictions with experimental euromillions.");
 	}
 
 	private static void shutdownThreads(ExecutorService executor) {
