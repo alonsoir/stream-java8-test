@@ -64,13 +64,14 @@ public class Utils {
 		}
 	}
 
-	private static Integer calculateRealKeyReverserOrder(LinkedHashMap<Integer, Integer> aLinkedHM, int max, int min,
+	private static Integer calculateRealKeyReverserOrder(LinkedHashMap<Integer, Integer> aLinkedHM,/* int max, int min,*/
 			int key) {
 		Object[] keySet = aLinkedHM.keySet().toArray();
 		HashMap<Integer, Integer> aMapWithKeys = new HashMap<Integer, Integer>();
 		int internalKey = -1;
 		int internalHashMapKey = 1;
-		for (int i = 1; i < keySet.length; i++) {
+		// bug_numbers
+		for (int i = 0; i < keySet.length; i++) {
 			internalKey = (int) keySet[i];
 			aMapWithKeys.put(internalHashMapKey, internalKey);
 			internalHashMapKey++;
@@ -364,18 +365,21 @@ public class Utils {
 		LinkedHashMap<Integer, Integer> aLinkedHM = calculateMostFrequentValuesReversedOrder(mySetwinner);
 
 		int max = aLinkedHM.size();
+		// bug_numbers
 		int min = 1;
 		int key = ThreadLocalRandom.current().nextInt(min, max);
-		Integer realKey = calculateRealKeyReverserOrder(aLinkedHM, max, min, key);
+		Integer realKey = calculateRealKeyReverserOrder(aLinkedHM, /*max, min,*/ key);
 
 		Integer value = aLinkedHM.get(realKey);
 
 		if (value == null)
-			System.out.println("PROBLEM! Check showRandomValuesReversedOrder.");
+			System.out.println("PROBLEM! Check showRandomValuesReversedOrder. realKey: " + realKey + " min: " + min + " max: " + max);
 		System.out.println(type + " " + realKey);
 		// showing data...
-		if (isDebug)
+		if (isDebug) {
+			System.out.println(type + " " + realKey + " frequency " + value);
 			iterateAndShowRandomValuesReversedOrder(type, aLinkedHM);
+		}
 	}
 
 	static LinkedHashMap<Integer, Integer> calculateMostFrequentValuesReversedOrder(
