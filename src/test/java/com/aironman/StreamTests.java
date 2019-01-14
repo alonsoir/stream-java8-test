@@ -713,4 +713,9 @@ public class StreamTests {
 	public void testSendSms() {
 		Assert.assertTrue(Utils.sendSms("This is a test!"));
 	}
+	
+	@Test
+	public void testEmail() {
+		Assert.assertTrue(EmailSenderService.sendEmail("this is the body", "this is the subject", "alonsoir@gmail.com"));
+	}
 }
