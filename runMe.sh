@@ -76,4 +76,6 @@ echo "Showing stars."
 # cat final_output_star.txt | tail -r | tail -n +2 | tail -r > clean_final_output_star.txt
 cat "final_output_star.txt"
 echo "Done. Time duration: $((finish_time - start_time)) secs."
+# decomment when it is ready
+# java -cp target/MyStreamjava8-1.0.1-RELEASE.jar com.aironman.SendEmail final_output_winners.txt final_output_star.txt alonsoir@gmail.com
 java -jar target/demo-jdbc-0.0.1-SNAPSHOT.jar final_output_winners.txt final_output_star.txt
