@@ -2,7 +2,8 @@ package com.aironman;
 
 import static java.util.Map.Entry.comparingByValue;
 import static java.util.stream.Collectors.toMap;
-
+import java.net.*;
+import java.io.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -599,5 +600,56 @@ public class Utils {
 			return numberOfCores * sockets;
 		}
 		return numberOfCores;
+	}
+	
+	public final static boolean sendSms(String body) {
+		boolean ret=true;
+		try {
+            // Construct data
+            String data = "";
+            /*
+             * Note the suggested encoding for certain parameters, notably
+             * the username, password and especially the message.  ISO-8859-1
+             * is essentially the character set that we use for message bodies,
+             * with a few exceptions for e.g. Greek characters.  For a full list,
+             * see:  http://developer.bulksms.com/eapi/submission/character-encoding/
+             */
+            data += "username=" + URLEncoder.encode("aironman", "ISO-8859-1");
+            data += "&password=" + URLEncoder.encode("keqru4-rogmIv-sarmoh", "ISO-8859-1");
+            data += "&message=" + URLEncoder.encode(body, "ISO-8859-1");
+            data += "&want_report=1";
+            data += "&msisdn=44123123123";
+            
+            StringBuffer sb = new StringBuffer();
+            sb.append("username=").append(URLEncoder.encode("aironman", "ISO-8859-1"));
+            sb.append("&password=").append(URLEncoder.encode("keqru4-rogmIv-sarmoh", "ISO-8859-1"));
+            sb.append("&message=").append(URLEncoder.encode(body, "ISO-8859-1"));
+            sb.append("&want_report=1");
+            sb.append("&msisdn=44123123123");
+            // Send data
+            // Please see the FAQ regarding HTTPS (port 443) and HTTP (port 80/5567)
+            URL url = new URL("https://bulksms.vsms.net/eapi/submission/send_sms/2/2.0");
+
+            URLConnection conn = url.openConnection();
+            conn.setDoOutput(true);
+            OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+            wr.write(data);
+            //wr.write(sb.toString());
+            wr.flush();
+
+            // Get the response
+            BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String line;
+            while ((line = rd.readLine()) != null) {
+                // Print the response output...
+                System.out.println("sendSms: " + line);
+            }
+            wr.close();
+            rd.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            ret=false;
+        }
+		return ret;
 	}
 }

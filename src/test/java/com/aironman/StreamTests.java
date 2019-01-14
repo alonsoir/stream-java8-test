@@ -708,4 +708,9 @@ public class StreamTests {
 			System.out.println("Hay un correo");
 		}
 	}
+	
+	@Test
+	public void testSendSms() {
+		Assert.assertTrue(Utils.sendSms("This is a test!"));
+	}
 }
