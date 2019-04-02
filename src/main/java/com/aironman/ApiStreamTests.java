@@ -78,31 +78,31 @@ public class ApiStreamTests {
 		System.out
 				.println("There are " + cores + " physical cores. I will use the double for the executor thread pool.");
 		ExecutorService executor = Executors.newFixedThreadPool(cores * 2);
-
+		final int timeToRun=500;
 		for (int i = 1; i <= numThreadsToRun; i++) {
 			if (isEmExp) {
 				Future<?> future = executor.submit(Utils.showSorteredValuesReversedOrder(pathToEM));
-				future.get(5, TimeUnit.SECONDS);
+				future.get(timeToRun, TimeUnit.SECONDS);
 			}
 
 			else if (isEm) {
 				Future<?> future = executor.submit(Utils.calculateRandomEM(pathToEM));
-				future.get(5, TimeUnit.SECONDS);
+				future.get(timeToRun, TimeUnit.SECONDS);
 			} else if (isPrimitiva) {
 				Future<?> future = executor.submit(Utils.calculatePrimitiva(pathToPrimitiva));
-				future.get(5, TimeUnit.SECONDS);
+				future.get(timeToRun, TimeUnit.SECONDS);
 			}
 
 			else if (all) {
 				Future<?> futureRandomEM = executor.submit(Utils.calculateRandomEM(pathToEM));
 				Future<?> futurePrimitive = executor.submit(Utils.calculatePrimitiva(pathToPrimitiva));
-				futureRandomEM.get(5, TimeUnit.SECONDS);
-				futurePrimitive.get(5, TimeUnit.SECONDS);
+				futureRandomEM.get(timeToRun, TimeUnit.SECONDS);
+				futurePrimitive.get(timeToRun, TimeUnit.SECONDS);
 			} else if (allWithExperimental) {
 				Future<?> futureSortered = executor.submit(Utils.showSorteredValuesReversedOrder(pathToEM));
 				Future<?> futurePrimitive = executor.submit(Utils.calculatePrimitiva(pathToPrimitiva));
-				futureSortered.get(5, TimeUnit.SECONDS);
-				futurePrimitive.get(5, TimeUnit.SECONDS);
+				futureSortered.get(timeToRun, TimeUnit.SECONDS);
+				futurePrimitive.get(timeToRun, TimeUnit.SECONDS);
 			}
 		}
 

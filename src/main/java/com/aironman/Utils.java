@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -32,6 +34,8 @@ public class Utils {
 
 	private static final String COMMA = ",";
 
+	private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("d/M/uuuu");
+	
 	private static Function<String, EMPojo> mapToItem = (line) -> {
 		String[] p = line.split(COMMA);// a CSV has comma separated lines
 		EMPojo item = new EMPojo(Integer.parseInt(p[0]), Integer.parseInt(p[1]), Integer.parseInt(p[2]),
@@ -43,15 +47,22 @@ public class Utils {
 	private static Function<String, AnotherEMPojo> mapToHistoricItem = (line) -> {
 		String[] p = line.split(COMMA);// a CSV has comma separated lines
 		AnotherEMPojo item = new AnotherEMPojo();
-		item.setDateContest(p[0]);
-		item.setWiner1(Integer.parseInt(p[1]));
-		item.setWiner2(Integer.parseInt(p[2]));
-		item.setWiner3(Integer.parseInt(p[3]));
-		item.setWiner4(Integer.parseInt(p[4]));
-		item.setWiner5(Integer.parseInt(p[5]));
+
+		//03/02/2017
+		// or
+		//3/2/2017
+		String date = p[0].trim();
+		LocalDate localDate = LocalDate.parse(date, dateTimeFormatter);
+		//System.out.println(localDate);
+		item.setDateContest(localDate.toString());
+		item.setWiner1(Integer.parseInt(p[1].trim()));
+		item.setWiner2(Integer.parseInt(p[2].trim()));
+		item.setWiner3(Integer.parseInt(p[3].trim()));
+		item.setWiner4(Integer.parseInt(p[4].trim()));
+		item.setWiner5(Integer.parseInt(p[5].trim()));
 		// 6 and 7 are null values...
-		item.setStar1(Integer.parseInt(p[7]));
-		item.setStar2(Integer.parseInt(p[8]));
+		item.setStar1(Integer.parseInt(p[7].trim()));
+		item.setStar2(Integer.parseInt(p[8].trim()));
 		return item;
 
 	};
@@ -65,7 +76,9 @@ public class Utils {
 		}
 	}
 
-	private static Integer calculateRealKeyReverserOrder(LinkedHashMap<Integer, Integer> aLinkedHM,/* int max, int min,*/
+	private static Integer calculateRealKeyReverserOrder(LinkedHashMap<Integer, Integer> aLinkedHM, /*
+																									 * int max, int min,
+																									 */
 			int key) {
 		Object[] keySet = aLinkedHM.keySet().toArray();
 		HashMap<Integer, Integer> aMapWithKeys = new HashMap<Integer, Integer>();
@@ -369,12 +382,13 @@ public class Utils {
 		// bug_numbers
 		int min = 1;
 		int key = ThreadLocalRandom.current().nextInt(min, max);
-		Integer realKey = calculateRealKeyReverserOrder(aLinkedHM, /*max, min,*/ key);
+		Integer realKey = calculateRealKeyReverserOrder(aLinkedHM, /* max, min, */ key);
 
 		Integer value = aLinkedHM.get(realKey);
 
 		if (value == null)
-			System.out.println("PROBLEM! Check showRandomValuesReversedOrder. realKey: " + realKey + " min: " + min + " max: " + max);
+			System.out.println("PROBLEM! Check showRandomValuesReversedOrder. realKey: " + realKey + " min: " + min
+					+ " max: " + max);
 		System.out.println(type + " " + realKey);
 		// showing data...
 		if (isDebug) {
@@ -601,55 +615,55 @@ public class Utils {
 		}
 		return numberOfCores;
 	}
-	
+
 	public final static boolean sendSms(String body) {
-		boolean ret=true;
+		boolean ret = true;
 		try {
-            // Construct data
-            String data = "";
-            /*
-             * Note the suggested encoding for certain parameters, notably
-             * the username, password and especially the message.  ISO-8859-1
-             * is essentially the character set that we use for message bodies,
-             * with a few exceptions for e.g. Greek characters.  For a full list,
-             * see:  http://developer.bulksms.com/eapi/submission/character-encoding/
-             */
-            data += "username=" + URLEncoder.encode("aironman", "ISO-8859-1");
-            data += "&password=" + URLEncoder.encode("keqru4-rogmIv-sarmoh", "ISO-8859-1");
-            data += "&message=" + URLEncoder.encode(body, "ISO-8859-1");
-            data += "&want_report=1";
-            data += "&msisdn=44123123123";
-            
-            StringBuffer sb = new StringBuffer();
-            sb.append("username=").append(URLEncoder.encode("aironman", "ISO-8859-1"));
-            sb.append("&password=").append(URLEncoder.encode("keqru4-rogmIv-sarmoh", "ISO-8859-1"));
-            sb.append("&message=").append(URLEncoder.encode(body, "ISO-8859-1"));
-            sb.append("&want_report=1");
-            sb.append("&msisdn=44123123123");
-            // Send data
-            // Please see the FAQ regarding HTTPS (port 443) and HTTP (port 80/5567)
-            URL url = new URL("https://bulksms.vsms.net/eapi/submission/send_sms/2/2.0");
+			// Construct data
+			String data = "";
+			/*
+			 * Note the suggested encoding for certain parameters, notably the username,
+			 * password and especially the message. ISO-8859-1 is essentially the character
+			 * set that we use for message bodies, with a few exceptions for e.g. Greek
+			 * characters. For a full list, see:
+			 * http://developer.bulksms.com/eapi/submission/character-encoding/
+			 */
+			data += "username=" + URLEncoder.encode("aironman", "ISO-8859-1");
+			data += "&password=" + URLEncoder.encode("keqru4-rogmIv-sarmoh", "ISO-8859-1");
+			data += "&message=" + URLEncoder.encode(body, "ISO-8859-1");
+			data += "&want_report=1";
+			data += "&msisdn=44123123123";
 
-            URLConnection conn = url.openConnection();
-            conn.setDoOutput(true);
-            OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-            wr.write(data);
-            //wr.write(sb.toString());
-            wr.flush();
+			StringBuffer sb = new StringBuffer();
+			sb.append("username=").append(URLEncoder.encode("aironman", "ISO-8859-1"));
+			sb.append("&password=").append(URLEncoder.encode("keqru4-rogmIv-sarmoh", "ISO-8859-1"));
+			sb.append("&message=").append(URLEncoder.encode(body, "ISO-8859-1"));
+			sb.append("&want_report=1");
+			sb.append("&msisdn=44123123123");
+			// Send data
+			// Please see the FAQ regarding HTTPS (port 443) and HTTP (port 80/5567)
+			URL url = new URL("https://bulksms.vsms.net/eapi/submission/send_sms/2/2.0");
 
-            // Get the response
-            BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            String line;
-            while ((line = rd.readLine()) != null) {
-                // Print the response output...
-                System.out.println("sendSms: " + line);
-            }
-            wr.close();
-            rd.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-            ret=false;
-        }
+			URLConnection conn = url.openConnection();
+			conn.setDoOutput(true);
+			OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+			wr.write(data);
+			// wr.write(sb.toString());
+			wr.flush();
+
+			// Get the response
+			BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			String line;
+			while ((line = rd.readLine()) != null) {
+				// Print the response output...
+				System.out.println("sendSms: " + line);
+			}
+			wr.close();
+			rd.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			ret = false;
+		}
 		return ret;
 	}
 }
