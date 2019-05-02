@@ -10,13 +10,15 @@ then
 	echo "bash runMe.sh em 10 /PATH_TO_Euromillones2004_2018.csv /PATH_TO_Primitiva.csv"
 	exit;
 fi;
+# downloading previous results of euromillones
+bash downloadPreviousResults.sh
 # $1 em,primitiva,all,all-experimental
 # $2 numIterations
 # $3 PATH_TO_Euromillones2004_2018.csv
 # $4 PATH_TO_Primitiva.csv
 type=$1
 numIterations=$2
-PATH_TO_Euromillones2004_2018=$3
+PATH_TO_Euromillones2004_2018=updatedEuromillions.csv
 PATH_TO_Primitiva=$4
 clear && java -cp target/MyStreamjava8-1.0.1-RELEASE.jar com.aironman.ApiStreamTests "$type" "$numIterations" "$PATH_TO_Euromillones2004_2018" "$PATH_TO_Primitiva" >> "output.txt"
 
