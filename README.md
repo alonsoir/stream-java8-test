@@ -10,7 +10,8 @@ You can import to eclipse the maven project and run the tests or you can compile
 docker pull aironman:mystreamjava8:latest <br />
 
 # To run my docker container <br />
-$ docker images
+$ docker images <br />
+<br />
 aironman/mystreamjava8   latest              71d2c3357c55        12 minutes ago      643MB <br />
 
 docker run -it 71d2c3357c55 /bin/bash <br />
@@ -44,74 +45,27 @@ After a few seconds or minutes, depending on how many predictions you want to ca
 # OUTPUT
 
 <br />
-Running with arguments em 100 /Users/aironman/Desktop/Euromillones2004_2018.csv /Users/aironman/Desktop/primitiva.csv at miércoles, 12 de diciembre de 2018, 18:35:43 CET<br />
 <br />
-numIterations 10 <br />
-A general file named output.txt has been generated. <br /> 
-Showing winners. <br />
-winner 10 appeared 2 times of 10. Frequency is 20% <br />
-winner 11 appeared 1 times of 10. Frequency is 10% <br />
-winner 12 appeared 1 times of 10. Frequency is 10% <br />
-winner 14 appeared 1 times of 10. Frequency is 10% <br />
-winner 16 appeared 3 times of 10. Frequency is 30% <br />
-winner 17 appeared 2 times of 10. Frequency is 20% <br />
-winner 18 appeared 1 times of 10. Frequency is 10% <br />
-winner 19 appeared 1 times of 10. Frequency is 10% <br />
-winner 21 appeared 2 times of 10. Frequency is 20% <br />
-winner 22 appeared 2 times of 10. Frequency is 20% <br />
-winner 23 appeared 2 times of 10. Frequency is 20% <br />
-winner 24 appeared 2 times of 10. Frequency is 20% <br />
-winner 25 appeared 1 times of 10. Frequency is 10% <br />
-winner 26 appeared 1 times of 10. Frequency is 10% <br />
-winner 27 appeared 1 times of 10. Frequency is 10% <br />
-winner 29 appeared 2 times of 10. Frequency is 20% <br />
-winner 30 appeared 1 times of 10. Frequency is 10% <br />
-winner 31 appeared 1 times of 10. Frequency is 10% <br />
-winner 32 appeared 1 times of 10. Frequency is 10% <br />
-winner 33 appeared 2 times of 10. Frequency is 20% <br />
-winner 34 appeared 2 times of 10. Frequency is 20% <br />
-winner 37 appeared 1 times of 10. Frequency is 10% <br />
-winner 38 appeared 1 times of 10. Frequency is 10% <br />
-winner 39 appeared 3 times of 10. Frequency is 30% <br />
-winner 4 appeared 1 times of 10. Frequency is 10% <br />
-winner 40 appeared 3 times of 10. Frequency is 30% <br />
-winner 41 appeared 1 times of 10. Frequency is 10% <br />
-winner 42 appeared 1 times of 10. Frequency is 10% <br />
-winner 44 appeared 1 times of 10. Frequency is 10% <br />
-winner 45 appeared 1 times of 10. Frequency is 10% <br />
-winner 46 appeared 1 times of 10. Frequency is 10% <br />
-winner 47 appeared 1 times of 10. Frequency is 10% <br />
-winner 6 appeared 1 times of 10. Frequency is 10% <br />
-winner 8 appeared 1 times of 10. Frequency is 10% <br />
-winner 9 appeared 1 times of 10. Frequency is 10% <br />
-winner Winner1 appeared 10 times of 10. Frequency is 100% <br />
-winner Winner2 appeared 10 times of 10. Frequency is 100% <br />
-winner Winner3 appeared 10 times of 10. Frequency is 100% <br />
-winner Winner4 appeared 10 times of 10. Frequency is 100% <br />
-winner Winner5 appeared 10 times of 10. Frequency is 100% <br />
-Showing stars. <br />
-star 10 appeared 2 times of 10. Frequency is 20% <br />
-star 2 appeared 3 times of 10. Frequency is 30% <br />
-star 3 appeared 2 times of 10. Frequency is 20% <br />
-star 4 appeared 3 times of 10. Frequency is 30% <br />
-star 5 appeared 2 times of 10. Frequency is 20% <br />
-star 7 appeared 3 times of 10. Frequency is 30% <br />
-star 8 appeared 5 times of 10. Frequency is 50% <br />
-star Star1 appeared 10 times of 10. Frequency is 100% <br />
-star Star2 appeared 10 times of 10. Frequency is 100% <br />
-Done. Time duration: 0 secs. <br />
+
+02/05/2019
+
+Now the project automatically updates the previous results of the Euromillions draw and raises a small web jetty server with two endpoints: <br />
+
+http://localhost:8080/prediction <br />
+
+y <br />
 <br />
-It will generate two files, final_output_star_martes\,\ \ 4\ de\ diciembre\ de\ 2018\,\ 13\:18\:13\ CET.txt<br /> 
-and final_output_winners_martes\,\ \ 4\ de\ diciembre\ de\ 2018\,\ 13\:18\:13\ CET.txt.<br />
-The name of the files is created using the pattern final_output_winners_$actual_date.txt and final_output_star_$actual_date.txt<br />
-$actual_date is the actual date using unix format.<br />
+http://localhost:8080/frequencies<br />
+
+The first one gives you a prediction, the second one draws the frequencies for the appearance of the figures.
+
 <br />
-100 means the number of iterations, 100 predictions. <br />
 <br />
+
 
 # Dependencies <br />
 
-The Project needs maven, java8 to compile and run the jar, some unix commands to run the script and docker if you want to run a container: <br />
+The Project needs maven, java8 onwards to compile and run the jar, some unix commands to run the script and docker if you want to run a container: <br />
 tr <br />
 sort <br />
 uniq <br />
