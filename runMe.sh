@@ -4,10 +4,10 @@ actual_date=`date`
 clear
 rm *txt
 echo "Running with $# arguments. $* at $actual_date" >> "output.txt"
-if [ "$#" != 4 ]
+if [ "$#" != 2 ]
 then
 	echo "Insuficients arguments."
-	echo "bash runMe.sh em 10 /PATH_TO_Euromillones2004_2018.csv /PATH_TO_Primitiva.csv"
+	echo "bash runMe.sh em 10 /PATH_TO_Primitiva.csv"
 	exit;
 fi;
 # downloading previous results of euromillones
