@@ -31,26 +31,17 @@ java -cp target/MyStreamjava8-1.0.jar com.aironman.ApiStreamTests all 80 PATH_TO
 
 # To show only Euromillions <br />
 
-java -cp target/MyStreamjava8-1.0.jar com.aironman.ApiStreamTests em 80. 80 means the number of iterations, 80 predictions.<br />
+java -cp target/MyStreamjava8-1.0.jar com.aironman.ApiStreamTests em 80 PATH_TO/Euromillones2004_2018.csv PATH_TO/primitiva.csv. 80 means the number of iterations, 80 predictions.<br />
 
 # To show only primitiva <br />
 
-java -cp target/MyStreamjava8-1.0.jar com.aironman.ApiStreamTests primitiva 80. 80 means the number of iterations, 80 predictions.<br />
+java -cp target/MyStreamjava8-1.0.jar com.aironman.ApiStreamTests primitiva 80 PATH_TO/Euromillones2004_2018.csv PATH_TO/primitiva.csv. 80 means the number of iterations, 80 predictions.<br />
 
-# To run the project with the shell script <br />
+# To run the project using the shell script <br />
 
-bash runMe.sh em 100 /PATH/TO/primitiva.csv<br />
+bash runMe.sh em 100 <br />
 
-or use this if you have your own Euromillones csv file with previous results. Just be sure the file follow this format and you will have to modify the script at line 21:
-<br />
-modify this line: <br />
-PATH_TO_Euromillones2004_2018=updatedEuromillions.csv <br />
-
-to 
-
-<br />
-
-PATH_TO_Euromillones2004_2018=$3
+The script does not need actually any euromillions or primitiva file. Now it tries to download latest results using wget command.
 <br />
 
 ## Euromillones_2004_2018.csv Format <br />
