@@ -628,18 +628,18 @@ public class Utils {
 			 * characters. For a full list, see:
 			 * http://developer.bulksms.com/eapi/submission/character-encoding/
 			 */
-			data += "username=" + URLEncoder.encode("aironman", "ISO-8859-1");
-			data += "&password=" + URLEncoder.encode("keqru4-rogmIv-sarmoh", "ISO-8859-1");
+			data += "username=" + URLEncoder.encode("YOUR_USER", "ISO-8859-1");
+			data += "&password=" + URLEncoder.encode("YOUR_PASSWORD", "ISO-8859-1");
 			data += "&message=" + URLEncoder.encode(body, "ISO-8859-1");
 			data += "&want_report=1";
-			data += "&msisdn=44123123123";
+			data += "&msisdn=YOUR_MSISDN";
 
 			StringBuffer sb = new StringBuffer();
-			sb.append("username=").append(URLEncoder.encode("aironman", "ISO-8859-1"));
-			sb.append("&password=").append(URLEncoder.encode("keqru4-rogmIv-sarmoh", "ISO-8859-1"));
+			sb.append("username=").append(URLEncoder.encode("YOUR_USER", "ISO-8859-1"));
+			sb.append("&password=").append(URLEncoder.encode("YOUR_PASSWORD", "ISO-8859-1"));
 			sb.append("&message=").append(URLEncoder.encode(body, "ISO-8859-1"));
 			sb.append("&want_report=1");
-			sb.append("&msisdn=44123123123");
+			sb.append("&msisdn=YOUR_MSISDN");
 			// Send data
 			// Please see the FAQ regarding HTTPS (port 443) and HTTP (port 80/5567)
 			URL url = new URL("https://bulksms.vsms.net/eapi/submission/send_sms/2/2.0");
