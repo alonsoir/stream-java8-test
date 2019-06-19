@@ -1,5 +1,5 @@
 # stream-java8-test
-Playing with functional java8 style streaming api. <br />
+This project started as a test exercise to know the api stream of java8, then try to practice with parallelism, Docker, bash scripting, in short to practice and have fun. It can't be taken as an example of anything because there was no intention to do it right from the beginning, so you won't find a good use of design patterns or a correct use of solid principles. <br />
 
 # How to use <br />
 
