@@ -10,7 +10,7 @@ then
 	echo "bash runMe.sh em 10 /PATH_TO_Primitiva.csv"
 	exit;
 fi;
-# downloading previous results of euromillones
+# downloading previous results of euromillones to updatedEuromillions.csv. This file must exist in order to work this script!
 bash downloadPreviousResults.sh
 # $1 em,primitiva,all,all-experimental
 # $2 numIterations
@@ -63,10 +63,10 @@ done < "output.txt" > "final_star.txt"
 (tr ' ' '\n' | sort | uniq -c | awk '{print "star " $2 " appeared "$1 " times of '"$numIterations"'. Frequency is "$1*100 / '"$numIterations"'" %"}') < "final_star.txt" > "final_output_star.txt"
 
 # borrando temporales
-# echo "Deleting temporal files."
-# rm "final_star.txt"
-# rm "final_winners.txt"
-# mv "output_$actual_date.txt" output.txt
+echo "Deleting temporal files."
+rm "final_star.txt"
+rm "final_winners.txt"
+mv "output_$actual_date.txt" output.txt
 finish_time=$(date +%s)
 # echo "Showing general results."
 # cat output.txt
