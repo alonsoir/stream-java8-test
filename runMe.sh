@@ -79,3 +79,6 @@ echo "Showing stars."
 cat "final_output_star.txt"
 echo "Done. Time duration: $((finish_time - start_time)) secs."
 java -jar target/demo-jdbc-0.0.1-SNAPSHOT.jar final_output_winners.txt final_output_star.txt
+rm "final_output_star.txt"
+rm "final_output_winners.txt"
+rm "output.txt"
