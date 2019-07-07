@@ -70,15 +70,18 @@ mv "output_$actual_date.txt" output.txt
 finish_time=$(date +%s)
 # echo "Showing general results."
 # cat output.txt
-echo "A general file named output.txt has been generated. "
+# echo "A general file named output.txt has been generated. "
 # cat final_output_winners.txt | tail -r | tail -n +6 | tail -r > clean_final_output_winners.txt
-echo "Showing winners."
-cat "final_output_winners.txt"
-echo "Showing stars."
+# echo "Showing winners."
+# cat "final_output_winners.txt"
+# echo "Showing stars."
 # cat final_output_star.txt | tail -r | tail -n +2 | tail -r > clean_final_output_star.txt
-cat "final_output_star.txt"
+# cat "final_output_star.txt"
 echo "Done. Time duration: $((finish_time - start_time)) secs."
+echo "Using data..."
+head -n 2 updatedEuromillions.csv
 java -jar target/demo-jdbc-0.0.1-SNAPSHOT.jar final_output_winners.txt final_output_star.txt
 rm "final_output_star.txt"
 rm "final_output_winners.txt"
 rm "output.txt"
+
