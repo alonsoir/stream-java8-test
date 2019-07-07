@@ -80,6 +80,9 @@ finish_time=$(date +%s)
 echo "Done. Time duration: $((finish_time - start_time)) secs."
 echo "Using data..."
 head -n 2 updatedEuromillions.csv
+echo "opening browser."
+open -a Safari http://localhost:8080/prediction
+open -a Safari http://localhost:8080/frequencies
 java -jar target/demo-jdbc-0.0.1-SNAPSHOT.jar final_output_winners.txt final_output_star.txt
 rm "final_output_star.txt"
 rm "final_output_winners.txt"
