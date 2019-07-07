@@ -1,9 +1,12 @@
 # stream-java8-test
-This project started as a test exercise to know the api stream of java8, then try to practice with parallelism, Docker, bash scripting, in short to practice and have fun. It can't be taken as an example of anything because there was no intention to do it right from the beginning, so you won't find a good use of design patterns or a correct use of solid principles. <br />
+This project started as a test exercise to know the api stream of java8, then try to practice with parallelism, Docker, bash scripting, in short to practice and have fun. 
+
+# disclaimer
+It can't be taken as an example of anything because there was no intention to do it right from the beginning, so you won't find a good use of design patterns or a correct use of solid principles. Just practice with java8 api stream onwards, as well as apply parallelism to get better performance, play with Docker, bash scripting. There are better projects in my repository on how to have a better design following solid principles and good practices.<br />
 
 # How to use <br />
 
-You can import to eclipse the maven project and run the tests or you can compile the project and run it within your local shell, or creating your local docker container or pulling one created and pushed by me: <br />
+You can import to eclipse the maven project and run the tests or you can compile the project and run it within your local shell, or creating your local docker container or pulling one created and pushed by me, but latest version is not uploaded to dockerhub, so i recommend to use the shell script downloading first the source code. <br />
 
 # To pull my docker container <br />
 
