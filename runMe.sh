@@ -1,7 +1,7 @@
 #!/bin/bash
 start_time=$(date +%s)
 actual_date=`date`
-clear
+# clear
 rm *txt
 echo "Running with $# arguments. $* at $actual_date" >> "output.txt"
 if [ "$#" != 2 ]
@@ -20,7 +20,8 @@ type=$1
 numIterations=$2
 PATH_TO_Euromillones2004_2018=updatedEuromillions.csv
 PATH_TO_Primitiva=$4
-clear && java -cp target/MyStreamjava8-1.0.1-RELEASE.jar com.aironman.ApiStreamTests "$type" "$numIterations" "$PATH_TO_Euromillones2004_2018" "$PATH_TO_Primitiva" >> "output.txt"
+# clear &&
+java -cp target/MyStreamjava8-1.0.1-RELEASE.jar com.aironman.ApiStreamTests "$type" "$numIterations" "$PATH_TO_Euromillones2004_2018" "$PATH_TO_Primitiva" >> "output.txt"
 
 # Me quedo con los ganadores y las guardo en un fichero
 while read linea;
