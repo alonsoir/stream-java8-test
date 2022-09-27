@@ -2,7 +2,8 @@
 This project started as a test exercise to know the api stream of java8, then try to practice with parallelism, Docker, bash scripting, in short to practice and have fun. 
 
 # disclaimer
-It can't be taken as an example of anything because there was no intention to do it right from the beginning, so you won't find a good use of design patterns or a correct use of solid principles. Just practice with java8 api stream onwards, as well as apply parallelism to get better performance, play with Docker, bash scripting. There are better projects in my repository on how to have a better design following solid principles and good practices.<br />
+It can't be taken as an example of anything because there was no intention to do it right from the beginning, so you won't find a good use of design patterns or a correct use of solid principles. Just practice with java8 api stream onwards, as well as apply parallelism to get better performance, play with Docker, bash scripting. The project is basically crap, one of those you dont like at all. It started out as one of those practice ones, doing functional-style stuff from some tests, but then you start playing around, you put something here, there, and you end up with a jumble of stuff you don't like. In short, do not take it as an example of anything.
+There are better projects in my repository on how to have a better design following solid principles and good practices.<br />
 
 # How to use <br />
 
