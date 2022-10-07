@@ -5,20 +5,21 @@ RUN echo "Here is the build env: $PROFILE!"
 VOLUME /tmp
 WORKDIR /
 ADD . .
-
-RUN ./mvnw clean install
-RUN mv /$JAR_PATH/target/demo-jdbc-0.0.1-SNAPSHOT.jar /app.jar
+RUN ./mvnw package
+RUN mv /$JAR_PATH/target/MyStreamjava8-1.0.1-RELEASE.jar /stream-app.jar
+RUN mv /$JAR_PATH/target/demo-jdbc-0.0.1-SNAPSHOT.jar /jdbc-app.jar
 
 # package stage
 FROM openjdk:8-jdk-alpine
 WORKDIR /
 # copy only the built jar and nothing else
-COPY --from=build /app.jar /
+COPY --from=build /stream-app.jar /
+COPY --from=build /jdbc-app.jar /
 
-COPY clean_final_output_winners.txt /
-COPY clean_final_output_star.txt /
+COPY /scripts/runMe.sh /scripts/runMe.sh
+COPY /scripts/runPermutations.sh /scripts/runPermutations.sh
+COPY /scripts/downloadPreviousResults.sh /scripts/downloadPreviousResults.sh
 COPY entrypoint.sh /entrypoint.sh
 
 EXPOSE 8080
-
 ENTRYPOINT ["/entrypoint.sh"]

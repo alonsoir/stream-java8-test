@@ -7,6 +7,7 @@ COPY runPermutations.sh /scripts/runPermutations.sh
 COPY src/main/resources/Euromillones2004_2018.csv /files/Euromillones2004_2018.csv
 COPY src/main/resources/primitiva.csv /files/primitiva.csv
 EXPOSE 8080
+
 RUN bash -c 'touch target/MyStreamTests.jar'
 RUN chmod +x '/scripts/runMe.sh'
 RUN chmod +x '/scripts/runPermutations.sh'
