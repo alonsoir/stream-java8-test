@@ -9,7 +9,7 @@
 	<name>MyStreamjava8</name>
 	<url>http://maven.apache.org</url>
 	<properties>
-		<slf4j.version>1.8.0-beta2</slf4j.version>
+		<slf4j.version>2.0.1</slf4j.version>
 		<docker.image.prefix>aironman</docker.image.prefix>
 	</properties>
 	<dependencies>
